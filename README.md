@@ -11,14 +11,13 @@
 
 ```bash
 git clone ...
-cd data-platform
+cd data-platform-projetISI
 pip install -r requirements.txt
 docker-compose up
 
 ## création et activation env virtuel
 
 python -m venv venv
-source venv/bin/activate  # Linux / Mac
 venv\Scripts\activate     # Windows
 
 ## installation des dépendances 
