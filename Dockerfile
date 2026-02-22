@@ -1,32 +1,33 @@
-FROM python:3.11-slim
+FROM eclipse-temurin:17-jdk
+
+USER root
+
+RUN apt-get update && \
+    apt-get install -y \
+    python3 \
+    python3-pip \
+    python3-venv \
+    build-essential \
+    libpq-dev \
+    git \
+    && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
 
-COPY requirements.txt ./
+# Création du venv
+RUN python3 -m venv /opt/venv
 
-# Install dependencies with compatible versions
-RUN pip install marimo==0.1.0 \
-    && pip install uv==0.3.0
+# Activer le venv dans PATH
+ENV PATH="/opt/venv/bin:$PATH"
 
+# Copier requirements
+COPY requirements.txt .
 
-# Install system dependencies
+# Installer dans le venv
+RUN pip install --upgrade pip
 RUN pip install --no-cache-dir -r requirements.txt
 
+ENV JAVA_HOME=/opt/java/openjdk
+ENV PATH=$JAVA_HOME/bin:$PATH
 
-# Install uv package manager
-RUN pip install --no-cache-dir uv
-
-
-
-# Install Python dependencies using uv
-# RUN uv sync --no-dev
-
-
-# Create directories
-## RUN mkdir -p /app/notebooks /app/data
-
-# Expose Marimo port
-EXPOSE 8080
-
-# Start Marimo notebook server using uv run
-## CMD ["uv", "run", "marimo", "edit","python", "--host", "0.0.0.0", "--port", "8080", "--no-token"]
+USER 1000
