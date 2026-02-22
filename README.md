@@ -12,14 +12,21 @@
 ```bash
 git clone ...
 cd data-platform-projetISI
-pip install -r requirements.txt
-docker-compose up
 
 ## création et activation env virtuel
 
 python -m venv venv
 venv\Scripts\activate     # Windows
 
-## installation des dépendances 
-
 pip install -r requirements.txt
+docker-compose up -d
+
+
+## installation des dépendances avec pyproject.toml à la place de requirements.txt
+COPY pyproject.toml uv.lock* ./
+RUN uv sync --no-dev
+
+## pour lancer minio et marimo depuis le navigateur
+MinIO console → http://localhost:9001
+
+Marimo → http://localhost:8080

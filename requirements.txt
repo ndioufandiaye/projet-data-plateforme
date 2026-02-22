@@ -7,3 +7,4 @@ python-dotenv
 jupyter
 marimo
 pytest
+openpyxl

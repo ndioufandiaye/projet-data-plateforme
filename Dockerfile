@@ -1,32 +1,26 @@
-FROM python:3.11-slim
+FROM python:3.11
 
 WORKDIR /app
 
-COPY requirements.txt ./
+RUN apt-get update && apt-get install -y \
+    curl \
+    default-jdk \
+    && rm -rf /var/lib/apt/lists/*
 
-# Install dependencies with compatible versions
-RUN pip install marimo==0.1.0 \
-    && pip install uv==0.3.0
+ENV JAVA_HOME=/usr/lib/jvm/default-java
+ENV PATH=$PATH:$JAVA_HOME/bin
 
-
-# Install system dependencies
-RUN pip install --no-cache-dir -r requirements.txt
-
-
-# Install uv package manager
 RUN pip install --no-cache-dir uv
 
-
-
-# Install Python dependencies using uv
+# COPY pyproject.toml uv.lock* ./
 # RUN uv sync --no-dev
 
+COPY requirements.txt .
+RUN pip install -r requirements.txt
 
-# Create directories
-## RUN mkdir -p /app/notebooks /app/data
+RUN mkdir -p /app/notebooks /app/data
 
-# Expose Marimo port
 EXPOSE 8080
 
-# Start Marimo notebook server using uv run
-## CMD ["uv", "run", "marimo", "edit","python", "--host", "0.0.0.0", "--port", "8080", "--no-token"]
+CMD ["uv", "run", "marimo", "edit", "notebooks/delta_lake_example.py", "--host", "0.0.0.0", "--port", "8080", "--no-token"]
+#CMD ["jupyter", "notebook", "--ip=0.0.0.0", "--port=8080", "--no-browser", "--allow-root"]
