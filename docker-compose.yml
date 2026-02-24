@@ -1,3 +1,5 @@
+version: "3.8"
+
 services:
   minio:
     image: minio/minio:latest
@@ -41,13 +43,14 @@ services:
     networks:
       - dataplatform
 
-  marimo:
+  marimo-spark:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: sales_marimo
+    container_name: sales_marimo_spark
     ports:
-      - "8080:8080"
+      - "8080:8080"   # Marimo UI
+      - "4040:4040"   # Spark UI
     depends_on:
       minio:
         condition: service_healthy
@@ -58,6 +61,7 @@ services:
       MINIO_ENDPOINT: http://minio:9000
       MINIO_ACCESS_KEY: minioadmin
       MINIO_SECRET_KEY: minioadmin123
+      SPARK_MASTER: local[*]
     networks:
       - dataplatform
 
