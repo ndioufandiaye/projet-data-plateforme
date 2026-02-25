@@ -1,4 +1,17 @@
 services:
+  # --- SOURCE DE DONNÉES NoSQL ---
+  sales_mongodb:
+    image: mongo:latest
+    container_name: sales_mongodb
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: negui
+      MONGO_INITDB_ROOT_PASSWORD: Nekarimo@1
+    networks:
+      - dataplatform
+
+  # --- STOCKAGE OBJET (MEDALLION BRONZE/SILVER/GOLD) ---
   minio:
     image: minio/minio:latest
     container_name: sales_minio
@@ -19,6 +32,7 @@ services:
     networks:
       - dataplatform
 
+  # --- INITIALISATION DES BUCKETS ---
   minio-client:
     image: minio/mc:latest
     container_name: sales_minio_client
@@ -32,15 +46,13 @@ services:
       mc mb myminio/bronze --ignore-existing;
       mc mb myminio/silver --ignore-existing;
       mc mb myminio/gold --ignore-existing;
-      mc cp /data/* myminio/bronze/ --recursive;
-      echo '✅ Buckets created and data uploaded to bronze';
+      echo '✅ Buckets Medallion créés';
       exit 0;
       "
-    volumes:
-      - ./data:/data
     networks:
       - dataplatform
 
+  # --- PLATEFORME DATA (SPARK + MARIMO) ---
   marimo:
     build:
       context: .
@@ -51,6 +63,8 @@ services:
     depends_on:
       minio:
         condition: service_healthy
+      mongodb:
+        condition: service_started
     volumes:
       - ./notebooks:/app/notebooks
       - ./data:/app/data
@@ -58,6 +72,8 @@ services:
       MINIO_ENDPOINT: http://minio:9000
       MINIO_ACCESS_KEY: minioadmin
       MINIO_SECRET_KEY: minioadmin123
+      # On ajoute l'URL Mongo ici pour plus de flexibilité
+      MONGO_URI: mongodb://negui:Nekarimo%401@mongodb:27017/?authSource=admin
     networks:
       - dataplatform
 
