@@ -19,7 +19,7 @@
         {
           "type": "stream",
           "name": "stderr",
-          "text": "WARNING: Using incubator modules: jdk.incubator.vector\nUsing Spark's default log4j profile: org/apache/spark/log4j2-defaults.properties\nSetting default log level to \"WARN\".\nTo adjust logging level use sc.setLogLevel(newLevel). For SparkR, use setLogLevel(newLevel).\n26/02/24 12:27:07 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable\n",
+          "text": "WARNING: Using incubator modules: jdk.incubator.vector\nUsing Spark's default log4j profile: org/apache/spark/log4j2-defaults.properties\nSetting default log level to \"WARN\".\nTo adjust logging level use sc.setLogLevel(newLevel). For SparkR, use setLogLevel(newLevel).\n26/02/26 23:01:15 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable\n26/02/26 23:01:19 WARN Utils: Service 'SparkUI' could not bind on port 4040. Attempting port 4041.\n",
           "mimetype": "text/plain"
         }
       ]
@@ -39,13 +39,25 @@
         {
           "type": "stream",
           "name": "stderr",
-          "text": "\r[Stage 0:>                                                          (0 + 1) / 1]\r\r                                                                                \r",
+          "text": "\r[Stage 0:>                                                          (0 + 0) / 1]\r\r[Stage 0:>                                                          (0 + 1) / 1]\r\r                                                                                \r\r[Stage 1:>                                                          (0 + 1) / 1]\r\r                                                                                \r",
           "mimetype": "text/plain"
         },
         {
           "type": "stream",
           "name": "stdout",
-          "text": "\u2713 Donn\u00e9es charg\u00e9es avec succ\u00e8s\nNombre d'enregistrements: 30\n+---------------+-------+\n|YearsExperience| Salary|\n+---------------+-------+\n|            1.1|39343.0|\n|            1.3|46205.0|\n|            1.5|37731.0|\n|            2.0|43525.0|\n|            2.2|39891.0|\n|            2.9|56642.0|\n|            3.0|60150.0|\n|            3.2|54445.0|\n|            3.2|64445.0|\n|            3.7|57189.0|\n|            3.9|63218.0|\n|            4.0|55794.0|\n|            4.0|56957.0|\n|            4.1|57081.0|\n|            4.5|61111.0|\n|            4.9|67938.0|\n|            5.1|66029.0|\n|            5.3|83088.0|\n|            5.9|81363.0|\n|            6.0|93940.0|\n+---------------+-------+\nonly showing top 20 rows\n",
+          "text": "\u2713 Donn\u00e9es charg\u00e9es avec succ\u00e8s\n",
+          "mimetype": "text/plain"
+        },
+        {
+          "type": "stream",
+          "name": "stderr",
+          "text": "\r[Stage 2:>                                                          (0 + 1) / 1]\r\r[Stage 2:===========================================================(1 + 0) / 1]\r\r                                                                                \r",
+          "mimetype": "text/plain"
+        },
+        {
+          "type": "stream",
+          "name": "stdout",
+          "text": "Nombre d'enregistrements: 30\n",
           "mimetype": "text/plain"
         }
       ]

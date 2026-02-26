@@ -1,6 +1,24 @@
-version: "3.8"
-
 services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: sales_postgres
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: testspark
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: Ndiouf@1234
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./postgres/init.sql:/docker-entrypoint-initdb.d/init.sql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d testspark"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    networks:
+      - dataplatform
+
   minio:
     image: minio/minio:latest
     container_name: sales_minio
@@ -10,6 +28,9 @@ services:
     environment:
       MINIO_ROOT_USER: minioadmin
       MINIO_ROOT_PASSWORD: minioadmin123
+      PYSPARK_SUBMIT_ARGS: >
+        --packages org.postgresql:postgresql:42.7.3,org.apache.hadoop:hadoop-aws:3.3.4
+        pyspark-shell
     volumes:
       - minio_data:/data
     command: server /data --console-address ":9001"
@@ -34,12 +55,9 @@ services:
       mc mb myminio/bronze --ignore-existing;
       mc mb myminio/silver --ignore-existing;
       mc mb myminio/gold --ignore-existing;
-      mc cp /data/* myminio/bronze/ --recursive;
-      echo '✅ Buckets created and data uploaded to bronze';
+      echo '✅ Buckets created';
       exit 0;
       "
-    volumes:
-      - ./data:/data
     networks:
       - dataplatform
 
@@ -52,8 +70,10 @@ services:
       - "8080:8080"   # Marimo UI
       - "4040:4040"   # Spark UI
     depends_on:
-      minio:
+      postgres:
         condition: service_healthy
+      minio-client:
+        condition: service_completed_successfully
     volumes:
       - ./notebooks:/app/notebooks
       - ./data:/app/data
@@ -67,6 +87,7 @@ services:
 
 volumes:
   minio_data:
+  postgres_data:
 
 networks:
   dataplatform:
