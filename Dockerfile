@@ -1,48 +1,31 @@
-FROM python:3.11
+FROM python:3.11-slim
+
+# Install Java (required for PySpark)
+RUN apt-get update && \
+    apt-get install -y openjdk-21-jre-headless procps curl && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
+# Create an arch-agnostic symlink so JAVA_HOME works on both amd64 and arm64
+RUN ln -sf /usr/lib/jvm/java-21-openjdk-$(dpkg --print-architecture) /usr/lib/jvm/java-21-openjdk
+
+ENV JAVA_HOME=/usr/lib/jvm/java-21-openjdk
+ENV PATH="${JAVA_HOME}/bin:${PATH}"
 
 WORKDIR /app
 
-RUN apt-get update && apt-get install -y \
-    curl \
-    default-jdk \
-    && rm -rf /var/lib/apt/lists/*
+RUN pip install --no-cache-dir \
+    "marimo>=0.9.0" \
+    "pyspark==3.5.0" \
+    "pandas>=2.0.0" \
+    "pyarrow>=14.0.0" \
+    "mysql-connector-python" \
+    "boto3" \
+    "minio"
 
-ENV JAVA_HOME=/usr/lib/jvm/default-java
-ENV PATH=$PATH:$JAVA_HOME/bin
+RUN mkdir -p /app/notebooks /tmp/spark && \
+    chmod -R 777 /tmp/spark
 
-RUN pip install --no-cache-dir uv
+EXPOSE 8080 4040
 
-# COPY pyproject.toml uv.lock* ./
-# RUN uv sync --no-dev
-
-COPY requirements.txt .
-RUN pip install -r requirements.txt
-
-RUN mkdir -p /app/notebooks /app/data
-
-# # Copier le driver PostgreSQL JDBC dans Spark
-# COPY jars/postgresql-42.6.0.jar /usr/local/lib/python3.11/site-packages/pyspark/jars/
-
-# # Dockerfile
-# RUN curl -L -o /opt/spark/jars/hadoop-aws-3.3.4.jar https://repo1.maven.org/maven2/org/apache/hadoop/hadoop-aws/3.3.4/hadoop-aws-3.3.4.jar
-# RUN curl -L -o /opt/spark/jars/aws-java-sdk-bundle-1.12.325.jar https://repo1.maven.org/maven2/com/amazonaws/aws-java-sdk-bundle/1.12.325/aws-java-sdk-bundle-1.12.325.jar
-
-# Installer PostgreSQL JDBC Driver
-COPY ./postgresql-42.6.0.jar /opt/spark/jars/
-
-# Installer Hadoop AWS et AWS SDK pour S3A (MinIO)
-RUN curl -L -o /opt/spark/jars/hadoop-aws-3.3.4.jar \
-    https://repo1.maven.org/maven2/org/apache/hadoop/hadoop-aws/3.3.4/hadoop-aws-3.3.4.jar && \
-    curl -L -o /opt/spark/jars/aws-java-sdk-bundle-1.12.325.jar \
-    https://repo1.maven.org/maven2/com/amazonaws/aws-java-sdk-bundle/1.12.325/aws-java-sdk-bundle-1.12.325.jar
-
-# Définir PYSPARK_SUBMIT_ARGS pour inclure PostgreSQL
-ENV PYSPARK_SUBMIT_ARGS="--packages org.postgresql:postgresql:42.7.3 pyspark-shell"
-
-# Point d'entrée par défaut
-# CMD ["/opt/bitnami/spark/bin/spark-shell"]
-
-EXPOSE 8080
-
-CMD ["uv", "run", "marimo", "edit", "notebooks/delta_lake_example.py", "--host", "0.0.0.0", "--port", "8080", "--no-token"]
-#CMD ["jupyter", "notebook", "--ip=0.0.0.0", "--port=8080", "--no-browser", "--allow-root"]
+CMD ["marimo", "edit", "--host", "0.0.0.0", "--port", "8080"]

@@ -5,24 +5,274 @@
   },
   "cells": [
     {
-      "id": "Hbol",
-      "code_hash": "ba1fedc0a1f2e6aee31e9797aa9cb4b8",
+      "id": "MJUe",
+      "code_hash": "be7c6f1679eb8c7bf2fe9022db603fa7",
       "outputs": [
         {
-          "type": "error",
-          "ename": "exception",
-          "evalue": "An error occurred while calling o135.parquet.\n: java.lang.RuntimeException: java.lang.ClassNotFoundException: Class org.apache.hadoop.fs.s3a.S3AFileSystem not found\n\tat org.apache.hadoop.conf.Configuration.getClass(Configuration.java:2737)\n\tat org.apache.hadoop.fs.FileSystem.getFileSystemClass(FileSystem.java:3569)\n\tat org.apache.hadoop.fs.FileSystem.createFileSystem(FileSystem.java:3612)\n\tat org.apache.hadoop.fs.FileSystem.access$300(FileSystem.java:172)\n\tat org.apache.hadoop.fs.FileSystem$Cache.getInternal(FileSystem.java:3716)\n\tat org.apache.hadoop.fs.FileSystem$Cache.get(FileSystem.java:3667)\n\tat org.apache.hadoop.fs.FileSystem.get(FileSystem.java:557)\n\tat org.apache.hadoop.fs.Path.getFileSystem(Path.java:366)\n\tat org.apache.spark.sql.execution.datasources.DataSource.makeQualified(DataSource.scala:128)\n\tat org.apache.spark.sql.execution.datasources.DataSource.planForWritingFileFormat(DataSource.scala:471)\n\tat org.apache.spark.sql.execution.datasources.DataSource.planForWriting(DataSource.scala:559)\n\tat org.apache.spark.sql.classic.DataFrameWriter.saveToV1SourceCommand(DataFrameWriter.scala:273)\n\tat org.apache.spark.sql.classic.DataFrameWriter.saveCommand(DataFrameWriter.scala:242)\n\tat org.apache.spark.sql.classic.DataFrameWriter.save(DataFrameWriter.scala:115)\n\tat org.apache.spark.sql.DataFrameWriter.parquet(DataFrameWriter.scala:369)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:75)\n\tat java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:52)\n\tat java.base/java.lang.reflect.Method.invoke(Method.java:580)\n\tat py4j.reflection.MethodInvoker.invoke(MethodInvoker.java:244)\n\tat py4j.reflection.ReflectionEngine.invoke(ReflectionEngine.java:374)\n\tat py4j.Gateway.invoke(Gateway.java:282)\n\tat py4j.commands.AbstractCommand.invokeMethod(AbstractCommand.java:132)\n\tat py4j.commands.CallCommand.execute(CallCommand.java:79)\n\tat py4j.ClientServerConnection.waitForCommands(ClientServerConnection.java:184)\n\tat py4j.ClientServerConnection.run(ClientServerConnection.java:108)\n\tat java.base/java.lang.Thread.run(Thread.java:1583)\nCaused by: java.lang.ClassNotFoundException: Class org.apache.hadoop.fs.s3a.S3AFileSystem not found\n\tat org.apache.hadoop.conf.Configuration.getClassByName(Configuration.java:2641)\n\tat org.apache.hadoop.conf.Configuration.getClass(Configuration.java:2735)\n\t... 26 more\n",
-          "traceback": []
+          "type": "data",
+          "data": {
+            "text/markdown": "<span class=\"markdown prose dark:prose-invert contents\"><h1 id=\"data-plateforme-avec-pyspark-mysql-et-minio\">Data Plateforme avec PySpark, MySQL et MinIO</h1>\n<h2 id=\"architecture\">Architecture</h2>\n<div class=\"language-text codehilite\"><pre><span></span><code>MySQL (source de donn\u00e9es)\n      \u2502\n      \u25bc\nPySpark (moteur de traitement)\n      \u2502\n      \u25bc\nMinIO / S3 (Data Lake - format Parquet)\n</code></pre></div>\n<hr />\n<h2 id=\"configuration-de-lenvironnement\">Configuration de l'environnement</h2></span>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "bkHC",
+      "code_hash": "cccdee6f589a8acd324703ae4cc4033f",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/markdown": "<span class=\"markdown prose dark:prose-invert contents\"><h2 id=\"initialisation-de-la-session-spark\">Initialisation de la session Spark</h2></span>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "SFPL",
+      "code_hash": "eae3ff5c55acecb14c9856af03acbf9a",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/markdown": "<span class=\"markdown prose dark:prose-invert contents\"><h2 id=\"etape-12-ecriture-dans-minio-datalake\">\u00c9tape 1.2 \u2014 \u00c9criture dans MinIO (datalake)</h2></span>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "RGSE",
+      "code_hash": "a9be3d748dd085c68f5e894e001010ec",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/markdown": "<span class=\"markdown prose dark:prose-invert contents\"><h2 id=\"lecture-donnee-source-mysql-depuis-minio\">Lecture donn\u00e9e source mysql depuis MinIO</h2></span>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "emfo",
+      "code_hash": "0de9e94b742bb05226bafcaa7d569e88",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/markdown": "<span class=\"markdown prose dark:prose-invert contents\"><h1 id=\"data-plateforme-avec-pyspark-fichier-csv-et-minio\">Data Plateforme avec PySpark, fichier csv et MinIO</h1>\n<h2 id=\"architecture\">Architecture</h2>\n<div class=\"language-text codehilite\"><pre><span></span><code>Fichier csv (source de donn\u00e9es)\n      \u2502\n      \u25bc\nPySpark (moteur de traitement)\n      \u2502\n      \u25bc\nMinIO / S3 (Data Lake - format Parquet)\n</code></pre></div>\n<hr />\n<h2 id=\"configuration-de-lenvironnement\">Configuration de l'environnement</h2></span>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "nWHF",
+      "code_hash": "8c8a8b0b045ed592ddcbeb8913da75de",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/markdown": "<span class=\"markdown prose dark:prose-invert contents\"><h2 id=\"lecture-donnees-source-csv-depuis-minio\">Lecture donn\u00e9es source csv depuis MinIO</h2></span>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "Hbol",
+      "code_hash": "1d0db38904205bec4d6f6f6a1f6cec3e",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "vblA",
+      "code_hash": "9e4f90a9ccefedc05b6a5aecd7e436f1",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": [
+        {
+          "type": "stream",
+          "name": "stdout",
+          "text": "\u2713 Configuration charg\u00e9e\n  MySQL  : mysql:3306/warehouse\n  MinIO  : http://minio:9000\n  Spark  : local[*]\n",
+          "mimetype": "text/plain"
+        }
+      ]
+    },
+    {
+      "id": "lEQa",
+      "code_hash": "46cc4b38c4d83efad8cf612e79488197",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": [
+        {
+          "type": "stream",
+          "name": "stdout",
+          "text": ":: loading settings :: url = jar:file:/usr/local/lib/python3.11/site-packages/pyspark/jars/ivy-2.5.1.jar!/org/apache/ivy/core/settings/ivysettings.xml\n",
+          "mimetype": "text/plain"
+        },
+        {
+          "type": "stream",
+          "name": "stderr",
+          "text": "Ivy Default Cache set to: /root/.ivy2/cache\nThe jars for the packages stored in: /root/.ivy2/jars\norg.apache.hadoop#hadoop-aws added as a dependency\ncom.amazonaws#aws-java-sdk-bundle added as a dependency\nmysql#mysql-connector-java added as a dependency\n:: resolving dependencies :: org.apache.spark#spark-submit-parent-31a80e6b-74db-4792-9960-0b3277382fff;1.0\n\tconfs: [default]\n\tfound org.apache.hadoop#hadoop-aws;3.3.4 in central\n\tfound com.amazonaws#aws-java-sdk-bundle;1.12.262 in central\n\tfound org.wildfly.openssl#wildfly-openssl;1.0.7.Final in central\n\tfound mysql#mysql-connector-java;8.0.33 in central\n\tfound com.mysql#mysql-connector-j;8.0.33 in central\n\tfound com.google.protobuf#protobuf-java;3.21.9 in central\n:: resolution report :: resolve 2704ms :: artifacts dl 119ms\n\t:: modules in use:\n\tcom.amazonaws#aws-java-sdk-bundle;1.12.262 from central in [default]\n\tcom.google.protobuf#protobuf-java;3.21.9 from central in [default]\n\tcom.mysql#mysql-connector-j;8.0.33 from central in [default]\n\tmysql#mysql-connector-java;8.0.33 from central in [default]\n\torg.apache.hadoop#hadoop-aws;3.3.4 from central in [default]\n\torg.wildfly.openssl#wildfly-openssl;1.0.7.Final from central in [default]\n\t---------------------------------------------------------------------\n\t|                  |            modules            ||   artifacts   |\n\t|       conf       | number| search|dwnlded|evicted|| number|dwnlded|\n\t---------------------------------------------------------------------\n\t|      default     |   6   |   0   |   0   |   0   ||   5   |   0   |\n\t---------------------------------------------------------------------\n:: retrieving :: org.apache.spark#spark-submit-parent-31a80e6b-74db-4792-9960-0b3277382fff\n\tconfs: [default]\n\t0 artifacts copied, 5 already retrieved (0kB/47ms)\n26/02/27 14:53:02 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable\nSetting default log level to \"WARN\".\nTo adjust logging level use sc.setLogLevel(newLevel). For SparkR, use setLogLevel(newLevel).\n26/02/27 14:54:05 WARN GarbageCollectionMetrics: To enable non-built-in garbage collector(s) List(G1 Concurrent GC), users should configure it(them) to spark.eventLog.gcMetrics.youngGenerationGarbageCollectors or spark.eventLog.gcMetrics.oldGenerationGarbageCollectors\n26/02/27 14:54:05 ERROR Inbox: Ignoring error\njava.lang.NullPointerException: Cannot invoke \"org.apache.spark.storage.BlockManagerId.executorId()\" because \"idWithoutTopologyInfo\" is null\n\tat org.apache.spark.storage.BlockManagerMasterEndpoint.org$apache$spark$storage$BlockManagerMasterEndpoint$$register(BlockManagerMasterEndpoint.scala:677)\n\tat org.apache.spark.storage.BlockManagerMasterEndpoint$$anonfun$receiveAndReply$1.applyOrElse(BlockManagerMasterEndpoint.scala:133)\n\tat org.apache.spark.rpc.netty.Inbox.$anonfun$process$1(Inbox.scala:103)\n\tat org.apache.spark.rpc.netty.Inbox.safelyCall(Inbox.scala:213)\n\tat org.apache.spark.rpc.netty.Inbox.process(Inbox.scala:100)\n\tat org.apache.spark.rpc.netty.MessageLoop.org$apache$spark$rpc$netty$MessageLoop$$receiveLoop(MessageLoop.scala:75)\n\tat org.apache.spark.rpc.netty.MessageLoop$$anon$1.run(MessageLoop.scala:41)\n\tat java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)\n\tat java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)\n\tat java.base/java.lang.Thread.run(Thread.java:1583)\n26/02/27 14:54:05 WARN Executor: Issue communicating with driver in heartbeater\norg.apache.spark.SparkException: Exception thrown in awaitResult: \n\tat org.apache.spark.util.SparkThreadUtils$.awaitResult(SparkThreadUtils.scala:56)\n\tat org.apache.spark.util.ThreadUtils$.awaitResult(ThreadUtils.scala:310)\n\tat org.apache.spark.rpc.RpcTimeout.awaitResult(RpcTimeout.scala:75)\n\tat org.apache.spark.rpc.RpcEndpointRef.askSync(RpcEndpointRef.scala:101)\n\tat org.apache.spark.rpc.RpcEndpointRef.askSync(RpcEndpointRef.scala:85)\n\tat org.apache.spark.storage.BlockManagerMaster.registerBlockManager(BlockManagerMaster.scala:80)\n\tat org.apache.spark.storage.BlockManager.reregister(BlockManager.scala:642)\n\tat org.apache.spark.executor.Executor.reportHeartBeat(Executor.scala:1223)\n\tat org.apache.spark.executor.Executor.$anonfun$heartbeater$1(Executor.scala:295)\n\tat scala.runtime.java8.JFunction0$mcV$sp.apply(JFunction0$mcV$sp.java:23)\n\tat org.apache.spark.util.Utils$.logUncaughtExceptions(Utils.scala:1928)\n\tat org.apache.spark.Heartbeater$$anon$1.run(Heartbeater.scala:46)\n\tat java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:572)\n\tat java.base/java.util.concurrent.FutureTask.runAndReset(FutureTask.java:358)\n\tat java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:305)\n\tat java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)\n\tat java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)\n\tat java.base/java.lang.Thread.run(Thread.java:1583)\nCaused by: java.lang.NullPointerException: Cannot invoke \"org.apache.spark.storage.BlockManagerId.executorId()\" because \"idWithoutTopologyInfo\" is null\n\tat org.apache.spark.storage.BlockManagerMasterEndpoint.org$apache$spark$storage$BlockManagerMasterEndpoint$$register(BlockManagerMasterEndpoint.scala:677)\n\tat org.apache.spark.storage.BlockManagerMasterEndpoint$$anonfun$receiveAndReply$1.applyOrElse(BlockManagerMasterEndpoint.scala:133)\n\tat org.apache.spark.rpc.netty.Inbox.$anonfun$process$1(Inbox.scala:103)\n\tat org.apache.spark.rpc.netty.Inbox.safelyCall(Inbox.scala:213)\n\tat org.apache.spark.rpc.netty.Inbox.process(Inbox.scala:100)\n\tat org.apache.spark.rpc.netty.MessageLoop.org$apache$spark$rpc$netty$MessageLoop$$receiveLoop(MessageLoop.scala:75)\n\tat org.apache.spark.rpc.netty.MessageLoop$$anon$1.run(MessageLoop.scala:41)\n\t... 3 more\n26/02/27 14:54:14 ERROR Inbox: Ignoring error\njava.lang.NullPointerException: Cannot invoke \"org.apache.spark.storage.BlockManagerId.executorId()\" because \"idWithoutTopologyInfo\" is null\n\tat org.apache.spark.storage.BlockManagerMasterEndpoint.org$apache$spark$storage$BlockManagerMasterEndpoint$$register(BlockManagerMasterEndpoint.scala:677)\n\tat org.apache.spark.storage.BlockManagerMasterEndpoint$$anonfun$receiveAndReply$1.applyOrElse(BlockManagerMasterEndpoint.scala:133)\n\tat org.apache.spark.rpc.netty.Inbox.$anonfun$process$1(Inbox.scala:103)\n\tat org.apache.spark.rpc.netty.Inbox.safelyCall(Inbox.scala:213)\n\tat org.apache.spark.rpc.netty.Inbox.process(Inbox.scala:100)\n\tat org.apache.spark.rpc.netty.MessageLoop.org$apache$spark$rpc$netty$MessageLoop$$receiveLoop(MessageLoop.scala:75)\n\tat org.apache.spark.rpc.netty.MessageLoop$$anon$1.run(MessageLoop.scala:41)\n\tat java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)\n\tat java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)\n\tat java.base/java.lang.Thread.run(Thread.java:1583)\n26/02/27 14:54:14 WARN Executor: Issue communicating with driver in heartbeater\norg.apache.spark.SparkException: Exception thrown in awaitResult: \n\tat org.apache.spark.util.SparkThreadUtils$.awaitResult(SparkThreadUtils.scala:56)\n\tat org.apache.spark.util.ThreadUtils$.awaitResult(ThreadUtils.scala:310)\n\tat org.apache.spark.rpc.RpcTimeout.awaitResult(RpcTimeout.scala:75)\n\tat org.apache.spark.rpc.RpcEndpointRef.askSync(RpcEndpointRef.scala:101)\n\tat org.apache.spark.rpc.RpcEndpointRef.askSync(RpcEndpointRef.scala:85)\n\tat org.apache.spark.storage.BlockManagerMaster.registerBlockManager(BlockManagerMaster.scala:80)\n\tat org.apache.spark.storage.BlockManager.reregister(BlockManager.scala:642)\n\tat org.apache.spark.executor.Executor.reportHeartBeat(Executor.scala:1223)\n\tat org.apache.spark.executor.Executor.$anonfun$heartbeater$1(Executor.scala:295)\n\tat scala.runtime.java8.JFunction0$mcV$sp.apply(JFunction0$mcV$sp.java:23)\n\tat org.apache.spark.util.Utils$.logUncaughtExceptions(Utils.scala:1928)\n\tat org.apache.spark.Heartbeater$$anon$1.run(Heartbeater.scala:46)\n\tat java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:572)\n\tat java.base/java.util.concurrent.FutureTask.runAndReset(FutureTask.java:358)\n\tat java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:305)\n\tat java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)\n\tat java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)\n\tat java.base/java.lang.Thread.run(Thread.java:1583)\nCaused by: java.lang.NullPointerException: Cannot invoke \"org.apache.spark.storage.BlockManagerId.executorId()\" because \"idWithoutTopologyInfo\" is null\n\tat org.apache.spark.storage.BlockManagerMasterEndpoint.org$apache$spark$storage$BlockManagerMasterEndpoint$$register(BlockManagerMasterEndpoint.scala:677)\n\tat org.apache.spark.storage.BlockManagerMasterEndpoint$$anonfun$receiveAndReply$1.applyOrElse(BlockManagerMasterEndpoint.scala:133)\n\tat org.apache.spark.rpc.netty.Inbox.$anonfun$process$1(Inbox.scala:103)\n\tat org.apache.spark.rpc.netty.Inbox.safelyCall(Inbox.scala:213)\n\tat org.apache.spark.rpc.netty.Inbox.process(Inbox.scala:100)\n\tat org.apache.spark.rpc.netty.MessageLoop.org$apache$spark$rpc$netty$MessageLoop$$receiveLoop(MessageLoop.scala:75)\n\tat org.apache.spark.rpc.netty.MessageLoop$$anon$1.run(MessageLoop.scala:41)\n\t... 3 more\n26/02/27 14:54:24 ERROR Inbox: Ignoring error\njava.lang.NullPointerException: Cannot invoke \"org.apache.spark.storage.BlockManagerId.executorId()\" because \"idWithoutTopologyInfo\" is null\n\tat org.apache.spark.storage.BlockManagerMasterEndpoint.org$apache$spark$storage$BlockManagerMasterEndpoint$$register(BlockManagerMasterEndpoint.scala:677)\n\tat org.apache.spark.storage.BlockManagerMasterEndpoint$$anonfun$receiveAndReply$1.applyOrElse(BlockManagerMasterEndpoint.scala:133)\n\tat org.apache.spark.rpc.netty.Inbox.$anonfun$process$1(Inbox.scala:103)\n\tat org.apache.spark.rpc.netty.Inbox.safelyCall(Inbox.scala:213)\n\tat org.apache.spark.rpc.netty.Inbox.process(Inbox.scala:100)\n\tat org.apache.spark.rpc.netty.MessageLoop.org$apache$spark$rpc$netty$MessageLoop$$receiveLoop(MessageLoop.scala:75)\n\tat org.apache.spark.rpc.netty.MessageLoop$$anon$1.run(MessageLoop.scala:41)\n\tat java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)\n\tat java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)\n\tat java.base/java.lang.Thread.run(Thread.java:1583)\n26/02/27 14:54:24 WARN Executor: Issue communicating with driver in heartbeater\norg.apache.spark.SparkException: Exception thrown in awaitResult: \n\tat org.apache.spark.util.SparkThreadUtils$.awaitResult(SparkThreadUtils.scala:56)\n\tat org.apache.spark.util.ThreadUtils$.awaitResult(ThreadUtils.scala:310)\n\tat org.apache.spark.rpc.RpcTimeout.awaitResult(RpcTimeout.scala:75)\n\tat org.apache.spark.rpc.RpcEndpointRef.askSync(RpcEndpointRef.scala:101)\n\tat org.apache.spark.rpc.RpcEndpointRef.askSync(RpcEndpointRef.scala:85)\n\tat org.apache.spark.storage.BlockManagerMaster.registerBlockManager(BlockManagerMaster.scala:80)\n\tat org.apache.spark.storage.BlockManager.reregister(BlockManager.scala:642)\n\tat org.apache.spark.executor.Executor.reportHeartBeat(Executor.scala:1223)\n\tat org.apache.spark.executor.Executor.$anonfun$heartbeater$1(Executor.scala:295)\n\tat scala.runtime.java8.JFunction0$mcV$sp.apply(JFunction0$mcV$sp.java:23)\n\tat org.apache.spark.util.Utils$.logUncaughtExceptions(Utils.scala:1928)\n\tat org.apache.spark.Heartbeater$$anon$1.run(Heartbeater.scala:46)\n\tat java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:572)\n\tat java.base/java.util.concurrent.FutureTask.runAndReset(FutureTask.java:358)\n\tat java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:305)\n\tat java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)\n\tat java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)\n\tat java.base/java.lang.Thread.run(Thread.java:1583)\nCaused by: java.lang.NullPointerException: Cannot invoke \"org.apache.spark.storage.BlockManagerId.executorId()\" because \"idWithoutTopologyInfo\" is null\n\tat org.apache.spark.storage.BlockManagerMasterEndpoint.org$apache$spark$storage$BlockManagerMasterEndpoint$$register(BlockManagerMasterEndpoint.scala:677)\n\tat org.apache.spark.storage.BlockManagerMasterEndpoint$$anonfun$receiveAndReply$1.applyOrElse(BlockManagerMasterEndpoint.scala:133)\n\tat org.apache.spark.rpc.netty.Inbox.$anonfun$process$1(Inbox.scala:103)\n\tat org.apache.spark.rpc.netty.Inbox.safelyCall(Inbox.scala:213)\n\tat org.apache.spark.rpc.netty.Inbox.process(Inbox.scala:100)\n\tat org.apache.spark.rpc.netty.MessageLoop.org$apache$spark$rpc$netty$MessageLoop$$receiveLoop(MessageLoop.scala:75)\n\tat org.apache.spark.rpc.netty.MessageLoop$$anon$1.run(MessageLoop.scala:41)\n\t... 3 more\n",
+          "mimetype": "text/plain"
+        },
+        {
+          "type": "stream",
+          "name": "stdout",
+          "text": "\u2713 Session Spark cr\u00e9\u00e9e  \u2192  version 3.5.0\n",
+          "mimetype": "text/plain"
+        }
+      ]
+    },
+    {
+      "id": "PKri",
+      "code_hash": "8d5cd376d7a65c49e6b13a9609a459db",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": [
+        {
+          "type": "stream",
+          "name": "stdout",
+          "text": "\u2713 Donn\u00e9es lues depuis MySQL\n",
+          "mimetype": "text/plain"
+        },
+        {
+          "type": "stream",
+          "name": "stderr",
+          "text": "\r[Stage 0:>                                                          (0 + 0) / 1]\r\r[Stage 0:>                                                          (0 + 1) / 1]\r\r[Stage 0:===========================================================(1 + 0) / 1]\r\r[Stage 2:>                                                          (0 + 1) / 1]\r\r                                                                                \r",
+          "mimetype": "text/plain"
+        },
+        {
+          "type": "stream",
+          "name": "stdout",
+          "text": "  Nombre de lignes  : 1500\n  Nombre de colonnes: 11\n\nSch\u00e9ma :\nroot\n |-- id: integer (nullable = true)\n |-- customer_id: integer (nullable = true)\n |-- product: string (nullable = true)\n |-- category: string (nullable = true)\n |-- quantity: integer (nullable = true)\n |-- unit_price: decimal(10,2) (nullable = true)\n |-- total_amount: decimal(10,2) (nullable = true)\n |-- status: string (nullable = true)\n |-- region: string (nullable = true)\n |-- order_date: timestamp (nullable = true)\n |-- updated_at: timestamp (nullable = true)\n\n",
+          "mimetype": "text/plain"
+        }
+      ]
+    },
+    {
+      "id": "Xref",
+      "code_hash": "b8d0da82ebb12935ec5fc7ac75d332ad",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
         }
       ],
       "console": [
         {
           "type": "stream",
           "name": "stderr",
-          "text": "WARNING: Using incubator modules: jdk.incubator.vector\n26/02/26 23:01:50 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable\nUsing Spark's default log4j profile: org/apache/spark/log4j2-defaults.properties\n26/02/26 23:01:51 WARN DependencyUtils: Local jar /app/jars/postgresql-42.6.0.jar does not exist, skipping.\n26/02/26 23:01:52 INFO SparkContext: Running Spark version 4.1.1\n26/02/26 23:01:52 INFO SparkContext: OS info Linux, 6.6.87.2-microsoft-standard-WSL2, amd64\n26/02/26 23:01:52 INFO SparkContext: Java version 21.0.10+7-Debian-1deb13u1\n26/02/26 23:01:53 INFO ResourceUtils: ==============================================================\n26/02/26 23:01:53 INFO ResourceUtils: No custom resources configured for spark.driver.\n26/02/26 23:01:53 INFO ResourceUtils: ==============================================================\n26/02/26 23:01:53 INFO SparkContext: Submitted application: Ingestion Bronze\n26/02/26 23:01:53 INFO SecurityManager: Changing view acls to: root\n26/02/26 23:01:53 INFO SecurityManager: Changing modify acls to: root\n26/02/26 23:01:53 INFO SecurityManager: Changing view acls groups to: root\n26/02/26 23:01:53 INFO SecurityManager: Changing modify acls groups to: root\n26/02/26 23:01:53 INFO SecurityManager: SecurityManager: authentication disabled; ui acls disabled; users with view permissions: root groups with view permissions: EMPTY; users with modify permissions: root; groups with modify permissions: EMPTY; RPC SSL disabled\n26/02/26 23:01:58 INFO Utils: Successfully started service 'sparkDriver' on port 42901.\n26/02/26 23:01:59 INFO SparkEnv: Registering MapOutputTracker\n26/02/26 23:01:59 INFO SparkEnv: Registering BlockManagerMaster\n26/02/26 23:01:59 INFO BlockManagerMasterEndpoint: Using org.apache.spark.storage.DefaultTopologyMapper for getting topology information\n26/02/26 23:01:59 INFO BlockManagerMasterEndpoint: BlockManagerMasterEndpoint up\n26/02/26 23:01:59 INFO SparkEnv: Registering BlockManagerMasterHeartbeat\n26/02/26 23:01:59 INFO DiskBlockManager: Created local directory at /tmp/blockmgr-0f0796c2-ee4a-4b2a-93e0-f2db005689f0\n26/02/26 23:01:59 INFO SparkEnv: Registering OutputCommitCoordinator\n26/02/26 23:02:00 INFO JettyUtils: Start Jetty 0.0.0.0:4040 for SparkUI\n26/02/26 23:02:00 INFO Utils: Successfully started service 'SparkUI' on port 4040.\n26/02/26 23:02:00 ERROR SparkContext: Failed to add /app/jars/postgresql-42.6.0.jar to Spark environment\njava.io.FileNotFoundException: Jar /app/jars/postgresql-42.6.0.jar not found\n\tat org.apache.spark.SparkContext.addLocalJarFile$1(SparkContext.scala:2185)\n\tat org.apache.spark.SparkContext.addJar(SparkContext.scala:2241)\n\tat org.apache.spark.SparkContext.$anonfun$new$16(SparkContext.scala:544)\n\tat org.apache.spark.SparkContext.$anonfun$new$16$adapted(SparkContext.scala:544)\n\tat scala.collection.IterableOnceOps.foreach(IterableOnce.scala:630)\n\tat scala.collection.IterableOnceOps.foreach$(IterableOnce.scala:628)\n\tat scala.collection.AbstractIterable.foreach(Iterable.scala:936)\n\tat org.apache.spark.SparkContext.<init>(SparkContext.scala:544)\n\tat org.apache.spark.api.java.JavaSparkContext.<init>(JavaSparkContext.scala:59)\n\tat java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)\n\tat java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:75)\n\tat java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:53)\n\tat java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:502)\n\tat java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:486)\n\tat py4j.reflection.MethodInvoker.invoke(MethodInvoker.java:247)\n\tat py4j.reflection.ReflectionEngine.invoke(ReflectionEngine.java:374)\n\tat py4j.Gateway.invoke(Gateway.java:238)\n\tat py4j.commands.ConstructorCommand.invokeConstructor(ConstructorCommand.java:80)\n\tat py4j.commands.ConstructorCommand.execute(ConstructorCommand.java:69)\n\tat py4j.ClientServerConnection.waitForCommands(ClientServerConnection.java:184)\n\tat py4j.ClientServerConnection.run(ClientServerConnection.java:108)\n\tat java.base/java.lang.Thread.run(Thread.java:1583)\n26/02/26 23:02:00 INFO ResourceProfile: Default ResourceProfile created, executor resources: Map(cores -> name: cores, amount: 1, script: , vendor: , memory -> name: memory, amount: 1024, script: , vendor: , offHeap -> name: offHeap, amount: 0, script: , vendor: ), task resources: Map(cpus -> name: cpus, amount: 1.0)\n26/02/26 23:02:00 INFO ResourceProfile: Limiting resource is cpu\n26/02/26 23:02:00 INFO ResourceProfileManager: Added ResourceProfile id: 0\n26/02/26 23:02:00 INFO SecurityManager: Changing view acls to: root\n26/02/26 23:02:00 INFO SecurityManager: Changing modify acls to: root\n26/02/26 23:02:00 INFO SecurityManager: Changing view acls groups to: root\n26/02/26 23:02:00 INFO SecurityManager: Changing modify acls groups to: root\n26/02/26 23:02:00 INFO SecurityManager: SecurityManager: authentication disabled; ui acls disabled; users with view permissions: root groups with view permissions: EMPTY; users with modify permissions: root; groups with modify permissions: EMPTY; RPC SSL disabled\n26/02/26 23:02:01 INFO Executor: Starting executor ID driver on host 21594d54281f\n26/02/26 23:02:01 INFO Executor: OS info Linux, 6.6.87.2-microsoft-standard-WSL2, amd64\n26/02/26 23:02:01 INFO Executor: Java version 21.0.10+7-Debian-1deb13u1\n26/02/26 23:02:01 INFO Executor: Starting executor with user classpath (userClassPathFirst = false): ''\n26/02/26 23:02:01 INFO Executor: Created or updated repl class loader org.apache.spark.util.MutableURLClassLoader@1b8e831c for default.\n26/02/26 23:02:01 INFO Utils: Successfully started service 'org.apache.spark.network.netty.NettyBlockTransferService' on port 35509.\n26/02/26 23:02:01 INFO NettyBlockTransferService: Server created on 21594d54281f:35509\n26/02/26 23:02:01 INFO BlockManager: Using org.apache.spark.storage.RandomBlockReplicationPolicy for block replication policy\n26/02/26 23:02:02 INFO BlockManagerMaster: Registering BlockManager BlockManagerId(driver, 21594d54281f, 35509, None)\n26/02/26 23:02:02 INFO BlockManagerMasterEndpoint: Registering block manager 21594d54281f:35509 with 434.4 MiB RAM, BlockManagerId(driver, 21594d54281f, 35509, None)\n26/02/26 23:02:02 INFO BlockManagerMaster: Registered BlockManager BlockManagerId(driver, 21594d54281f, 35509, None)\n26/02/26 23:02:02 INFO BlockManager: Initialized BlockManager: BlockManagerId(driver, 21594d54281f, 35509, None)\n",
+          "text": "\r[Stage 3:>                                                          (0 + 1) / 1]\r\r                                                                                \r",
+          "mimetype": "text/plain"
+        },
+        {
+          "type": "stream",
+          "name": "stdout",
+          "text": "+---+-----------+----------+--------+--------+----------+------------+---------+-------+-------------------+-------------------+\n|id |customer_id|product   |category|quantity|unit_price|total_amount|status   |region |order_date         |updated_at         |\n+---+-----------+----------+--------+--------+----------+------------+---------+-------+-------------------+-------------------+\n|1  |53         |T-Shirt   |Clothing|5       |248.42    |1242.10     |completed|Central|2023-03-09 12:39:26|2023-03-13 12:39:26|\n|2  |14         |Lego Set  |Toys    |1       |98.13     |98.13       |completed|Central|2023-06-04 10:36:08|2023-06-09 10:36:08|\n|3  |4          |Board Game|Toys    |8       |590.73    |4725.84     |pending  |South  |2024-06-26 06:15:41|2024-06-29 06:15:41|\n|4  |53         |Lipstick  |Beauty  |3       |219.02    |657.06      |pending  |North  |2023-10-23 02:21:29|2023-10-23 02:21:29|\n|5  |236        |Lipstick  |Beauty  |10      |267.93    |2679.30     |completed|Central|2023-04-07 22:55:41|2023-04-10 22:55:41|\n+---+-----------+----------+--------+--------+----------+------------+---------+-------+-------------------+-------------------+\nonly showing top 5 rows\n\n",
           "mimetype": "text/plain"
         }
       ]
+    },
+    {
+      "id": "BYtC",
+      "code_hash": "4caf609b69d5cf35ed1febf844434f98",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": [
+        {
+          "type": "stream",
+          "name": "stderr",
+          "text": "26/02/27 14:55:27 WARN MetricsConfig: Cannot locate configuration: tried hadoop-metrics2-s3a-file-system.properties,hadoop-metrics2.properties\n\r[Stage 4:>                                                          (0 + 0) / 1]\r\r[Stage 4:>                                                          (0 + 1) / 1]\r\r                                                                                \r",
+          "mimetype": "text/plain"
+        },
+        {
+          "type": "stream",
+          "name": "stdout",
+          "text": "\u2713 Load termin\u00e9 !\n  Destination : s3a://bronze/full/orders\n",
+          "mimetype": "text/plain"
+        }
+      ]
+    },
+    {
+      "id": "Kclp",
+      "code_hash": "5854977b9ebce2dc56b63364fcf56db0",
+      "outputs": [],
+      "console": [
+        {
+          "type": "stream",
+          "name": "stderr",
+          "text": "\r[Stage 5:>                                                          (0 + 1) / 1]\r\r                                                                                \r",
+          "mimetype": "text/plain"
+        },
+        {
+          "type": "stream",
+          "name": "stdout",
+          "text": "\u2713 V\u00e9rification Bronze Layer\n",
+          "mimetype": "text/plain"
+        },
+        {
+          "type": "stream",
+          "name": "stderr",
+          "text": "\r[Stage 6:>                                                          (0 + 1) / 1]\r\r                                                                                \r",
+          "mimetype": "text/plain"
+        },
+        {
+          "type": "stream",
+          "name": "stdout",
+          "text": "  Lignes lues depuis MinIO : 1500\n",
+          "mimetype": "text/plain"
+        }
+      ]
+    },
+    {
+      "id": "Hstk",
+      "code_hash": "1a2ff06c20f7448d0f452894da375216",
+      "outputs": [],
+      "console": []
+    },
+    {
+      "id": "iLit",
+      "code_hash": "ca9b38d1ed7b3947268aee776321daa8",
+      "outputs": [],
+      "console": []
     }
   ]
 }

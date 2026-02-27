@@ -1,94 +1,90 @@
 services:
-  postgres:
-    image: postgres:16-alpine
-    container_name: sales_postgres
-    ports:
-      - "5432:5432"
-    environment:
-      POSTGRES_DB: testspark
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: Ndiouf@1234
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
-      - ./postgres/init.sql:/docker-entrypoint-initdb.d/init.sql
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U postgres -d testspark"]
-      interval: 5s
-      timeout: 5s
-      retries: 5
-    networks:
-      - dataplatform
 
+  # ─── MySQL ──────────────────────────────────────────────────────────────────
+  mysql:
+    image: mysql:8.0
+    container_name: tp1-mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: warehouse
+      MYSQL_USER: tp_user
+      MYSQL_PASSWORD: tp_password
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./mysql:/docker-entrypoint-initdb.d
+      - mysql_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "tp_user", "-ptp_password"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+
+  # ─── MinIO (S3-compatible object storage) ───────────────────────────────────
   minio:
     image: minio/minio:latest
-    container_name: sales_minio
-    ports:
-      - "9000:9000"
-      - "9001:9001"
+    container_name: tp1-minio
     environment:
       MINIO_ROOT_USER: minioadmin
       MINIO_ROOT_PASSWORD: minioadmin123
-      PYSPARK_SUBMIT_ARGS: >
-        --packages org.postgresql:postgresql:42.7.3,org.apache.hadoop:hadoop-aws:3.3.4
-        pyspark-shell
+    ports:
+      - "9000:9000"   # S3 API
+      - "9001:9001"   # Web console
     volumes:
       - minio_data:/data
     command: server /data --console-address ":9001"
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:9000/minio/health/live"]
-      interval: 5s
+      interval: 10s
       timeout: 5s
       retries: 5
-    networks:
-      - dataplatform
 
-  minio-client:
+  # ─── MinIO bucket initializer ───────────────────────────────────────────────
+  minio-init:
     image: minio/mc:latest
-    container_name: sales_minio_client
+    container_name: tp1-minio-init
     depends_on:
       minio:
         condition: service_healthy
     entrypoint: >
       /bin/sh -c "
-      sleep 5;
-      mc alias set myminio http://minio:9000 minioadmin minioadmin123;
-      mc mb myminio/bronze --ignore-existing;
-      mc mb myminio/silver --ignore-existing;
-      mc mb myminio/gold --ignore-existing;
-      echo '✅ Buckets created';
-      exit 0;
+        mc alias set local http://minio:9000 minioadmin minioadmin123 &&
+        mc mb --ignore-existing local/bronze &&
+        echo 'Bucket created: bronze'
       "
-    networks:
-      - dataplatform
 
-  marimo-spark:
+  # ─── Marimo notebook server (with embedded Spark local[*]) ──────────────────
+  marimo:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: sales_marimo_spark
-    ports:
-      - "8080:8080"   # Marimo UI
-      - "4040:4040"   # Spark UI
+    container_name: tp1-marimo
     depends_on:
-      postgres:
+      mysql:
         condition: service_healthy
-      minio-client:
-        condition: service_completed_successfully
+      minio:
+        condition: service_healthy
+    ports:
+      - "8080:8080"   # Marimo web interface
+      - "4040:4040"   # Spark UI
     volumes:
       - ./notebooks:/app/notebooks
       - ./data:/app/data
     environment:
+      # MySQL
+      MYSQL_HOST: mysql
+      MYSQL_PORT: "3306"
+      MYSQL_USER: tp_user
+      MYSQL_PASSWORD: tp_password
+      MYSQL_DATABASE: warehouse
+      # MinIO / S3
       MINIO_ENDPOINT: http://minio:9000
       MINIO_ACCESS_KEY: minioadmin
       MINIO_SECRET_KEY: minioadmin123
-      SPARK_MASTER: local[*]
-    networks:
-      - dataplatform
+      # Spark runs in local mode (no external cluster needed)
+      SPARK_MASTER: "local[*]"
+    command: marimo edit --host 0.0.0.0 --port 8080 --no-token /app/notebooks/ingestion_bdsqlMysql.py
 
 volumes:
+  mysql_data:
   minio_data:
-  postgres_data:
-
-networks:
-  dataplatform:
-    driver: bridge

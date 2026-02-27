@@ -6,61 +6,15 @@
   "cells": [
     {
       "id": "Hbol",
-      "code_hash": "df5c4e7cf444270c0729572ba435b754",
-      "outputs": [
-        {
-          "type": "data",
-          "data": {
-            "text/plain": ""
-          }
-        }
-      ],
-      "console": [
-        {
-          "type": "stream",
-          "name": "stderr",
-          "text": "WARNING: Using incubator modules: jdk.incubator.vector\nUsing Spark's default log4j profile: org/apache/spark/log4j2-defaults.properties\nSetting default log level to \"WARN\".\nTo adjust logging level use sc.setLogLevel(newLevel). For SparkR, use setLogLevel(newLevel).\n26/02/26 23:01:15 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable\n26/02/26 23:01:19 WARN Utils: Service 'SparkUI' could not bind on port 4040. Attempting port 4041.\n",
-          "mimetype": "text/plain"
-        }
-      ]
+      "code_hash": "39f4d7f613be9a5d065573440642b12d",
+      "outputs": [],
+      "console": []
     },
     {
       "id": "MJUe",
-      "code_hash": "bb092df0059d5a0a8b76420eed173e38",
-      "outputs": [
-        {
-          "type": "data",
-          "data": {
-            "text/plain": ""
-          }
-        }
-      ],
-      "console": [
-        {
-          "type": "stream",
-          "name": "stderr",
-          "text": "\r[Stage 0:>                                                          (0 + 0) / 1]\r\r[Stage 0:>                                                          (0 + 1) / 1]\r\r                                                                                \r\r[Stage 1:>                                                          (0 + 1) / 1]\r\r                                                                                \r",
-          "mimetype": "text/plain"
-        },
-        {
-          "type": "stream",
-          "name": "stdout",
-          "text": "\u2713 Donn\u00e9es charg\u00e9es avec succ\u00e8s\n",
-          "mimetype": "text/plain"
-        },
-        {
-          "type": "stream",
-          "name": "stderr",
-          "text": "\r[Stage 2:>                                                          (0 + 1) / 1]\r\r[Stage 2:===========================================================(1 + 0) / 1]\r\r                                                                                \r",
-          "mimetype": "text/plain"
-        },
-        {
-          "type": "stream",
-          "name": "stdout",
-          "text": "Nombre d'enregistrements: 30\n",
-          "mimetype": "text/plain"
-        }
-      ]
+      "code_hash": "6fb2613699797908894dfce787f33548",
+      "outputs": [],
+      "console": []
     }
   ]
 }
