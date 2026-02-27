@@ -234,7 +234,14 @@
     {
       "id": "Kclp",
       "code_hash": "5854977b9ebce2dc56b63364fcf56db0",
-      "outputs": [],
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
       "console": [
         {
           "type": "stream",
@@ -259,20 +266,72 @@
           "name": "stdout",
           "text": "  Lignes lues depuis MinIO : 1500\n",
           "mimetype": "text/plain"
+        },
+        {
+          "type": "stream",
+          "name": "stderr",
+          "text": "\r[Stage 9:>                                                          (0 + 1) / 1]\r\r                                                                                \r",
+          "mimetype": "text/plain"
+        },
+        {
+          "type": "stream",
+          "name": "stdout",
+          "text": "+---+-----------+----------+--------+--------+----------+------------+---------+-------+-------------------+-------------------+\n| id|customer_id|   product|category|quantity|unit_price|total_amount|   status| region|         order_date|         updated_at|\n+---+-----------+----------+--------+--------+----------+------------+---------+-------+-------------------+-------------------+\n|  1|         53|   T-Shirt|Clothing|       5|    248.42|     1242.10|completed|Central|2023-03-09 12:39:26|2023-03-13 12:39:26|\n|  2|         14|  Lego Set|    Toys|       1|     98.13|       98.13|completed|Central|2023-06-04 10:36:08|2023-06-09 10:36:08|\n|  3|          4|Board Game|    Toys|       8|    590.73|     4725.84|  pending|  South|2024-06-26 06:15:41|2024-06-29 06:15:41|\n|  4|         53|  Lipstick|  Beauty|       3|    219.02|      657.06|  pending|  North|2023-10-23 02:21:29|2023-10-23 02:21:29|\n|  5|        236|  Lipstick|  Beauty|      10|    267.93|     2679.30|completed|Central|2023-04-07 22:55:41|2023-04-10 22:55:41|\n+---+-----------+----------+--------+--------+----------+------------+---------+-------+-------------------+-------------------+\nonly showing top 5 rows\n\n",
+          "mimetype": "text/plain"
         }
       ]
     },
     {
       "id": "Hstk",
       "code_hash": "1a2ff06c20f7448d0f452894da375216",
-      "outputs": [],
-      "console": []
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": [
+        {
+          "type": "stream",
+          "name": "stdout",
+          "text": "Chargement de /app/data/test.csv \u2192 s3a://bronze/csv/test.csv\n",
+          "mimetype": "text/plain"
+        },
+        {
+          "type": "stream",
+          "name": "stderr",
+          "text": "\r[Stage 10:>                                                         (0 + 1) / 1]\r\r                                                                                \r\r[Stage 11:>                                                         (0 + 1) / 1]\r\r                                                                                \r",
+          "mimetype": "text/plain"
+        },
+        {
+          "type": "stream",
+          "name": "stdout",
+          "text": "test.csv charg\u00e9 avec succ\u00e8s \u2705\n",
+          "mimetype": "text/plain"
+        }
+      ]
     },
     {
       "id": "iLit",
       "code_hash": "ca9b38d1ed7b3947268aee776321daa8",
-      "outputs": [],
-      "console": []
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": [
+        {
+          "type": "stream",
+          "name": "stdout",
+          "text": "\u2713 V\u00e9rification Bronze Layer\n  Lignes lues depuis MinIO : 481\n+---------------------------------------------------------------------------------------------------------+\n|Composant|Model|N\u00b0 Devis|Type devis|Age(Jours)|Date ouverture|Date envoie|Statut|N\u00b0 BC|Date BC|D\u00e9rogation|\n+---------------------------------------------------------------------------------------------------------+\n|                                                                                     AFRICAN MINING SE...|\n|                                                                                     AFRICAN MINING SE...|\n|                                                                                     AFRICAN MINING SE...|\n|                                                                                     AFRICAN MINING SE...|\n|                                                                                     AFRICAN MINING SE...|\n+---------------------------------------------------------------------------------------------------------+\nonly showing top 5 rows\n\n",
+          "mimetype": "text/plain"
+        }
+      ]
     }
   ]
 }

@@ -1,7 +1,7 @@
 import marimo
 
 __generated_with = "0.19.11"
-app = marimo.App(width="full", app_title="TP1 - Data Pipelines")
+app = marimo.App(width="full", app_title="Data Plateforme - Ingestion MySQL/Csv", show_cell_ids=True)
 
 
 @app.cell
@@ -57,7 +57,7 @@ def _():
     MINIO_SECRET_KEY = os.getenv("MINIO_SECRET_KEY", "minioadmin123")
 
     # Chemins S3
-    FULL_PATH = "s3a://bronze/full/orders"
+    FULL_PATH = "s3a://bronze/mysql/orders"
     CSV_PATH = "s3a://bronze/csv/test"
 
     TABLE_NAME = "orders"
@@ -140,7 +140,7 @@ def _(MINIO_ACCESS_KEY, MINIO_ENDPOINT, MINIO_SECRET_KEY, SPARK_MASTER):
 @app.cell
 def _(JDBC_DRIVER, JDBC_URL, MYSQL_PASSWORD, MYSQL_USER, TABLE_NAME, spark):
     # ── Lecture complète de la table orders ─────────────────────────────────────
-    full_query = f"(SELECT * FROM {TABLE_NAME}) AS full_table"
+    query = f"(SELECT * FROM {TABLE_NAME}) AS table"
 
     # TODO: Lire les données depuis les la base mysql (doc: https://spark.apache.org/docs/latest/sql-data-sources-jdbc.html)
 
@@ -149,7 +149,7 @@ def _(JDBC_DRIVER, JDBC_URL, MYSQL_PASSWORD, MYSQL_USER, TABLE_NAME, spark):
                     .option("driver", JDBC_DRIVER) \
                     .option("user", MYSQL_USER) \
                     .option("password", MYSQL_PASSWORD) \
-                    .option("dbtable", full_query) \
+                    .option("dbtable", query) \
                     .load()
 
     print(f"✓ Données lues depuis MySQL")
@@ -157,7 +157,7 @@ def _(JDBC_DRIVER, JDBC_URL, MYSQL_PASSWORD, MYSQL_USER, TABLE_NAME, spark):
     print(f"  Nombre de colonnes: {len(df.columns)}")
     print(f"\nSchéma :")
     df.printSchema()
-    return df, full_query
+    return df, query
 
 
 @app.cell
