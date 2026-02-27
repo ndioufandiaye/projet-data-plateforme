@@ -85,56 +85,235 @@
     {
       "id": "Hbol",
       "code_hash": "1d0db38904205bec4d6f6f6a1f6cec3e",
-      "outputs": [],
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
       "console": []
     },
     {
       "id": "vblA",
       "code_hash": "68d10cef7e8279e97780ea147b7c4b2a",
-      "outputs": [],
-      "console": []
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": [
+        {
+          "type": "stream",
+          "name": "stdout",
+          "text": "\u2713 Configuration charg\u00e9e\n  MySQL  : mysql:3306/warehouse\n  MinIO  : http://minio:9000\n  Spark  : local[*]\n",
+          "mimetype": "text/plain"
+        }
+      ]
     },
     {
       "id": "lEQa",
       "code_hash": "46cc4b38c4d83efad8cf612e79488197",
-      "outputs": [],
-      "console": []
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": [
+        {
+          "type": "stream",
+          "name": "stdout",
+          "text": ":: loading settings :: url = jar:file:/usr/local/lib/python3.11/site-packages/pyspark/jars/ivy-2.5.1.jar!/org/apache/ivy/core/settings/ivysettings.xml\n",
+          "mimetype": "text/plain"
+        },
+        {
+          "type": "stream",
+          "name": "stderr",
+          "text": "Ivy Default Cache set to: /root/.ivy2/cache\nThe jars for the packages stored in: /root/.ivy2/jars\norg.apache.hadoop#hadoop-aws added as a dependency\ncom.amazonaws#aws-java-sdk-bundle added as a dependency\nmysql#mysql-connector-java added as a dependency\n:: resolving dependencies :: org.apache.spark#spark-submit-parent-e80de2ae-9259-408c-aecf-d8924d1015c7;1.0\n\tconfs: [default]\n\tfound org.apache.hadoop#hadoop-aws;3.3.4 in central\n\tfound com.amazonaws#aws-java-sdk-bundle;1.12.262 in central\n\tfound org.wildfly.openssl#wildfly-openssl;1.0.7.Final in central\n\tfound mysql#mysql-connector-java;8.0.33 in central\n\tfound com.mysql#mysql-connector-j;8.0.33 in central\n\tfound com.google.protobuf#protobuf-java;3.21.9 in central\n:: resolution report :: resolve 1657ms :: artifacts dl 254ms\n\t:: modules in use:\n\tcom.amazonaws#aws-java-sdk-bundle;1.12.262 from central in [default]\n\tcom.google.protobuf#protobuf-java;3.21.9 from central in [default]\n\tcom.mysql#mysql-connector-j;8.0.33 from central in [default]\n\tmysql#mysql-connector-java;8.0.33 from central in [default]\n\torg.apache.hadoop#hadoop-aws;3.3.4 from central in [default]\n\torg.wildfly.openssl#wildfly-openssl;1.0.7.Final from central in [default]\n\t---------------------------------------------------------------------\n\t|                  |            modules            ||   artifacts   |\n\t|       conf       | number| search|dwnlded|evicted|| number|dwnlded|\n\t---------------------------------------------------------------------\n\t|      default     |   6   |   0   |   0   |   0   ||   5   |   0   |\n\t---------------------------------------------------------------------\n:: retrieving :: org.apache.spark#spark-submit-parent-e80de2ae-9259-408c-aecf-d8924d1015c7\n\tconfs: [default]\n\t0 artifacts copied, 5 already retrieved (0kB/33ms)\n26/02/27 15:52:30 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable\nSetting default log level to \"WARN\".\nTo adjust logging level use sc.setLogLevel(newLevel). For SparkR, use setLogLevel(newLevel).\n26/02/27 15:53:13 WARN GarbageCollectionMetrics: To enable non-built-in garbage collector(s) List(G1 Concurrent GC), users should configure it(them) to spark.eventLog.gcMetrics.youngGenerationGarbageCollectors or spark.eventLog.gcMetrics.oldGenerationGarbageCollectors\n26/02/27 15:53:14 WARN Executor: Issue communicating with driver in heartbeater\norg.apache.spark.SparkException: Exception thrown in awaitResult: \n\tat org.apache.spark.util.SparkThreadUtils$.awaitResult(SparkThreadUtils.scala:56)\n\tat org.apache.spark.util.ThreadUtils$.awaitResult(ThreadUtils.scala:310)\n\tat org.apache.spark.rpc.RpcTimeout.awaitResult(RpcTimeout.scala:75)\n\tat org.apache.spark.rpc.RpcEndpointRef.askSync(RpcEndpointRef.scala:101)\n\tat org.apache.spark.rpc.RpcEndpointRef.askSync(RpcEndpointRef.scala:85)\n\tat org.apache.spark.storage.BlockManagerMaster.registerBlockManager(BlockManagerMaster.scala:80)\n\tat org.apache.spark.storage.BlockManager.reregister(BlockManager.scala:642)\n\tat org.apache.spark.executor.Executor.reportHeartBeat(Executor.scala:1223)\n\tat org.apache.spark.executor.Executor.$anonfun$heartbeater$1(Executor.scala:295)\n\tat scala.runtime.java8.JFunction0$mcV$sp.apply(JFunction0$mcV$sp.java:23)\n\tat org.apache.spark.util.Utils$.logUncaughtExceptions(Utils.scala:1928)\n\tat org.apache.spark.Heartbeater$$anon$1.run(Heartbeater.scala:46)\n\tat java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:572)\n\tat java.base/java.util.concurrent.FutureTask.runAndReset(FutureTask.java:358)\n\tat java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:305)\n\tat java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)\n\tat java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)\n\tat java.base/java.lang.Thread.run(Thread.java:1583)\nCaused by: org.apache.spark.SparkException: Exception thrown in awaitResult: \n\tat org.apache.spark.util.SparkThreadUtils$.awaitResult(SparkThreadUtils.scala:56)\n\tat org.apache.spark.util.ThreadUtils$.awaitResult(ThreadUtils.scala:310)\n\tat org.apache.spark.rpc.RpcTimeout.awaitResult(RpcTimeout.scala:75)\n\tat org.apache.spark.rpc.RpcEnv.setupEndpointRefByURI(RpcEnv.scala:102)\n\tat org.apache.spark.rpc.RpcEnv.setupEndpointRef(RpcEnv.scala:110)\n\tat org.apache.spark.util.RpcUtils$.makeDriverRef(RpcUtils.scala:36)\n\tat org.apache.spark.storage.BlockManagerMasterEndpoint.driverEndpoint$lzycompute(BlockManagerMasterEndpoint.scala:124)\n\tat org.apache.spark.storage.BlockManagerMasterEndpoint.org$apache$spark$storage$BlockManagerMasterEndpoint$$driverEndpoint(BlockManagerMasterEndpoint.scala:123)\n\tat org.apache.spark.storage.BlockManagerMasterEndpoint.isExecutorAlive$lzycompute$1(BlockManagerMasterEndpoint.scala:688)\n\tat org.apache.spark.storage.BlockManagerMasterEndpoint.isExecutorAlive$1(BlockManagerMasterEndpoint.scala:687)\n\tat org.apache.spark.storage.BlockManagerMasterEndpoint.org$apache$spark$storage$BlockManagerMasterEndpoint$$register(BlockManagerMasterEndpoint.scala:725)\n\tat org.apache.spark.storage.BlockManagerMasterEndpoint$$anonfun$receiveAndReply$1.applyOrElse(BlockManagerMasterEndpoint.scala:133)\n\tat org.apache.spark.rpc.netty.Inbox.$anonfun$process$1(Inbox.scala:103)\n\tat org.apache.spark.rpc.netty.Inbox.safelyCall(Inbox.scala:213)\n\tat org.apache.spark.rpc.netty.Inbox.process(Inbox.scala:100)\n\tat org.apache.spark.rpc.netty.MessageLoop.org$apache$spark$rpc$netty$MessageLoop$$receiveLoop(MessageLoop.scala:75)\n\tat org.apache.spark.rpc.netty.MessageLoop$$anon$1.run(MessageLoop.scala:41)\n\t... 3 more\nCaused by: org.apache.spark.rpc.RpcEndpointNotFoundException: Cannot find endpoint: spark://CoarseGrainedScheduler@8f5f6a2fb045:40445\n\tat org.apache.spark.rpc.netty.NettyRpcEnv.$anonfun$asyncSetupEndpointRefByURI$1(NettyRpcEnv.scala:148)\n\tat org.apache.spark.rpc.netty.NettyRpcEnv.$anonfun$asyncSetupEndpointRefByURI$1$adapted(NettyRpcEnv.scala:144)\n\tat scala.concurrent.Future.$anonfun$flatMap$1(Future.scala:307)\n\tat scala.concurrent.impl.Promise.$anonfun$transformWith$1(Promise.scala:41)\n\tat scala.concurrent.impl.CallbackRunnable.run(Promise.scala:64)\n\tat org.apache.spark.util.ThreadUtils$$anon$1.execute(ThreadUtils.scala:99)\n\tat scala.concurrent.impl.ExecutionContextImpl$$anon$4.execute(ExecutionContextImpl.scala:138)\n\tat scala.concurrent.impl.CallbackRunnable.executeWithValue(Promise.scala:72)\n\tat scala.concurrent.impl.Promise$DefaultPromise.$anonfun$tryComplete$1(Promise.scala:288)\n\tat scala.concurrent.impl.Promise$DefaultPromise.$anonfun$tryComplete$1$adapted(Promise.scala:288)\n\tat scala.concurrent.impl.Promise$DefaultPromise.tryComplete(Promise.scala:288)\n\tat scala.concurrent.Promise.complete(Promise.scala:53)\n\tat scala.concurrent.Promise.complete$(Promise.scala:52)\n\tat scala.concurrent.impl.Promise$DefaultPromise.complete(Promise.scala:187)\n\tat scala.concurrent.impl.Promise.$anonfun$transform$1(Promise.scala:33)\n\tat scala.concurrent.impl.CallbackRunnable.run(Promise.scala:64)\n\tat org.apache.spark.util.ThreadUtils$$anon$1.execute(ThreadUtils.scala:99)\n\tat scala.concurrent.impl.ExecutionContextImpl$$anon$4.execute(ExecutionContextImpl.scala:138)\n\tat scala.concurrent.impl.CallbackRunnable.executeWithValue(Promise.scala:72)\n\tat scala.concurrent.impl.Promise$DefaultPromise.$anonfun$tryComplete$1(Promise.scala:288)\n\tat scala.concurrent.impl.Promise$DefaultPromise.$anonfun$tryComplete$1$adapted(Promise.scala:288)\n\tat scala.concurrent.impl.Promise$DefaultPromise.tryComplete(Promise.scala:288)\n\tat scala.concurrent.Promise.complete(Promise.scala:53)\n\tat scala.concurrent.Promise.complete$(Promise.scala:52)\n\tat scala.concurrent.impl.Promise$DefaultPromise.complete(Promise.scala:187)\n\tat scala.concurrent.impl.Promise.$anonfun$transform$1(Promise.scala:33)\n\tat scala.concurrent.impl.CallbackRunnable.run(Promise.scala:64)\n\tat scala.concurrent.BatchingExecutor$Batch.processBatch$1(BatchingExecutor.scala:67)\n\tat scala.concurrent.BatchingExecutor$Batch.$anonfun$run$1(BatchingExecutor.scala:82)\n\tat scala.runtime.java8.JFunction0$mcV$sp.apply(JFunction0$mcV$sp.java:23)\n\tat scala.concurrent.BlockContext$.withBlockContext(BlockContext.scala:85)\n\tat scala.concurrent.BatchingExecutor$Batch.run(BatchingExecutor.scala:59)\n\tat scala.concurrent.Future$InternalCallbackExecutor$.unbatchedExecute(Future.scala:875)\n\tat scala.concurrent.BatchingExecutor.execute(BatchingExecutor.scala:110)\n\tat scala.concurrent.BatchingExecutor.execute$(BatchingExecutor.scala:107)\n\tat scala.concurrent.Future$InternalCallbackExecutor$.execute(Future.scala:873)\n\tat scala.concurrent.impl.CallbackRunnable.executeWithValue(Promise.scala:72)\n\tat scala.concurrent.impl.Promise$DefaultPromise.$anonfun$tryComplete$1(Promise.scala:288)\n\tat scala.concurrent.impl.Promise$DefaultPromise.$anonfun$tryComplete$1$adapted(Promise.scala:288)\n\tat scala.concurrent.impl.Promise$DefaultPromise.tryComplete(Promise.scala:288)\n\tat scala.concurrent.Promise.trySuccess(Promise.scala:94)\n\tat scala.concurrent.Promise.trySuccess$(Promise.scala:94)\n\tat scala.concurrent.impl.Promise$DefaultPromise.trySuccess(Promise.scala:187)\n\tat org.apache.spark.rpc.netty.NettyRpcEnv.onSuccess$1(NettyRpcEnv.scala:225)\n\tat org.apache.spark.rpc.netty.NettyRpcEnv.$anonfun$askAbortable$5(NettyRpcEnv.scala:239)\n\tat org.apache.spark.rpc.netty.NettyRpcEnv.$anonfun$askAbortable$5$adapted(NettyRpcEnv.scala:238)\n\tat scala.concurrent.impl.CallbackRunnable.run(Promise.scala:64)\n\tat org.apache.spark.util.ThreadUtils$$anon$1.execute(ThreadUtils.scala:99)\n\tat scala.concurrent.impl.ExecutionContextImpl$$anon$4.execute(ExecutionContextImpl.scala:138)\n\tat scala.concurrent.impl.CallbackRunnable.executeWithValue(Promise.scala:72)\n\tat scala.concurrent.impl.Promise$DefaultPromise.$anonfun$tryComplete$1(Promise.scala:288)\n\tat scala.concurrent.impl.Promise$DefaultPromise.$anonfun$tryComplete$1$adapted(Promise.scala:288)\n\tat scala.concurrent.impl.Promise$DefaultPromise.tryComplete(Promise.scala:288)\n\tat scala.concurrent.Promise.complete(Promise.scala:53)\n\tat scala.concurrent.Promise.complete$(Promise.scala:52)\n\tat scala.concurrent.impl.Promise$DefaultPromise.complete(Promise.scala:187)\n\tat scala.concurrent.Promise.success(Promise.scala:86)\n\tat scala.concurrent.Promise.success$(Promise.scala:86)\n\tat scala.concurrent.impl.Promise$DefaultPromise.success(Promise.scala:187)\n\tat org.apache.spark.rpc.netty.LocalNettyRpcCallContext.send(NettyRpcCallContext.scala:50)\n\tat org.apache.spark.rpc.netty.NettyRpcCallContext.reply(NettyRpcCallContext.scala:32)\n\tat org.apache.spark.rpc.netty.RpcEndpointVerifier$$anonfun$receiveAndReply$1.applyOrElse(RpcEndpointVerifier.scala:31)\n\t... 8 more\n26/02/27 15:53:14 ERROR Inbox: Ignoring error\norg.apache.spark.SparkException: Exception thrown in awaitResult: \n\tat org.apache.spark.util.SparkThreadUtils$.awaitResult(SparkThreadUtils.scala:56)\n\tat org.apache.spark.util.ThreadUtils$.awaitResult(ThreadUtils.scala:310)\n\tat org.apache.spark.rpc.RpcTimeout.awaitResult(RpcTimeout.scala:75)\n\tat org.apache.spark.rpc.RpcEnv.setupEndpointRefByURI(RpcEnv.scala:102)\n\tat org.apache.spark.rpc.RpcEnv.setupEndpointRef(RpcEnv.scala:110)\n\tat org.apache.spark.util.RpcUtils$.makeDriverRef(RpcUtils.scala:36)\n\tat org.apache.spark.storage.BlockManagerMasterEndpoint.driverEndpoint$lzycompute(BlockManagerMasterEndpoint.scala:124)\n\tat org.apache.spark.storage.BlockManagerMasterEndpoint.org$apache$spark$storage$BlockManagerMasterEndpoint$$driverEndpoint(BlockManagerMasterEndpoint.scala:123)\n\tat org.apache.spark.storage.BlockManagerMasterEndpoint.isExecutorAlive$lzycompute$1(BlockManagerMasterEndpoint.scala:688)\n\tat org.apache.spark.storage.BlockManagerMasterEndpoint.isExecutorAlive$1(BlockManagerMasterEndpoint.scala:687)\n\tat org.apache.spark.storage.BlockManagerMasterEndpoint.org$apache$spark$storage$BlockManagerMasterEndpoint$$register(BlockManagerMasterEndpoint.scala:725)\n\tat org.apache.spark.storage.BlockManagerMasterEndpoint$$anonfun$receiveAndReply$1.applyOrElse(BlockManagerMasterEndpoint.scala:133)\n\tat org.apache.spark.rpc.netty.Inbox.$anonfun$process$1(Inbox.scala:103)\n\tat org.apache.spark.rpc.netty.Inbox.safelyCall(Inbox.scala:213)\n\tat org.apache.spark.rpc.netty.Inbox.process(Inbox.scala:100)\n\tat org.apache.spark.rpc.netty.MessageLoop.org$apache$spark$rpc$netty$MessageLoop$$receiveLoop(MessageLoop.scala:75)\n\tat org.apache.spark.rpc.netty.MessageLoop$$anon$1.run(MessageLoop.scala:41)\n\tat java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)\n\tat java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)\n\tat java.base/java.lang.Thread.run(Thread.java:1583)\nCaused by: org.apache.spark.rpc.RpcEndpointNotFoundException: Cannot find endpoint: spark://CoarseGrainedScheduler@8f5f6a2fb045:40445\n\tat org.apache.spark.rpc.netty.NettyRpcEnv.$anonfun$asyncSetupEndpointRefByURI$1(NettyRpcEnv.scala:148)\n\tat org.apache.spark.rpc.netty.NettyRpcEnv.$anonfun$asyncSetupEndpointRefByURI$1$adapted(NettyRpcEnv.scala:144)\n\tat scala.concurrent.Future.$anonfun$flatMap$1(Future.scala:307)\n\tat scala.concurrent.impl.Promise.$anonfun$transformWith$1(Promise.scala:41)\n\tat scala.concurrent.impl.CallbackRunnable.run(Promise.scala:64)\n\tat org.apache.spark.util.ThreadUtils$$anon$1.execute(ThreadUtils.scala:99)\n\tat scala.concurrent.impl.ExecutionContextImpl$$anon$4.execute(ExecutionContextImpl.scala:138)\n\tat scala.concurrent.impl.CallbackRunnable.executeWithValue(Promise.scala:72)\n\tat scala.concurrent.impl.Promise$DefaultPromise.$anonfun$tryComplete$1(Promise.scala:288)\n\tat scala.concurrent.impl.Promise$DefaultPromise.$anonfun$tryComplete$1$adapted(Promise.scala:288)\n\tat scala.concurrent.impl.Promise$DefaultPromise.tryComplete(Promise.scala:288)\n\tat scala.concurrent.Promise.complete(Promise.scala:53)\n\tat scala.concurrent.Promise.complete$(Promise.scala:52)\n\tat scala.concurrent.impl.Promise$DefaultPromise.complete(Promise.scala:187)\n\tat scala.concurrent.impl.Promise.$anonfun$transform$1(Promise.scala:33)\n\tat scala.concurrent.impl.CallbackRunnable.run(Promise.scala:64)\n\tat org.apache.spark.util.ThreadUtils$$anon$1.execute(ThreadUtils.scala:99)\n\tat scala.concurrent.impl.ExecutionContextImpl$$anon$4.execute(ExecutionContextImpl.scala:138)\n\tat scala.concurrent.impl.CallbackRunnable.executeWithValue(Promise.scala:72)\n\tat scala.concurrent.impl.Promise$DefaultPromise.$anonfun$tryComplete$1(Promise.scala:288)\n\tat scala.concurrent.impl.Promise$DefaultPromise.$anonfun$tryComplete$1$adapted(Promise.scala:288)\n\tat scala.concurrent.impl.Promise$DefaultPromise.tryComplete(Promise.scala:288)\n\tat scala.concurrent.Promise.complete(Promise.scala:53)\n\tat scala.concurrent.Promise.complete$(Promise.scala:52)\n\tat scala.concurrent.impl.Promise$DefaultPromise.complete(Promise.scala:187)\n\tat scala.concurrent.impl.Promise.$anonfun$transform$1(Promise.scala:33)\n\tat scala.concurrent.impl.CallbackRunnable.run(Promise.scala:64)\n\tat scala.concurrent.BatchingExecutor$Batch.processBatch$1(BatchingExecutor.scala:67)\n\tat scala.concurrent.BatchingExecutor$Batch.$anonfun$run$1(BatchingExecutor.scala:82)\n\tat scala.runtime.java8.JFunction0$mcV$sp.apply(JFunction0$mcV$sp.java:23)\n\tat scala.concurrent.BlockContext$.withBlockContext(BlockContext.scala:85)\n\tat scala.concurrent.BatchingExecutor$Batch.run(BatchingExecutor.scala:59)\n\tat scala.concurrent.Future$InternalCallbackExecutor$.unbatchedExecute(Future.scala:875)\n\tat scala.concurrent.BatchingExecutor.execute(BatchingExecutor.scala:110)\n\tat scala.concurrent.BatchingExecutor.execute$(BatchingExecutor.scala:107)\n\tat scala.concurrent.Future$InternalCallbackExecutor$.execute(Future.scala:873)\n\tat scala.concurrent.impl.CallbackRunnable.executeWithValue(Promise.scala:72)\n\tat scala.concurrent.impl.Promise$DefaultPromise.$anonfun$tryComplete$1(Promise.scala:288)\n\tat scala.concurrent.impl.Promise$DefaultPromise.$anonfun$tryComplete$1$adapted(Promise.scala:288)\n\tat scala.concurrent.impl.Promise$DefaultPromise.tryComplete(Promise.scala:288)\n\tat scala.concurrent.Promise.trySuccess(Promise.scala:94)\n\tat scala.concurrent.Promise.trySuccess$(Promise.scala:94)\n\tat scala.concurrent.impl.Promise$DefaultPromise.trySuccess(Promise.scala:187)\n\tat org.apache.spark.rpc.netty.NettyRpcEnv.onSuccess$1(NettyRpcEnv.scala:225)\n\tat org.apache.spark.rpc.netty.NettyRpcEnv.$anonfun$askAbortable$5(NettyRpcEnv.scala:239)\n\tat org.apache.spark.rpc.netty.NettyRpcEnv.$anonfun$askAbortable$5$adapted(NettyRpcEnv.scala:238)\n\tat scala.concurrent.impl.CallbackRunnable.run(Promise.scala:64)\n\tat org.apache.spark.util.ThreadUtils$$anon$1.execute(ThreadUtils.scala:99)\n\tat scala.concurrent.impl.ExecutionContextImpl$$anon$4.execute(ExecutionContextImpl.scala:138)\n\tat scala.concurrent.impl.CallbackRunnable.executeWithValue(Promise.scala:72)\n\tat scala.concurrent.impl.Promise$DefaultPromise.$anonfun$tryComplete$1(Promise.scala:288)\n\tat scala.concurrent.impl.Promise$DefaultPromise.$anonfun$tryComplete$1$adapted(Promise.scala:288)\n\tat scala.concurrent.impl.Promise$DefaultPromise.tryComplete(Promise.scala:288)\n\tat scala.concurrent.Promise.complete(Promise.scala:53)\n\tat scala.concurrent.Promise.complete$(Promise.scala:52)\n\tat scala.concurrent.impl.Promise$DefaultPromise.complete(Promise.scala:187)\n\tat scala.concurrent.Promise.success(Promise.scala:86)\n\tat scala.concurrent.Promise.success$(Promise.scala:86)\n\tat scala.concurrent.impl.Promise$DefaultPromise.success(Promise.scala:187)\n\tat org.apache.spark.rpc.netty.LocalNettyRpcCallContext.send(NettyRpcCallContext.scala:50)\n\tat org.apache.spark.rpc.netty.NettyRpcCallContext.reply(NettyRpcCallContext.scala:32)\n\tat org.apache.spark.rpc.netty.RpcEndpointVerifier$$anonfun$receiveAndReply$1.applyOrElse(RpcEndpointVerifier.scala:31)\n\t... 8 more\n",
+          "mimetype": "text/plain"
+        },
+        {
+          "type": "stream",
+          "name": "stdout",
+          "text": "\u2713 Session Spark cr\u00e9\u00e9e  \u2192  version 3.5.0\n",
+          "mimetype": "text/plain"
+        }
+      ]
     },
     {
       "id": "PKri",
       "code_hash": "04ecc50da72be807765ad2b7e095ab26",
-      "outputs": [],
-      "console": []
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": [
+        {
+          "type": "stream",
+          "name": "stdout",
+          "text": "\u2713 Donn\u00e9es lues depuis MySQL\n",
+          "mimetype": "text/plain"
+        },
+        {
+          "type": "stream",
+          "name": "stderr",
+          "text": "\r[Stage 0:>                                                          (0 + 0) / 1]\r\r[Stage 0:>                                                          (0 + 1) / 1]\r\r[Stage 2:>                                                          (0 + 1) / 1]\r\r                                                                                \r",
+          "mimetype": "text/plain"
+        },
+        {
+          "type": "stream",
+          "name": "stdout",
+          "text": "  Nombre de lignes  : 1500\n  Nombre de colonnes: 11\n\nSch\u00e9ma :\nroot\n |-- id: integer (nullable = true)\n |-- customer_id: integer (nullable = true)\n |-- product: string (nullable = true)\n |-- category: string (nullable = true)\n |-- quantity: integer (nullable = true)\n |-- unit_price: decimal(10,2) (nullable = true)\n |-- total_amount: decimal(10,2) (nullable = true)\n |-- status: string (nullable = true)\n |-- region: string (nullable = true)\n |-- order_date: timestamp (nullable = true)\n |-- updated_at: timestamp (nullable = true)\n\n",
+          "mimetype": "text/plain"
+        }
+      ]
     },
     {
       "id": "Xref",
       "code_hash": "b8d0da82ebb12935ec5fc7ac75d332ad",
-      "outputs": [],
-      "console": []
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": [
+        {
+          "type": "stream",
+          "name": "stderr",
+          "text": "\r[Stage 3:>                                                          (0 + 1) / 1]\r\r                                                                                \r",
+          "mimetype": "text/plain"
+        },
+        {
+          "type": "stream",
+          "name": "stdout",
+          "text": "+---+-----------+----------+--------+--------+----------+------------+---------+-------+-------------------+-------------------+\n|id |customer_id|product   |category|quantity|unit_price|total_amount|status   |region |order_date         |updated_at         |\n+---+-----------+----------+--------+--------+----------+------------+---------+-------+-------------------+-------------------+\n|1  |53         |T-Shirt   |Clothing|5       |248.42    |1242.10     |completed|Central|2023-03-09 12:39:26|2023-03-13 12:39:26|\n|2  |14         |Lego Set  |Toys    |1       |98.13     |98.13       |completed|Central|2023-06-04 10:36:08|2023-06-09 10:36:08|\n|3  |4          |Board Game|Toys    |8       |590.73    |4725.84     |pending  |South  |2024-06-26 06:15:41|2024-06-29 06:15:41|\n|4  |53         |Lipstick  |Beauty  |3       |219.02    |657.06      |pending  |North  |2023-10-23 02:21:29|2023-10-23 02:21:29|\n|5  |236        |Lipstick  |Beauty  |10      |267.93    |2679.30     |completed|Central|2023-04-07 22:55:41|2023-04-10 22:55:41|\n+---+-----------+----------+--------+--------+----------+------------+---------+-------+-------------------+-------------------+\nonly showing top 5 rows\n\n",
+          "mimetype": "text/plain"
+        }
+      ]
     },
     {
       "id": "BYtC",
       "code_hash": "70f4ab5c0c1b93bc04d88e2a32a8f64f",
-      "outputs": [],
-      "console": []
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": [
+        {
+          "type": "stream",
+          "name": "stderr",
+          "text": "26/02/27 15:53:41 WARN MetricsConfig: Cannot locate configuration: tried hadoop-metrics2-s3a-file-system.properties,hadoop-metrics2.properties\n\r[Stage 4:>                                                          (0 + 1) / 1]\r\r                                                                                \r",
+          "mimetype": "text/plain"
+        },
+        {
+          "type": "stream",
+          "name": "stdout",
+          "text": "\u2713 Load termin\u00e9 !\n  Destination : s3a://bronze/mysql/orders\n",
+          "mimetype": "text/plain"
+        }
+      ]
     },
     {
       "id": "Kclp",
       "code_hash": "59290a08790abc105ed986a22bd0c225",
-      "outputs": [],
-      "console": []
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": [
+        {
+          "type": "stream",
+          "name": "stdout",
+          "text": "\u2713 V\u00e9rification Bronze Layer\n",
+          "mimetype": "text/plain"
+        },
+        {
+          "type": "stream",
+          "name": "stderr",
+          "text": "\r[Stage 6:>                                                          (0 + 1) / 1]\r\r                                                                                \r",
+          "mimetype": "text/plain"
+        },
+        {
+          "type": "stream",
+          "name": "stdout",
+          "text": "  Lignes lues depuis MinIO : 1500\n+---+-----------+----------+--------+--------+----------+------------+---------+-------+-------------------+-------------------+\n| id|customer_id|   product|category|quantity|unit_price|total_amount|   status| region|         order_date|         updated_at|\n+---+-----------+----------+--------+--------+----------+------------+---------+-------+-------------------+-------------------+\n|  1|         53|   T-Shirt|Clothing|       5|    248.42|     1242.10|completed|Central|2023-03-09 12:39:26|2023-03-13 12:39:26|\n|  2|         14|  Lego Set|    Toys|       1|     98.13|       98.13|completed|Central|2023-06-04 10:36:08|2023-06-09 10:36:08|\n|  3|          4|Board Game|    Toys|       8|    590.73|     4725.84|  pending|  South|2024-06-26 06:15:41|2024-06-29 06:15:41|\n|  4|         53|  Lipstick|  Beauty|       3|    219.02|      657.06|  pending|  North|2023-10-23 02:21:29|2023-10-23 02:21:29|\n|  5|        236|  Lipstick|  Beauty|      10|    267.93|     2679.30|completed|Central|2023-04-07 22:55:41|2023-04-10 22:55:41|\n+---+-----------+----------+--------+--------+----------+------------+---------+-------+-------------------+-------------------+\nonly showing top 5 rows\n\n",
+          "mimetype": "text/plain"
+        }
+      ]
     },
     {
       "id": "Hstk",
       "code_hash": "1a2ff06c20f7448d0f452894da375216",
-      "outputs": [],
-      "console": []
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": [
+        {
+          "type": "stream",
+          "name": "stdout",
+          "text": "Chargement de /app/data/test.csv \u2192 s3a://bronze/csv/test.csv\n",
+          "mimetype": "text/plain"
+        },
+        {
+          "type": "stream",
+          "name": "stderr",
+          "text": "\r[Stage 11:>                                                         (0 + 1) / 1]\r\r                                                                                \r",
+          "mimetype": "text/plain"
+        },
+        {
+          "type": "stream",
+          "name": "stdout",
+          "text": "test.csv charg\u00e9 avec succ\u00e8s \u2705\n",
+          "mimetype": "text/plain"
+        }
+      ]
     },
     {
       "id": "iLit",
       "code_hash": "ca9b38d1ed7b3947268aee776321daa8",
-      "outputs": [],
-      "console": []
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": [
+        {
+          "type": "stream",
+          "name": "stdout",
+          "text": "\u2713 V\u00e9rification Bronze Layer\n  Lignes lues depuis MinIO : 481\n+---------------------------------------------------------------------------------------------------------+\n|Composant|Model|N\u00b0 Devis|Type devis|Age(Jours)|Date ouverture|Date envoie|Statut|N\u00b0 BC|Date BC|D\u00e9rogation|\n+---------------------------------------------------------------------------------------------------------+\n|                                                                                     AFRICAN MINING SE...|\n|                                                                                     AFRICAN MINING SE...|\n|                                                                                     AFRICAN MINING SE...|\n|                                                                                     AFRICAN MINING SE...|\n|                                                                                     AFRICAN MINING SE...|\n+---------------------------------------------------------------------------------------------------------+\nonly showing top 5 rows\n\n",
+          "mimetype": "text/plain"
+        }
+      ]
     }
   ]
 }

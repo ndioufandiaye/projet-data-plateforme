@@ -5,7 +5,12 @@
 - Spark
 - MinIO
 - Python
-- Jupyter / Marimo
+- Marimo/Notebook
+
+## Sources de données 
+ - Fichier CSV
+ - Mysql
+ - MongoDb
 
 ## Setup
 
