@@ -1,7 +1,7 @@
 import marimo
 
 __generated_with = "0.19.11"
-app = marimo.App(width="full", app_title="Data Plateforme - Ingestion MySQL/Csv", show_cell_ids=True)
+app = marimo.App(width="full", app_title="Data Plateforme - Ingestion MySQL/Csv")
 
 
 @app.cell
@@ -140,7 +140,7 @@ def _(MINIO_ACCESS_KEY, MINIO_ENDPOINT, MINIO_SECRET_KEY, SPARK_MASTER):
 @app.cell
 def _(JDBC_DRIVER, JDBC_URL, MYSQL_PASSWORD, MYSQL_USER, TABLE_NAME, spark):
     # ── Lecture complète de la table orders ─────────────────────────────────────
-    query = f"(SELECT * FROM {TABLE_NAME}) AS table"
+    query = f"(SELECT * FROM {TABLE_NAME}) AS table_sql"
 
     # TODO: Lire les données depuis les la base mysql (doc: https://spark.apache.org/docs/latest/sql-data-sources-jdbc.html)
 
