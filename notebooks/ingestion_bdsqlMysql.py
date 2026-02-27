@@ -57,7 +57,7 @@ def _():
     MINIO_SECRET_KEY = os.getenv("MINIO_SECRET_KEY", "minioadmin123")
 
     # Chemins S3
-    FULL_PATH = "s3a://bronze/mysql/orders"
+    MYSQ_PATH = "s3a://bronze/mysql/orders"
     CSV_PATH = "s3a://bronze/csv/test"
 
     TABLE_NAME = "orders"
@@ -70,7 +70,7 @@ def _():
     print(f"  MinIO  : {MINIO_ENDPOINT}")
     print(f"  Spark  : {SPARK_MASTER}")
     return (
-        FULL_PATH,
+        MYSQ_PATH,
         CSV_PATH,
         JDBC_DRIVER,
         JDBC_URL,
@@ -176,12 +176,12 @@ def _(mo):
 
 
 @app.cell
-def _(FULL_PATH, df):
+def _(MYSQ_PATH, df):
 
-    df.write.format("parquet").mode("overwrite").save(FULL_PATH)
+    df.write.format("parquet").mode("overwrite").save(MYSQ_PATH)
 
     print(f"✓ Load terminé !")
-    print(f"  Destination : {FULL_PATH}")
+    print(f"  Destination : {MYSQ_PATH}")
     return
 
 
@@ -194,8 +194,8 @@ def _(mo):
 
 
 @app.cell
-def _(FULL_PATH, spark):
-    df_bronze_check = spark.read.parquet(FULL_PATH)
+def _(MYSQ_PATH, spark):
+    df_bronze_check = spark.read.parquet(MYSQ_PATH)
 
     print(f"✓ Vérification Bronze Layer")
     print(f"  Lignes lues depuis MinIO : {df_bronze_check.count()}")
