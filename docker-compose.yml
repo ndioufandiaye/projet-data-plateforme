@@ -11,7 +11,7 @@ services:
     networks:
       - dataplatform
 
-  # --- STOCKAGE OBJET (MEDALLION BRONZE/SILVER/GOLD) ---
+  # --- STOCKAGE OBJET ---
   minio:
     image: minio/minio:latest
     container_name: sales_minio
@@ -46,13 +46,12 @@ services:
       mc mb myminio/bronze --ignore-existing;
       mc mb myminio/silver --ignore-existing;
       mc mb myminio/gold --ignore-existing;
-      echo '✅ Buckets Medallion créés';
       exit 0;
       "
     networks:
       - dataplatform
 
-  # --- PLATEFORME DATA (SPARK + MARIMO) ---
+  # --- PLATEFORME DATA ---
   marimo:
     build:
       context: .
@@ -63,17 +62,19 @@ services:
     depends_on:
       minio:
         condition: service_healthy
-      mongodb:
+      sales_mongodb:
         condition: service_started
     volumes:
-      - ./notebooks:/app/notebooks
+      - ./notebooks:/app
       - ./data:/app/data
     environment:
-      MINIO_ENDPOINT: http://minio:9000
-      MINIO_ACCESS_KEY: minioadmin
-      MINIO_SECRET_KEY: minioadmin123
-      # On ajoute l'URL Mongo ici pour plus de flexibilité
-      MONGO_URI: mongodb://negui:Nekarimo%401@mongodb:27017/?authSource=admin
+      - MINIO_ENDPOINT=http://minio:9000
+      - MINIO_ACCESS_KEY=minioadmin
+      - MINIO_SECRET_KEY=minioadmin123
+      - MONGO_URI=mongodb://negui:Nekarimo%401@sales_mongodb:27017/gescom?authSource=admin
+      # LA VARIABLE MAGIQUE EST ICI (formatée correctement en liste)
+      - PYSPARK_SUBMIT_ARGS=--conf "spark.driver.extraJavaOptions=--add-opens=java.base/java.nio=ALL-UNNAMED --add-opens=java.base/sun.nio.ch=ALL-UNNAMED --add-opens=java.base/java.lang=ALL-UNNAMED --add-opens=java.base/java.util=ALL-UNNAMED" --conf "spark.executor.extraJavaOptions=--add-opens=java.base/java.nio=ALL-UNNAMED --add-opens=java.base/sun.nio.ch=ALL-UNNAMED" pyspark-shell
+    command: marimo edit --host 0.0.0.0 --port 8080 /app --no-token
     networks:
       - dataplatform
 

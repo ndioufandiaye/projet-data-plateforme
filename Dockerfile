@@ -10,6 +10,10 @@ RUN apt-get update && apt-get install -y \
 ENV JAVA_HOME=/usr/lib/jvm/default-java
 ENV PATH=$PATH:$JAVA_HOME/bin
 
+# ... (le reste reste identique)
+RUN pip install --no-cache-dir marimo pyspark==3.5.0 pandas
+# ...
+
 RUN pip install --no-cache-dir uv
 
 # COPY pyproject.toml uv.lock* ./
@@ -17,6 +21,8 @@ RUN pip install --no-cache-dir uv
 
 COPY requirements.txt .
 RUN pip install -r requirements.txt
+
+RUN pip install marimo pyspark
 
 RUN mkdir -p /app/notebooks /app/data
 
