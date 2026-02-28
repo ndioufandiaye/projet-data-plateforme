@@ -1,5 +1,3 @@
-import os
-
 import marimo
 
 __generated_with = "0.20.2"
@@ -14,6 +12,7 @@ def _():
     import marimo as mo
 
     return (mo,)
+
 
 @app.cell(hide_code=True)
 def _(mo):
@@ -30,17 +29,19 @@ def _(mo):
     """)
     return
 
+
 @app.cell
 def _():
-   # ── MinIO / S3 ───────────────────────────────────────────────────────────────
+    # ── MinIO / S3 ───────────────────────────────────────────────────────────────
+    import os
     MINIO_ENDPOINT   = os.getenv("MINIO_ENDPOINT", "http://localhost:9000")
     MINIO_ACCESS_KEY = os.getenv("MINIO_ACCESS_KEY", "minioadmin")
     MINIO_SECRET_KEY = os.getenv("MINIO_SECRET_KEY", "minioadmin123")
 
-    
-    # ── Spark ────────────────────────────────────────────────────────────────────
+
+     # ── Spark ────────────────────────────────────────────────────────────────────
     SPARK_MASTER = os.getenv("SPARK_MASTER", "local[*]")
-    
+
     MYSQ_PATH = "s3a://bronze/mysql"
 
     print("✓ Configuration chargée")
@@ -50,8 +51,8 @@ def _():
         MINIO_ACCESS_KEY,
         MINIO_ENDPOINT,
         MINIO_SECRET_KEY,
-        SPARK_MASTER,
         MYSQ_PATH,
+        SPARK_MASTER,
     )
 
 
@@ -88,7 +89,7 @@ def _(MINIO_ACCESS_KEY, MINIO_ENDPOINT, MINIO_SECRET_KEY, SPARK_MASTER):
     spark.sparkContext.setLogLevel("WARN")
     print(f"✓ Session Spark créée  →  version {spark.version}")
     return (spark,)
-    
+
 
 @app.cell
 def _(mo):
@@ -96,19 +97,21 @@ def _(mo):
     ## Devis et clients depuis MinIO (bronze)
     """)
     return
-    
+
+
 @app.cell
-def _(spark, MYSQ_PATH):    
-   # Lecture CSV clients depuis Bronze
-   df_clients = spark.read.csv("s3a://bronze/csv/client.csv", header=True, inferSchema=True)
-    
-    # Lecture devis depuis Bronze (si tu as exporté depuis MySQL)
+def _(MYSQ_PATH, spark):
+    # Lecture CSV clients depuis Bronze
+    df_clients = spark.read.csv("s3a://bronze/csv/client.csv", header=True, inferSchema=True)
+
+     # Lecture devis depuis Bronze (si tu as exporté depuis MySQL)
     df_devis = spark.read.parquet(MYSQ_PATH)
 
     print("✓ Données lues depuis Bronze")
     print(f"  Clients : {df_clients.count()} lignes")   
     print(f"  Devis   : {df_devis.count()} lignes")
-    return (df_clients, df_devis)
+    return df_clients, df_devis
+
 
 @app.cell(hide_code=True)
 def _(mo):
@@ -117,25 +120,29 @@ def _(mo):
     """)
     return
 
+
 @app.cell
 def _(df_clients, df_devis):
-    
+
     from pyspark.sql.functions import trim, col
 
     df_clients_silver = df_clients.dropDuplicates() \
         .dropna() \
-        .withColumn("nom", trim(col("nom"))) \
         .withColumn("email", trim(col("email")))
 
     # Sauvegarde Silver clients
     df_clients_silver.write.mode("overwrite").parquet("s3a://silver/csv/client")
     print("✅ Clients sauvegardés dans Silver")
-    
+
     # Filtrer seulement les devis valides
-    df_devis_silver = df_devis.filter(col("statut") == "VALIDE") \
-        .dropDuplicates() \
+    df_devis_silver = df_devis.dropDuplicates() \
         .dropna()
 
     # Sauvegarde Silver devis
-    df_devis_silver.write.mode("overwrite").parquet("s3a://silver/csv/devis")
+    df_devis_silver.write.mode("overwrite").parquet("s3a://silver/mysql/devis")
     print("✅ Devis sauvegardés dans Silver")
+    return
+
+
+if __name__ == "__main__":
+    app.run()

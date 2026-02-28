@@ -6,12 +6,12 @@
   "cells": [
     {
       "id": "MJUe",
-      "code_hash": "be7c6f1679eb8c7bf2fe9022db603fa7",
+      "code_hash": "76e0062361b955073741780faec459b4",
       "outputs": [
         {
           "type": "data",
           "data": {
-            "text/markdown": "<span class=\"markdown prose dark:prose-invert contents\"><h1 id=\"data-plateforme-avec-pyspark-mysql-et-minio\">Data Plateforme avec PySpark, MySQL et MinIO</h1>\n<h2 id=\"architecture\">Architecture</h2>\n<div class=\"language-text codehilite\"><pre><span></span><code>MySQL (source de donn\u00e9es)\n      \u2502\n      \u25bc\nPySpark (moteur de traitement)\n      \u2502\n      \u25bc\nMinIO / S3 (Data Lake - format Parquet)\n</code></pre></div>\n<hr />\n<h2 id=\"configuration-de-lenvironnement\">Configuration de l'environnement</h2></span>"
+            "text/markdown": "<span class=\"markdown prose dark:prose-invert contents\"><h1 id=\"data-plateforme-avec-pyspark-mysql-et-minio\">Data Plateforme avec PySpark, MySQL et MinIO</h1>\n<h2 id=\"architecture\">Architecture</h2>\n<div class=\"language-text codehilite\"><pre><span></span><code>MySQL (source de donn\u00e9es)\n      \u2502\n      \u25bc\nPySpark (moteur de traitement)\n      \u2502\n      \u25bc\nMinIO / S3 (bronze - format Parquet)\n</code></pre></div>\n<hr />\n<h2 id=\"configuration-de-lenvironnement\">Configuration de l'environnement</h2></span>"
           }
         }
       ],
@@ -58,12 +58,12 @@
     },
     {
       "id": "emfo",
-      "code_hash": "40c16cc0785b12d6df7a8630608340dc",
+      "code_hash": "9d6cd579312a8134ed99eb194afc1dc0",
       "outputs": [
         {
           "type": "data",
           "data": {
-            "text/markdown": "<span class=\"markdown prose dark:prose-invert contents\"><h1 id=\"data-plateforme-avec-pyspark-fichier-csv-et-minio\">Data Plateforme avec PySpark, fichier csv et MinIO</h1>\n<h2 id=\"architecture\">Architecture</h2>\n<div class=\"language-text codehilite\"><pre><span></span><code>Fichier csv (source de donn\u00e9es)\n      \u2502\n      \u25bc\nPython (moteur de traitement)\n      \u2502\n      \u25bc\nMinIO / S3 (Data Lake - format Parquet)\n</code></pre></div>\n<hr />\n<h2 id=\"configuration-de-lenvironnement\">Configuration de l'environnement</h2></span>"
+            "text/markdown": "<span class=\"markdown prose dark:prose-invert contents\"><h1 id=\"data-plateforme-avec-pyspark-fichier-csv-et-minio\">Data Plateforme avec PySpark, fichier csv et MinIO</h1>\n<h2 id=\"architecture\">Architecture</h2>\n<div class=\"language-text codehilite\"><pre><span></span><code>Fichier csv (source de donn\u00e9es)\n      \u2502\n      \u25bc\nPython/spark (moteur de traitement)\n      \u2502\n      \u25bc\nMinIO / S3 (Data Lake - format Parquet)\n</code></pre></div>\n<hr />\n<h2 id=\"configuration-de-lenvironnement\">Configuration de l'environnement</h2></span>"
           }
         }
       ],
@@ -98,215 +98,61 @@
     {
       "id": "Hbol",
       "code_hash": "1d0db38904205bec4d6f6f6a1f6cec3e",
-      "outputs": [
-        {
-          "type": "data",
-          "data": {
-            "text/plain": ""
-          }
-        }
-      ],
+      "outputs": [],
       "console": []
     },
     {
       "id": "vblA",
       "code_hash": "2db80f01979dea89fa8f9f118bacd309",
-      "outputs": [
-        {
-          "type": "data",
-          "data": {
-            "text/plain": ""
-          }
-        }
-      ],
-      "console": [
-        {
-          "type": "stream",
-          "name": "stdout",
-          "text": "\u2713 Configuration charg\u00e9e\n  MySQL  : mysql:3306/dataplateform\n  MinIO  : http://minio:9000\n  Spark  : local[*]\n",
-          "mimetype": "text/plain"
-        }
-      ]
+      "outputs": [],
+      "console": []
     },
     {
       "id": "lEQa",
       "code_hash": "ee13d6cd646c8291d81b4e32ffadd104",
-      "outputs": [
-        {
-          "type": "data",
-          "data": {
-            "text/plain": ""
-          }
-        }
-      ],
-      "console": [
-        {
-          "type": "stream",
-          "name": "stdout",
-          "text": ":: loading settings :: url = jar:file:/usr/local/lib/python3.11/site-packages/pyspark/jars/ivy-2.5.1.jar!/org/apache/ivy/core/settings/ivysettings.xml\n",
-          "mimetype": "text/plain"
-        },
-        {
-          "type": "stream",
-          "name": "stderr",
-          "text": "Ivy Default Cache set to: /root/.ivy2/cache\nThe jars for the packages stored in: /root/.ivy2/jars\norg.apache.hadoop#hadoop-aws added as a dependency\ncom.amazonaws#aws-java-sdk-bundle added as a dependency\nmysql#mysql-connector-java added as a dependency\n:: resolving dependencies :: org.apache.spark#spark-submit-parent-593b4ade-771f-4684-af27-d7d48f52e904;1.0\n\tconfs: [default]\n\tfound org.apache.hadoop#hadoop-aws;3.3.4 in central\n\tfound com.amazonaws#aws-java-sdk-bundle;1.12.262 in central\n\tfound org.wildfly.openssl#wildfly-openssl;1.0.7.Final in central\n\tfound mysql#mysql-connector-java;8.0.33 in central\n\tfound com.mysql#mysql-connector-j;8.0.33 in central\n\tfound com.google.protobuf#protobuf-java;3.21.9 in central\n:: resolution report :: resolve 5963ms :: artifacts dl 225ms\n\t:: modules in use:\n\tcom.amazonaws#aws-java-sdk-bundle;1.12.262 from central in [default]\n\tcom.google.protobuf#protobuf-java;3.21.9 from central in [default]\n\tcom.mysql#mysql-connector-j;8.0.33 from central in [default]\n\tmysql#mysql-connector-java;8.0.33 from central in [default]\n\torg.apache.hadoop#hadoop-aws;3.3.4 from central in [default]\n\torg.wildfly.openssl#wildfly-openssl;1.0.7.Final from central in [default]\n\t---------------------------------------------------------------------\n\t|                  |            modules            ||   artifacts   |\n\t|       conf       | number| search|dwnlded|evicted|| number|dwnlded|\n\t---------------------------------------------------------------------\n\t|      default     |   6   |   0   |   0   |   0   ||   5   |   0   |\n\t---------------------------------------------------------------------\n:: retrieving :: org.apache.spark#spark-submit-parent-593b4ade-771f-4684-af27-d7d48f52e904\n\tconfs: [default]\n\t0 artifacts copied, 5 already retrieved (0kB/134ms)\n26/02/28 18:22:02 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable\nSetting default log level to \"WARN\".\nTo adjust logging level use sc.setLogLevel(newLevel). For SparkR, use setLogLevel(newLevel).\n26/02/28 18:22:44 WARN GarbageCollectionMetrics: To enable non-built-in garbage collector(s) List(G1 Concurrent GC), users should configure it(them) to spark.eventLog.gcMetrics.youngGenerationGarbageCollectors or spark.eventLog.gcMetrics.oldGenerationGarbageCollectors\n26/02/28 18:22:44 ERROR Inbox: Ignoring error\njava.lang.NullPointerException: Cannot invoke \"org.apache.spark.storage.BlockManagerId.executorId()\" because \"idWithoutTopologyInfo\" is null\n\tat org.apache.spark.storage.BlockManagerMasterEndpoint.org$apache$spark$storage$BlockManagerMasterEndpoint$$register(BlockManagerMasterEndpoint.scala:677)\n\tat org.apache.spark.storage.BlockManagerMasterEndpoint$$anonfun$receiveAndReply$1.applyOrElse(BlockManagerMasterEndpoint.scala:133)\n\tat org.apache.spark.rpc.netty.Inbox.$anonfun$process$1(Inbox.scala:103)\n\tat org.apache.spark.rpc.netty.Inbox.safelyCall(Inbox.scala:213)\n\tat org.apache.spark.rpc.netty.Inbox.process(Inbox.scala:100)\n\tat org.apache.spark.rpc.netty.MessageLoop.org$apache$spark$rpc$netty$MessageLoop$$receiveLoop(MessageLoop.scala:75)\n\tat org.apache.spark.rpc.netty.MessageLoop$$anon$1.run(MessageLoop.scala:41)\n\tat java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)\n\tat java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)\n\tat java.base/java.lang.Thread.run(Thread.java:1583)\n26/02/28 18:22:44 WARN Executor: Issue communicating with driver in heartbeater\norg.apache.spark.SparkException: Exception thrown in awaitResult: \n\tat org.apache.spark.util.SparkThreadUtils$.awaitResult(SparkThreadUtils.scala:56)\n\tat org.apache.spark.util.ThreadUtils$.awaitResult(ThreadUtils.scala:310)\n\tat org.apache.spark.rpc.RpcTimeout.awaitResult(RpcTimeout.scala:75)\n\tat org.apache.spark.rpc.RpcEndpointRef.askSync(RpcEndpointRef.scala:101)\n\tat org.apache.spark.rpc.RpcEndpointRef.askSync(RpcEndpointRef.scala:85)\n\tat org.apache.spark.storage.BlockManagerMaster.registerBlockManager(BlockManagerMaster.scala:80)\n\tat org.apache.spark.storage.BlockManager.reregister(BlockManager.scala:642)\n\tat org.apache.spark.executor.Executor.reportHeartBeat(Executor.scala:1223)\n\tat org.apache.spark.executor.Executor.$anonfun$heartbeater$1(Executor.scala:295)\n\tat scala.runtime.java8.JFunction0$mcV$sp.apply(JFunction0$mcV$sp.java:23)\n\tat org.apache.spark.util.Utils$.logUncaughtExceptions(Utils.scala:1928)\n\tat org.apache.spark.Heartbeater$$anon$1.run(Heartbeater.scala:46)\n\tat java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:572)\n\tat java.base/java.util.concurrent.FutureTask.runAndReset(FutureTask.java:358)\n\tat java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:305)\n\tat java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)\n\tat java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)\n\tat java.base/java.lang.Thread.run(Thread.java:1583)\nCaused by: java.lang.NullPointerException: Cannot invoke \"org.apache.spark.storage.BlockManagerId.executorId()\" because \"idWithoutTopologyInfo\" is null\n\tat org.apache.spark.storage.BlockManagerMasterEndpoint.org$apache$spark$storage$BlockManagerMasterEndpoint$$register(BlockManagerMasterEndpoint.scala:677)\n\tat org.apache.spark.storage.BlockManagerMasterEndpoint$$anonfun$receiveAndReply$1.applyOrElse(BlockManagerMasterEndpoint.scala:133)\n\tat org.apache.spark.rpc.netty.Inbox.$anonfun$process$1(Inbox.scala:103)\n\tat org.apache.spark.rpc.netty.Inbox.safelyCall(Inbox.scala:213)\n\tat org.apache.spark.rpc.netty.Inbox.process(Inbox.scala:100)\n\tat org.apache.spark.rpc.netty.MessageLoop.org$apache$spark$rpc$netty$MessageLoop$$receiveLoop(MessageLoop.scala:75)\n\tat org.apache.spark.rpc.netty.MessageLoop$$anon$1.run(MessageLoop.scala:41)\n\t... 3 more\n",
-          "mimetype": "text/plain"
-        },
-        {
-          "type": "stream",
-          "name": "stdout",
-          "text": "\u2713 Session Spark cr\u00e9\u00e9e  \u2192  version 3.5.0\n",
-          "mimetype": "text/plain"
-        }
-      ]
+      "outputs": [],
+      "console": []
     },
     {
       "id": "PKri",
       "code_hash": "d2f59eacad23d3e58a155515524f9337",
-      "outputs": [
-        {
-          "type": "error",
-          "ename": "multiple-defs",
-          "evalue": "The variable 'df' was defined by another cell",
-          "traceback": []
-        }
-      ],
+      "outputs": [],
       "console": []
     },
     {
       "id": "Xref",
       "code_hash": "b8d0da82ebb12935ec5fc7ac75d332ad",
-      "outputs": [
-        {
-          "type": "error",
-          "ename": "exception",
-          "evalue": "Name `df` is not defined. It was expected to be defined in ",
-          "traceback": []
-        }
-      ],
-      "console": [
-        {
-          "type": "stream",
-          "name": "stderr",
-          "text": "<span class=\"codehilite\"><div class=\"highlight\"><pre><span></span><span class=\"gt\">Traceback (most recent call last):</span>\n  File <span class=\"nb\">&quot;/tmp/marimo_600/__marimo__cell_Xref_.py&quot;</span>, line <span class=\"m\">2</span>, in <span class=\"n\">&lt;module&gt;</span>\n<span class=\"w\">    </span><span class=\"n\">df</span><span class=\"o\">.</span><span class=\"n\">show</span><span class=\"p\">(</span><span class=\"mi\">5</span><span class=\"p\">,</span> <span class=\"n\">truncate</span><span class=\"o\">=</span><span class=\"kc\">False</span><span class=\"p\">)</span>\n<span class=\"w\">    </span><span class=\"pm\">^^</span>\n<span class=\"gr\">NameError</span>: <span class=\"n\">name &#39;df&#39; is not defined</span>\n</pre></div>\n</span>",
-          "mimetype": "application/vnd.marimo+traceback"
-        }
-      ]
+      "outputs": [],
+      "console": []
     },
     {
       "id": "BYtC",
       "code_hash": "70f4ab5c0c1b93bc04d88e2a32a8f64f",
-      "outputs": [
-        {
-          "type": "error",
-          "ename": "exception",
-          "evalue": "Name `df` is not defined. It was expected to be defined in ",
-          "traceback": []
-        }
-      ],
-      "console": [
-        {
-          "type": "stream",
-          "name": "stderr",
-          "text": "<span class=\"codehilite\"><div class=\"highlight\"><pre><span></span><span class=\"gt\">Traceback (most recent call last):</span>\n  File <span class=\"nb\">&quot;/tmp/marimo_600/__marimo__cell_BYtC_.py&quot;</span>, line <span class=\"m\">2</span>, in <span class=\"n\">&lt;module&gt;</span>\n<span class=\"w\">    </span><span class=\"n\">df</span><span class=\"o\">.</span><span class=\"n\">write</span><span class=\"o\">.</span><span class=\"n\">format</span><span class=\"p\">(</span><span class=\"s2\">&quot;parquet&quot;</span><span class=\"p\">)</span><span class=\"o\">.</span><span class=\"n\">mode</span><span class=\"p\">(</span><span class=\"s2\">&quot;overwrite&quot;</span><span class=\"p\">)</span><span class=\"o\">.</span><span class=\"n\">save</span><span class=\"p\">(</span><span class=\"n\">MYSQ_PATH</span><span class=\"p\">)</span>\n<span class=\"w\">    </span><span class=\"pm\">^^</span>\n<span class=\"gr\">NameError</span>: <span class=\"n\">name &#39;df&#39; is not defined</span>\n</pre></div>\n</span>",
-          "mimetype": "application/vnd.marimo+traceback"
-        }
-      ]
+      "outputs": [],
+      "console": []
     },
     {
       "id": "Kclp",
       "code_hash": "59290a08790abc105ed986a22bd0c225",
-      "outputs": [
-        {
-          "type": "data",
-          "data": {
-            "text/plain": ""
-          }
-        }
-      ],
-      "console": [
-        {
-          "type": "stream",
-          "name": "stderr",
-          "text": "26/02/28 18:23:00 WARN MetricsConfig: Cannot locate configuration: tried hadoop-metrics2-s3a-file-system.properties,hadoop-metrics2.properties\n\r[Stage 0:>                                                          (0 + 1) / 1]\r\r                                                                                \r",
-          "mimetype": "text/plain"
-        },
-        {
-          "type": "stream",
-          "name": "stdout",
-          "text": "\u2713 V\u00e9rification Bronze Layer\n",
-          "mimetype": "text/plain"
-        },
-        {
-          "type": "stream",
-          "name": "stderr",
-          "text": "\r[Stage 1:>                                                          (0 + 1) / 1]\r\r                                                                                \r",
-          "mimetype": "text/plain"
-        },
-        {
-          "type": "stream",
-          "name": "stdout",
-          "text": "  Lignes lues depuis MinIO : 625\n",
-          "mimetype": "text/plain"
-        },
-        {
-          "type": "stream",
-          "name": "stderr",
-          "text": "\r[Stage 4:>                                                          (0 + 1) / 1]\r\r                                                                                \r",
-          "mimetype": "text/plain"
-        },
-        {
-          "type": "stream",
-          "name": "stdout",
-          "text": "+--------+---------+-------------+----------+--------+-------------+\n|id_devis|id_client|id_commercial|date_devis|  statut|montant_total|\n+--------+---------+-------------+----------+--------+-------------+\n|       1|        3|            1|2026-01-26|accept\u00c3\u00a9|     33555.00|\n|       2|        3|            2|2026-01-18|accept\u00c3\u00a9|     55624.00|\n|       3|        3|            1|2026-02-06| refus\u00c3\u00a9|     82533.00|\n|       4|        3|            1|2026-02-04|en_cours|    109531.00|\n|       5|        2|            2|2026-03-01| refus\u00c3\u00a9|     93325.00|\n+--------+---------+-------------+----------+--------+-------------+\nonly showing top 5 rows\n\n",
-          "mimetype": "text/plain"
-        }
-      ]
+      "outputs": [],
+      "console": []
     },
     {
       "id": "Hstk",
       "code_hash": "fd57197c2205fccf262730683cba7149",
-      "outputs": [
-        {
-          "type": "data",
-          "data": {
-            "text/plain": ""
-          }
-        }
-      ],
+      "outputs": [],
       "console": []
     },
     {
       "id": "iLit",
       "code_hash": "8f1b8d2239121695a62c8614b1838ab4",
-      "outputs": [
-        {
-          "type": "data",
-          "data": {
-            "text/plain": ""
-          }
-        }
-      ],
-      "console": [
-        {
-          "type": "stream",
-          "name": "stdout",
-          "text": "\u2713 Fichier CSV upload\u00e9 vers MinIO : s3://bronze/csv/client.csv\n",
-          "mimetype": "text/plain"
-        }
-      ]
+      "outputs": [],
+      "console": []
     },
     {
       "id": "ROlb",
       "code_hash": "0a2c63251e7bdf94804f1be111b23cdf",
-      "outputs": [
-        {
-          "type": "error",
-          "ename": "multiple-defs",
-          "evalue": "The variable 'df' was defined by another cell",
-          "traceback": []
-        }
-      ],
+      "outputs": [],
       "console": []
     }
   ]

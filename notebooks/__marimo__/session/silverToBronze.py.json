@@ -1,0 +1,188 @@
+{
+  "version": "1",
+  "metadata": {
+    "marimo_version": "0.20.2"
+  },
+  "cells": [
+    {
+      "id": "MJUe",
+      "code_hash": "3cd5d3bef63f9dd2ef469c14358033a1",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/markdown": "<span class=\"markdown prose dark:prose-invert contents\"><div class=\"language-text codehilite\"><pre><span></span><code>Bronze (source de donn\u00e9es)\n      \u2502\n      \u25bc\nPySpark (moteur de traitement)\n      \u2502\n      \u25bc\nMinIO / S3 (silver/gold - format Parquet)\n</code></pre></div></span>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "lEQa",
+      "code_hash": "64073dc21dc5b23e317748f525f69691",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/markdown": "<span class=\"markdown prose dark:prose-invert contents\"><h2 id=\"devis-et-clients-depuis-minio-bronze\">Devis et clients depuis MinIO (bronze)</h2></span>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "Xref",
+      "code_hash": "ff62c30fa7cf605913896ea1460e6499",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/markdown": "<span class=\"markdown prose dark:prose-invert contents\"><h2 id=\"nettoyage-des-donnees-silver\">Nettoyage des donn\u00e9es (Silver)</h2></span>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "Hbol",
+      "code_hash": "1d0db38904205bec4d6f6f6a1f6cec3e",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "vblA",
+      "code_hash": "b60ccde6847d8dec49f59540fdcec65a",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": [
+        {
+          "type": "stream",
+          "name": "stdout",
+          "text": "\u2713 Configuration charg\u00e9e\n  MinIO  : http://minio:9000\n  Spark  : local[*]\n",
+          "mimetype": "text/plain"
+        }
+      ]
+    },
+    {
+      "id": "bkHC",
+      "code_hash": "bb35914421bc740515806f701b4eea22",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": [
+        {
+          "type": "stream",
+          "name": "stdout",
+          "text": ":: loading settings :: url = jar:file:/usr/local/lib/python3.11/site-packages/pyspark/jars/ivy-2.5.1.jar!/org/apache/ivy/core/settings/ivysettings.xml\n",
+          "mimetype": "text/plain"
+        },
+        {
+          "type": "stream",
+          "name": "stderr",
+          "text": "Ivy Default Cache set to: /root/.ivy2/cache\nThe jars for the packages stored in: /root/.ivy2/jars\norg.apache.hadoop#hadoop-aws added as a dependency\ncom.amazonaws#aws-java-sdk-bundle added as a dependency\nmysql#mysql-connector-java added as a dependency\n:: resolving dependencies :: org.apache.spark#spark-submit-parent-669c5ab7-0a2b-466b-82e1-cdbfd3f3fc51;1.0\n\tconfs: [default]\n\tfound org.apache.hadoop#hadoop-aws;3.3.4 in central\n\tfound com.amazonaws#aws-java-sdk-bundle;1.12.262 in central\n\tfound org.wildfly.openssl#wildfly-openssl;1.0.7.Final in central\n\tfound mysql#mysql-connector-java;8.0.33 in central\n\tfound com.mysql#mysql-connector-j;8.0.33 in central\n\tfound com.google.protobuf#protobuf-java;3.21.9 in central\n:: resolution report :: resolve 6199ms :: artifacts dl 349ms\n\t:: modules in use:\n\tcom.amazonaws#aws-java-sdk-bundle;1.12.262 from central in [default]\n\tcom.google.protobuf#protobuf-java;3.21.9 from central in [default]\n\tcom.mysql#mysql-connector-j;8.0.33 from central in [default]\n\tmysql#mysql-connector-java;8.0.33 from central in [default]\n\torg.apache.hadoop#hadoop-aws;3.3.4 from central in [default]\n\torg.wildfly.openssl#wildfly-openssl;1.0.7.Final from central in [default]\n\t---------------------------------------------------------------------\n\t|                  |            modules            ||   artifacts   |\n\t|       conf       | number| search|dwnlded|evicted|| number|dwnlded|\n\t---------------------------------------------------------------------\n\t|      default     |   6   |   0   |   0   |   0   ||   5   |   0   |\n\t---------------------------------------------------------------------\n:: retrieving :: org.apache.spark#spark-submit-parent-669c5ab7-0a2b-466b-82e1-cdbfd3f3fc51\n\tconfs: [default]\n\t0 artifacts copied, 5 already retrieved (0kB/90ms)\n26/02/28 21:05:25 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable\nSetting default log level to \"WARN\".\nTo adjust logging level use sc.setLogLevel(newLevel). For SparkR, use setLogLevel(newLevel).\n26/02/28 21:06:20 WARN GarbageCollectionMetrics: To enable non-built-in garbage collector(s) List(G1 Concurrent GC), users should configure it(them) to spark.eventLog.gcMetrics.youngGenerationGarbageCollectors or spark.eventLog.gcMetrics.oldGenerationGarbageCollectors\n26/02/28 21:06:20 ERROR Inbox: Ignoring error\njava.lang.NullPointerException: Cannot invoke \"org.apache.spark.storage.BlockManagerId.executorId()\" because \"idWithoutTopologyInfo\" is null\n\tat org.apache.spark.storage.BlockManagerMasterEndpoint.org$apache$spark$storage$BlockManagerMasterEndpoint$$register(BlockManagerMasterEndpoint.scala:677)\n\tat org.apache.spark.storage.BlockManagerMasterEndpoint$$anonfun$receiveAndReply$1.applyOrElse(BlockManagerMasterEndpoint.scala:133)\n\tat org.apache.spark.rpc.netty.Inbox.$anonfun$process$1(Inbox.scala:103)\n\tat org.apache.spark.rpc.netty.Inbox.safelyCall(Inbox.scala:213)\n\tat org.apache.spark.rpc.netty.Inbox.process(Inbox.scala:100)\n\tat org.apache.spark.rpc.netty.MessageLoop.org$apache$spark$rpc$netty$MessageLoop$$receiveLoop(MessageLoop.scala:75)\n\tat org.apache.spark.rpc.netty.MessageLoop$$anon$1.run(MessageLoop.scala:41)\n\tat java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)\n\tat java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)\n\tat java.base/java.lang.Thread.run(Thread.java:1583)\n26/02/28 21:06:20 WARN Executor: Issue communicating with driver in heartbeater\norg.apache.spark.SparkException: Exception thrown in awaitResult: \n\tat org.apache.spark.util.SparkThreadUtils$.awaitResult(SparkThreadUtils.scala:56)\n\tat org.apache.spark.util.ThreadUtils$.awaitResult(ThreadUtils.scala:310)\n\tat org.apache.spark.rpc.RpcTimeout.awaitResult(RpcTimeout.scala:75)\n\tat org.apache.spark.rpc.RpcEndpointRef.askSync(RpcEndpointRef.scala:101)\n\tat org.apache.spark.rpc.RpcEndpointRef.askSync(RpcEndpointRef.scala:85)\n\tat org.apache.spark.storage.BlockManagerMaster.registerBlockManager(BlockManagerMaster.scala:80)\n\tat org.apache.spark.storage.BlockManager.reregister(BlockManager.scala:642)\n\tat org.apache.spark.executor.Executor.reportHeartBeat(Executor.scala:1223)\n\tat org.apache.spark.executor.Executor.$anonfun$heartbeater$1(Executor.scala:295)\n\tat scala.runtime.java8.JFunction0$mcV$sp.apply(JFunction0$mcV$sp.java:23)\n\tat org.apache.spark.util.Utils$.logUncaughtExceptions(Utils.scala:1928)\n\tat org.apache.spark.Heartbeater$$anon$1.run(Heartbeater.scala:46)\n\tat java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:572)\n\tat java.base/java.util.concurrent.FutureTask.runAndReset(FutureTask.java:358)\n\tat java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:305)\n\tat java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)\n\tat java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)\n\tat java.base/java.lang.Thread.run(Thread.java:1583)\nCaused by: java.lang.NullPointerException: Cannot invoke \"org.apache.spark.storage.BlockManagerId.executorId()\" because \"idWithoutTopologyInfo\" is null\n\tat org.apache.spark.storage.BlockManagerMasterEndpoint.org$apache$spark$storage$BlockManagerMasterEndpoint$$register(BlockManagerMasterEndpoint.scala:677)\n\tat org.apache.spark.storage.BlockManagerMasterEndpoint$$anonfun$receiveAndReply$1.applyOrElse(BlockManagerMasterEndpoint.scala:133)\n\tat org.apache.spark.rpc.netty.Inbox.$anonfun$process$1(Inbox.scala:103)\n\tat org.apache.spark.rpc.netty.Inbox.safelyCall(Inbox.scala:213)\n\tat org.apache.spark.rpc.netty.Inbox.process(Inbox.scala:100)\n\tat org.apache.spark.rpc.netty.MessageLoop.org$apache$spark$rpc$netty$MessageLoop$$receiveLoop(MessageLoop.scala:75)\n\tat org.apache.spark.rpc.netty.MessageLoop$$anon$1.run(MessageLoop.scala:41)\n\t... 3 more\n26/02/28 21:06:28 WARN Executor: Issue communicating with driver in heartbeater\norg.apache.spark.SparkException: Exception thrown in awaitResult: \n\tat org.apache.spark.util.SparkThreadUtils$.awaitResult(SparkThreadUtils.scala:56)\n\tat org.apache.spark.util.ThreadUtils$.awaitResult(ThreadUtils.scala:310)\n\tat org.apache.spark.rpc.RpcTimeout.awaitResult(RpcTimeout.scala:75)\n\tat org.apache.spark.rpc.RpcEndpointRef.askSync(RpcEndpointRef.scala:101)\n\tat org.apache.spark.rpc.RpcEndpointRef.askSync(RpcEndpointRef.scala:85)\n\tat org.apache.spark.storage.BlockManagerMaster.registerBlockManager(BlockManagerMaster.scala:80)\n\tat org.apache.spark.storage.BlockManager.reregister(BlockManager.scala:642)\n\tat org.apache.spark.executor.Executor.reportHeartBeat(Executor.scala:1223)\n\tat org.apache.spark.executor.Executor.$anonfun$heartbeater$1(Executor.scala:295)\n\tat scala.runtime.java8.JFunction0$mcV$sp.apply(JFunction0$mcV$sp.java:23)\n\tat org.apache.spark.util.Utils$.logUncaughtExceptions(Utils.scala:1928)\n\tat org.apache.spark.Heartbeater$$anon$1.run(Heartbeater.scala:46)\n\tat java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:572)\n\tat java.base/java.util.concurrent.FutureTask.runAndReset(FutureTask.java:358)\n\tat java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:305)\n\tat java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)\n\tat java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)\n\tat java.base/java.lang.Thread.run(Thread.java:1583)\nCaused by: java.lang.NullPointerException: Cannot invoke \"org.apache.spark.storage.BlockManagerId.executorId()\" because \"idWithoutTopologyInfo\" is null\n\tat org.apache.spark.storage.BlockManagerMasterEndpoint.org$apache$spark$storage$BlockManagerMasterEndpoint$$register(BlockManagerMasterEndpoint.scala:677)\n\tat org.apache.spark.storage.BlockManagerMasterEndpoint$$anonfun$receiveAndReply$1.applyOrElse(BlockManagerMasterEndpoint.scala:133)\n\tat org.apache.spark.rpc.netty.Inbox.$anonfun$process$1(Inbox.scala:103)\n\tat org.apache.spark.rpc.netty.Inbox.safelyCall(Inbox.scala:213)\n\tat org.apache.spark.rpc.netty.Inbox.process(Inbox.scala:100)\n\tat org.apache.spark.rpc.netty.MessageLoop.org$apache$spark$rpc$netty$MessageLoop$$receiveLoop(MessageLoop.scala:75)\n\tat org.apache.spark.rpc.netty.MessageLoop$$anon$1.run(MessageLoop.scala:41)\n\t... 3 more\n26/02/28 21:06:28 ERROR Inbox: Ignoring error\njava.lang.NullPointerException: Cannot invoke \"org.apache.spark.storage.BlockManagerId.executorId()\" because \"idWithoutTopologyInfo\" is null\n\tat org.apache.spark.storage.BlockManagerMasterEndpoint.org$apache$spark$storage$BlockManagerMasterEndpoint$$register(BlockManagerMasterEndpoint.scala:677)\n\tat org.apache.spark.storage.BlockManagerMasterEndpoint$$anonfun$receiveAndReply$1.applyOrElse(BlockManagerMasterEndpoint.scala:133)\n\tat org.apache.spark.rpc.netty.Inbox.$anonfun$process$1(Inbox.scala:103)\n\tat org.apache.spark.rpc.netty.Inbox.safelyCall(Inbox.scala:213)\n\tat org.apache.spark.rpc.netty.Inbox.process(Inbox.scala:100)\n\tat org.apache.spark.rpc.netty.MessageLoop.org$apache$spark$rpc$netty$MessageLoop$$receiveLoop(MessageLoop.scala:75)\n\tat org.apache.spark.rpc.netty.MessageLoop$$anon$1.run(MessageLoop.scala:41)\n\tat java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)\n\tat java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)\n\tat java.base/java.lang.Thread.run(Thread.java:1583)\n",
+          "mimetype": "text/plain"
+        },
+        {
+          "type": "stream",
+          "name": "stdout",
+          "text": "\u2713 Session Spark cr\u00e9\u00e9e  \u2192  version 3.5.0\n",
+          "mimetype": "text/plain"
+        }
+      ]
+    },
+    {
+      "id": "PKri",
+      "code_hash": "32665908a6276561f56a4b7d7faf86f6",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": [
+        {
+          "type": "stream",
+          "name": "stderr",
+          "text": "26/02/28 21:06:44 WARN MetricsConfig: Cannot locate configuration: tried hadoop-metrics2-s3a-file-system.properties,hadoop-metrics2.properties\n\r[Stage 0:>                                                          (0 + 0) / 1]\r\r[Stage 0:>                                                          (0 + 1) / 1]\r\r                                                                                \r\r[Stage 1:>                                                          (0 + 1) / 1]\r\r                                                                                \r\r[Stage 2:>                                                          (0 + 1) / 1]\r\r                                                                                \r",
+          "mimetype": "text/plain"
+        },
+        {
+          "type": "stream",
+          "name": "stdout",
+          "text": "\u2713 Donn\u00e9es lues depuis Bronze\n",
+          "mimetype": "text/plain"
+        },
+        {
+          "type": "stream",
+          "name": "stderr",
+          "text": "\r[Stage 3:>                                                          (0 + 1) / 1]\r\r                                                                                \r",
+          "mimetype": "text/plain"
+        },
+        {
+          "type": "stream",
+          "name": "stdout",
+          "text": "  Clients : 3 lignes\n  Devis   : 3 lignes\n",
+          "mimetype": "text/plain"
+        }
+      ]
+    },
+    {
+      "id": "SFPL",
+      "code_hash": "7ad2e0d6b021b4af7557bb4cc43ec077",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": [
+        {
+          "type": "stream",
+          "name": "stderr",
+          "text": "\r[Stage 23:>                                                         (0 + 1) / 1]\r\r                                                                                \r",
+          "mimetype": "text/plain"
+        },
+        {
+          "type": "stream",
+          "name": "stdout",
+          "text": "\u2705 Clients sauvegard\u00e9s dans Silver\n",
+          "mimetype": "text/plain"
+        },
+        {
+          "type": "stream",
+          "name": "stderr",
+          "text": "\r[Stage 26:>                                                         (0 + 1) / 1]\r\r                                                                                \r",
+          "mimetype": "text/plain"
+        },
+        {
+          "type": "stream",
+          "name": "stdout",
+          "text": "\u2705 Devis sauvegard\u00e9s dans Silver\n",
+          "mimetype": "text/plain"
+        }
+      ]
+    }
+  ]
+}
