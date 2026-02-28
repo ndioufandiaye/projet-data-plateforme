@@ -135,10 +135,18 @@ VALUES
 (3, 100, 10);
 
 -- Devis
+-- Insérer 1000 devis aléatoires
 INSERT INTO devis (id_client, id_commercial, date_devis, statut, montant_total)
-VALUES
-(1, 1, '2026-01-10', 'accepté', 50025000),
-(2, 2, '2026-01-12', 'en_cours', 75000000);
+SELECT 
+    FLOOR(1 + RAND()*3) AS id_client,               -- 1 à 3
+    FLOOR(1 + RAND()*2) AS id_commercial,          -- 1 à 2
+    DATE_ADD('2026-01-01', INTERVAL FLOOR(RAND()*60) DAY) AS date_devis, -- Janvier-Février
+    ELT(FLOOR(1 + RAND()*3), 'en_cours','accepté','refusé') AS statut,   -- statut aléatoire
+    FLOOR(10000 + RAND()*100000) AS montant_total  -- montant aléatoire
+FROM (SELECT 1 UNION ALL SELECT 2 UNION ALL SELECT 3 UNION ALL SELECT 4 UNION ALL SELECT 5) t1,
+     (SELECT 1 UNION ALL SELECT 2 UNION ALL SELECT 3 UNION ALL SELECT 4 UNION ALL SELECT 5) t2,
+     (SELECT 1 UNION ALL SELECT 2 UNION ALL SELECT 3 UNION ALL SELECT 4 UNION ALL SELECT 5) t3,
+     (SELECT 1 UNION ALL SELECT 2 UNION ALL SELECT 3 UNION ALL SELECT 4 UNION ALL SELECT 5) t4;
 
 -- Lignes devis
 INSERT INTO ligne_devis (id_devis, id_produit, quantite, prix_unitaire)
@@ -149,9 +157,13 @@ VALUES
 
 -- Commande (issue du devis accepté)
 INSERT INTO commande (id_devis, date_commande, statut, montant_total)
-VALUES
-(1, '2026-01-15', 'validée', 50025000);
-
+SELECT 
+    id_devis,
+    DATE_ADD(date_devis, INTERVAL FLOOR(RAND()*10) DAY) AS date_commande,
+    'validée' AS statut,
+    montant_total
+FROM devis
+WHERE statut = 'accepté';
 -- Lignes commande
 INSERT INTO ligne_commande (id_commande, id_produit, quantite, prix_unitaire)
 VALUES

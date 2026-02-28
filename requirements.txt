@@ -4,4 +4,5 @@ pandas
 pyarrow
 mysql-connector-python
 boto3
+csv
 minio

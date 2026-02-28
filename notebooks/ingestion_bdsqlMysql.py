@@ -61,7 +61,7 @@ def _():
 
     # Chemins S3
     MYSQ_PATH = "s3a://bronze/mysql"
-    CSV_PATH = "s3a://bronze/csv"
+    CSV_PATH = "s3a://bronze/csv/"
 
     TABLE_NAME = "devis"
 
@@ -73,18 +73,19 @@ def _():
     print(f"  MinIO  : {MINIO_ENDPOINT}")
     print(f"  Spark  : {SPARK_MASTER}")
     return (
-        CSV_PATH,
         JDBC_DRIVER,
         JDBC_URL,
         MINIO_ACCESS_KEY,
         MINIO_ENDPOINT,
         MINIO_SECRET_KEY,
+        MYSQL_DATABASE,
+        MYSQL_HOST,
         MYSQL_PASSWORD,
+        MYSQL_PORT,
         MYSQL_USER,
         MYSQ_PATH,
         SPARK_MASTER,
         TABLE_NAME,
-        os,
     )
 
 
@@ -164,7 +165,7 @@ def _(df):
 @app.cell(hide_code=True)
 def _(mo):
     mo.md(r"""
-    ## Étape 1.2 — Écriture dans MinIO (datalake)
+    ## Écriture données mysql dans MinIO (bronze/mysql)
     """)
     return
 
@@ -208,7 +209,7 @@ def _(mo):
     Fichier csv (source de données)
           │
           ▼
-    PySpark (moteur de traitement)
+    Python/spark (moteur de traitement)
           │
           ▼
     MinIO / S3 (Data Lake - format Parquet)
@@ -222,23 +223,62 @@ def _(mo):
 
 
 @app.cell
-def _(CSV_PATH, os, spark):
-    # 🔹 On n’importe pas os à l’intérieur de la fonction si déjà importé
-    # import os
+def _(MYSQL_DATABASE, MYSQL_HOST, MYSQL_PASSWORD, MYSQL_PORT, MYSQL_USER):
+    import mysql.connector
+    import csv
+        # -------------------------------
+        # 1️⃣ Connexion MySQL Docker
+        # -------------------------------
+    conn = mysql.connector.connect(
+            host=MYSQL_HOST,
+            port=MYSQL_PORT,
+            user=MYSQL_USER,
+            password=MYSQL_PASSWORD,
+            database=MYSQL_DATABASE
+    )
 
-    # chemin dans le container
-    data_dir = "/app/data" 
+    cursor = conn.cursor()
+    cursor.execute("SELECT * FROM client")
+    donnees = cursor.fetchall()
+    colonnes = [i[0] for i in cursor.description]
 
-    # 3️⃣ Boucle sur tous les fichiers CSV
-    for file in os.listdir(data_dir):
-        if file.endswith(".csv"):
-            file_path = os.path.join(data_dir, file)
-            print(f"Chargement de {file_path} → {CSV_PATH}{file}")
+        # Écriture du CSV local
+    local_csv = "/app/data/client.csv"
+    with open(local_csv, "w", newline="", encoding="utf-8") as f:
+            writer = csv.writer(f)
+            writer.writerow(colonnes)
+            writer.writerows(donnees)
 
-            df_csv = spark.read.option("header", "true").csv(file_path)
-            df_csv.write.mode("overwrite").parquet(f"{CSV_PATH}{file.replace('.csv','/')}")
+    cursor.close()
+    conn.close()
+    return (local_csv,)
 
-            print(f"{file} chargé avec succès ✅")
+
+@app.cell
+def _(mo):
+    mo.md(r"""
+    ## Écriture du fichier CSV dans MinIO (bronze/csv)
+    """)
+    return
+
+
+@app.cell
+def _(MINIO_ACCESS_KEY, MINIO_ENDPOINT, MINIO_SECRET_KEY, local_csv):
+    # Configuration du client S3 (MinIO)
+    import boto3
+    s3_client = boto3.client(
+        "s3",
+        endpoint_url=MINIO_ENDPOINT,
+        aws_access_key_id=MINIO_ACCESS_KEY,
+        aws_secret_access_key=MINIO_SECRET_KEY,
+        region_name="us-east-1",
+    )
+
+    # Upload du fichier CSV vers MinIO
+    bucket_name = "bronze"
+    object_key = "csv/client.csv"
+    s3_client.upload_file(local_csv, bucket_name, object_key)
+    print(f"✓ Fichier CSV uploadé vers MinIO : s3://{bucket_name}/{object_key}")
     return
 
 
@@ -251,13 +291,16 @@ def _(mo):
 
 
 @app.cell
-def _(CSV_PATH, spark):
-    df_bronze_csv = spark.read.parquet(CSV_PATH)
+def _(spark):
+    # Lecture CSV depuis MinIO
+    df = spark.read.csv(
+        "s3a://bronze/csv/client.csv",
+        header=True,
+        inferSchema=True
+    )
 
-    print(f"✓ Vérification Bronze Layer")
-    print(f"  Lignes lues depuis MinIO : {df_bronze_csv.count()}")
-    df_bronze_csv.show(5)
-    return
+    df.show()
+    return (df,)
 
 
 if __name__ == "__main__":
