@@ -139,7 +139,7 @@ def _(JDBC_DRIVER, JDBC_URL, MYSQL_PASSWORD, MYSQL_USER, TABLE_NAME, spark):
 
     # TODO: Lire les données depuis les la base mysql (doc: https://spark.apache.org/docs/latest/sql-data-sources-jdbc.html)
 
-    df = spark.read.format("jdbc") \
+    df_mysql = spark.read.format("jdbc") \
                     .option("url", JDBC_URL) \
                     .option("driver", JDBC_DRIVER) \
                     .option("user", MYSQL_USER) \
@@ -148,18 +148,12 @@ def _(JDBC_DRIVER, JDBC_URL, MYSQL_PASSWORD, MYSQL_USER, TABLE_NAME, spark):
                     .load()
 
     print(f"✓ Données lues depuis MySQL")
-    print(f"  Nombre de lignes  : {df.count()}")
-    print(f"  Nombre de colonnes: {len(df.columns)}")
+    print(f"  Nombre de lignes  : {df_mysql.count()}")
+    print(f"  Nombre de colonnes: {len(df_mysql.columns)}")
     print(f"\nSchéma :")
-    df.printSchema()
-    return (df,)
-
-
-@app.cell
-def _(df):
-    # Aperçu des données
-    df.show(5, truncate=False)
-    return
+    df_mysql.printSchema()
+    df_mysql.show(5)
+    return (df_mysql,)
 
 
 @app.cell(hide_code=True)
@@ -171,9 +165,9 @@ def _(mo):
 
 
 @app.cell
-def _(MYSQ_PATH, df):
+def _(MYSQ_PATH, df_mysql):
 
-    df.write.format("parquet").mode("overwrite").save(MYSQ_PATH)
+    df_mysql.write.format("parquet").mode("overwrite").save(MYSQ_PATH)
 
     print(f"✓ Load terminé !")
     print(f"  Destination : {MYSQ_PATH}")
@@ -300,7 +294,7 @@ def _(spark):
     )
 
     df.show()
-    return (df,)
+    return
 
 
 if __name__ == "__main__":

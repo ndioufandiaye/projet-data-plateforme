@@ -31,7 +31,7 @@
       "console": []
     },
     {
-      "id": "SFPL",
+      "id": "Xref",
       "code_hash": "f28fbed50106fdda8d495b46c59311ea",
       "outputs": [
         {
@@ -44,7 +44,7 @@
       "console": []
     },
     {
-      "id": "RGSE",
+      "id": "BYtC",
       "code_hash": "a9be3d748dd085c68f5e894e001010ec",
       "outputs": [
         {
@@ -57,7 +57,7 @@
       "console": []
     },
     {
-      "id": "emfo",
+      "id": "Kclp",
       "code_hash": "9d6cd579312a8134ed99eb194afc1dc0",
       "outputs": [
         {
@@ -70,7 +70,7 @@
       "console": []
     },
     {
-      "id": "nWHF",
+      "id": "Hstk",
       "code_hash": "368ec39148c62f0510cf395a21dc72f8",
       "outputs": [
         {
@@ -83,7 +83,7 @@
       "console": []
     },
     {
-      "id": "ZHCJ",
+      "id": "iLit",
       "code_hash": "8c8a8b0b045ed592ddcbeb8913da75de",
       "outputs": [
         {
@@ -98,62 +98,234 @@
     {
       "id": "Hbol",
       "code_hash": "1d0db38904205bec4d6f6f6a1f6cec3e",
-      "outputs": [],
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
       "console": []
     },
     {
       "id": "vblA",
       "code_hash": "2db80f01979dea89fa8f9f118bacd309",
-      "outputs": [],
-      "console": []
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": [
+        {
+          "type": "stream",
+          "name": "stdout",
+          "text": "\u2713 Configuration charg\u00e9e\n  MySQL  : mysql:3306/dataplateform\n  MinIO  : http://minio:9000\n  Spark  : local[*]\n",
+          "mimetype": "text/plain"
+        }
+      ]
     },
     {
       "id": "lEQa",
       "code_hash": "ee13d6cd646c8291d81b4e32ffadd104",
-      "outputs": [],
-      "console": []
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": [
+        {
+          "type": "stream",
+          "name": "stdout",
+          "text": ":: loading settings :: url = jar:file:/usr/local/lib/python3.11/site-packages/pyspark/jars/ivy-2.5.1.jar!/org/apache/ivy/core/settings/ivysettings.xml\n",
+          "mimetype": "text/plain"
+        },
+        {
+          "type": "stream",
+          "name": "stderr",
+          "text": "Ivy Default Cache set to: /root/.ivy2/cache\nThe jars for the packages stored in: /root/.ivy2/jars\norg.apache.hadoop#hadoop-aws added as a dependency\ncom.amazonaws#aws-java-sdk-bundle added as a dependency\nmysql#mysql-connector-java added as a dependency\n:: resolving dependencies :: org.apache.spark#spark-submit-parent-11727e63-1db7-4c9a-b5d8-c9d08c7ca809;1.0\n\tconfs: [default]\n\tfound org.apache.hadoop#hadoop-aws;3.3.4 in central\n\tfound com.amazonaws#aws-java-sdk-bundle;1.12.262 in central\n\tfound org.wildfly.openssl#wildfly-openssl;1.0.7.Final in central\n\tfound mysql#mysql-connector-java;8.0.33 in central\n\tfound com.mysql#mysql-connector-j;8.0.33 in central\n\tfound com.google.protobuf#protobuf-java;3.21.9 in central\n:: resolution report :: resolve 2165ms :: artifacts dl 60ms\n\t:: modules in use:\n\tcom.amazonaws#aws-java-sdk-bundle;1.12.262 from central in [default]\n\tcom.google.protobuf#protobuf-java;3.21.9 from central in [default]\n\tcom.mysql#mysql-connector-j;8.0.33 from central in [default]\n\tmysql#mysql-connector-java;8.0.33 from central in [default]\n\torg.apache.hadoop#hadoop-aws;3.3.4 from central in [default]\n\torg.wildfly.openssl#wildfly-openssl;1.0.7.Final from central in [default]\n\t---------------------------------------------------------------------\n\t|                  |            modules            ||   artifacts   |\n\t|       conf       | number| search|dwnlded|evicted|| number|dwnlded|\n\t---------------------------------------------------------------------\n\t|      default     |   6   |   0   |   0   |   0   ||   5   |   0   |\n\t---------------------------------------------------------------------\n:: retrieving :: org.apache.spark#spark-submit-parent-11727e63-1db7-4c9a-b5d8-c9d08c7ca809\n\tconfs: [default]\n\t0 artifacts copied, 5 already retrieved (0kB/96ms)\n26/02/28 22:50:34 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable\nSetting default log level to \"WARN\".\nTo adjust logging level use sc.setLogLevel(newLevel). For SparkR, use setLogLevel(newLevel).\n26/02/28 22:51:03 WARN GarbageCollectionMetrics: To enable non-built-in garbage collector(s) List(G1 Concurrent GC), users should configure it(them) to spark.eventLog.gcMetrics.youngGenerationGarbageCollectors or spark.eventLog.gcMetrics.oldGenerationGarbageCollectors\n26/02/28 22:51:03 ERROR Inbox: Ignoring error\njava.lang.NullPointerException: Cannot invoke \"org.apache.spark.storage.BlockManagerId.executorId()\" because \"idWithoutTopologyInfo\" is null\n\tat org.apache.spark.storage.BlockManagerMasterEndpoint.org$apache$spark$storage$BlockManagerMasterEndpoint$$register(BlockManagerMasterEndpoint.scala:677)\n\tat org.apache.spark.storage.BlockManagerMasterEndpoint$$anonfun$receiveAndReply$1.applyOrElse(BlockManagerMasterEndpoint.scala:133)\n\tat org.apache.spark.rpc.netty.Inbox.$anonfun$process$1(Inbox.scala:103)\n\tat org.apache.spark.rpc.netty.Inbox.safelyCall(Inbox.scala:213)\n\tat org.apache.spark.rpc.netty.Inbox.process(Inbox.scala:100)\n\tat org.apache.spark.rpc.netty.MessageLoop.org$apache$spark$rpc$netty$MessageLoop$$receiveLoop(MessageLoop.scala:75)\n\tat org.apache.spark.rpc.netty.MessageLoop$$anon$1.run(MessageLoop.scala:41)\n\tat java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)\n\tat java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)\n\tat java.base/java.lang.Thread.run(Thread.java:1583)\n26/02/28 22:51:03 WARN Executor: Issue communicating with driver in heartbeater\norg.apache.spark.SparkException: Exception thrown in awaitResult: \n\tat org.apache.spark.util.SparkThreadUtils$.awaitResult(SparkThreadUtils.scala:56)\n\tat org.apache.spark.util.ThreadUtils$.awaitResult(ThreadUtils.scala:310)\n\tat org.apache.spark.rpc.RpcTimeout.awaitResult(RpcTimeout.scala:75)\n\tat org.apache.spark.rpc.RpcEndpointRef.askSync(RpcEndpointRef.scala:101)\n\tat org.apache.spark.rpc.RpcEndpointRef.askSync(RpcEndpointRef.scala:85)\n\tat org.apache.spark.storage.BlockManagerMaster.registerBlockManager(BlockManagerMaster.scala:80)\n\tat org.apache.spark.storage.BlockManager.reregister(BlockManager.scala:642)\n\tat org.apache.spark.executor.Executor.reportHeartBeat(Executor.scala:1223)\n\tat org.apache.spark.executor.Executor.$anonfun$heartbeater$1(Executor.scala:295)\n\tat scala.runtime.java8.JFunction0$mcV$sp.apply(JFunction0$mcV$sp.java:23)\n\tat org.apache.spark.util.Utils$.logUncaughtExceptions(Utils.scala:1928)\n\tat org.apache.spark.Heartbeater$$anon$1.run(Heartbeater.scala:46)\n\tat java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:572)\n\tat java.base/java.util.concurrent.FutureTask.runAndReset(FutureTask.java:358)\n\tat java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:305)\n\tat java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)\n\tat java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)\n\tat java.base/java.lang.Thread.run(Thread.java:1583)\nCaused by: java.lang.NullPointerException: Cannot invoke \"org.apache.spark.storage.BlockManagerId.executorId()\" because \"idWithoutTopologyInfo\" is null\n\tat org.apache.spark.storage.BlockManagerMasterEndpoint.org$apache$spark$storage$BlockManagerMasterEndpoint$$register(BlockManagerMasterEndpoint.scala:677)\n\tat org.apache.spark.storage.BlockManagerMasterEndpoint$$anonfun$receiveAndReply$1.applyOrElse(BlockManagerMasterEndpoint.scala:133)\n\tat org.apache.spark.rpc.netty.Inbox.$anonfun$process$1(Inbox.scala:103)\n\tat org.apache.spark.rpc.netty.Inbox.safelyCall(Inbox.scala:213)\n\tat org.apache.spark.rpc.netty.Inbox.process(Inbox.scala:100)\n\tat org.apache.spark.rpc.netty.MessageLoop.org$apache$spark$rpc$netty$MessageLoop$$receiveLoop(MessageLoop.scala:75)\n\tat org.apache.spark.rpc.netty.MessageLoop$$anon$1.run(MessageLoop.scala:41)\n\t... 3 more\n26/02/28 22:51:13 ERROR Inbox: Ignoring error\njava.lang.NullPointerException: Cannot invoke \"org.apache.spark.storage.BlockManagerId.executorId()\" because \"idWithoutTopologyInfo\" is null\n\tat org.apache.spark.storage.BlockManagerMasterEndpoint.org$apache$spark$storage$BlockManagerMasterEndpoint$$register(BlockManagerMasterEndpoint.scala:677)\n\tat org.apache.spark.storage.BlockManagerMasterEndpoint$$anonfun$receiveAndReply$1.applyOrElse(BlockManagerMasterEndpoint.scala:133)\n\tat org.apache.spark.rpc.netty.Inbox.$anonfun$process$1(Inbox.scala:103)\n\tat org.apache.spark.rpc.netty.Inbox.safelyCall(Inbox.scala:213)\n\tat org.apache.spark.rpc.netty.Inbox.process(Inbox.scala:100)\n\tat org.apache.spark.rpc.netty.MessageLoop.org$apache$spark$rpc$netty$MessageLoop$$receiveLoop(MessageLoop.scala:75)\n\tat org.apache.spark.rpc.netty.MessageLoop$$anon$1.run(MessageLoop.scala:41)\n\tat java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)\n\tat java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)\n\tat java.base/java.lang.Thread.run(Thread.java:1583)\n26/02/28 22:51:13 WARN Executor: Issue communicating with driver in heartbeater\norg.apache.spark.SparkException: Exception thrown in awaitResult: \n\tat org.apache.spark.util.SparkThreadUtils$.awaitResult(SparkThreadUtils.scala:56)\n\tat org.apache.spark.util.ThreadUtils$.awaitResult(ThreadUtils.scala:310)\n\tat org.apache.spark.rpc.RpcTimeout.awaitResult(RpcTimeout.scala:75)\n\tat org.apache.spark.rpc.RpcEndpointRef.askSync(RpcEndpointRef.scala:101)\n\tat org.apache.spark.rpc.RpcEndpointRef.askSync(RpcEndpointRef.scala:85)\n\tat org.apache.spark.storage.BlockManagerMaster.registerBlockManager(BlockManagerMaster.scala:80)\n\tat org.apache.spark.storage.BlockManager.reregister(BlockManager.scala:642)\n\tat org.apache.spark.executor.Executor.reportHeartBeat(Executor.scala:1223)\n\tat org.apache.spark.executor.Executor.$anonfun$heartbeater$1(Executor.scala:295)\n\tat scala.runtime.java8.JFunction0$mcV$sp.apply(JFunction0$mcV$sp.java:23)\n\tat org.apache.spark.util.Utils$.logUncaughtExceptions(Utils.scala:1928)\n\tat org.apache.spark.Heartbeater$$anon$1.run(Heartbeater.scala:46)\n\tat java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:572)\n\tat java.base/java.util.concurrent.FutureTask.runAndReset(FutureTask.java:358)\n\tat java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:305)\n\tat java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)\n\tat java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)\n\tat java.base/java.lang.Thread.run(Thread.java:1583)\nCaused by: java.lang.NullPointerException: Cannot invoke \"org.apache.spark.storage.BlockManagerId.executorId()\" because \"idWithoutTopologyInfo\" is null\n\tat org.apache.spark.storage.BlockManagerMasterEndpoint.org$apache$spark$storage$BlockManagerMasterEndpoint$$register(BlockManagerMasterEndpoint.scala:677)\n\tat org.apache.spark.storage.BlockManagerMasterEndpoint$$anonfun$receiveAndReply$1.applyOrElse(BlockManagerMasterEndpoint.scala:133)\n\tat org.apache.spark.rpc.netty.Inbox.$anonfun$process$1(Inbox.scala:103)\n\tat org.apache.spark.rpc.netty.Inbox.safelyCall(Inbox.scala:213)\n\tat org.apache.spark.rpc.netty.Inbox.process(Inbox.scala:100)\n\tat org.apache.spark.rpc.netty.MessageLoop.org$apache$spark$rpc$netty$MessageLoop$$receiveLoop(MessageLoop.scala:75)\n\tat org.apache.spark.rpc.netty.MessageLoop$$anon$1.run(MessageLoop.scala:41)\n\t... 3 more\n",
+          "mimetype": "text/plain"
+        },
+        {
+          "type": "stream",
+          "name": "stdout",
+          "text": "\u2713 Session Spark cr\u00e9\u00e9e  \u2192  version 3.5.0\n",
+          "mimetype": "text/plain"
+        }
+      ]
     },
     {
       "id": "PKri",
-      "code_hash": "d2f59eacad23d3e58a155515524f9337",
-      "outputs": [],
-      "console": []
+      "code_hash": "e56dce08fcedcbc48c95fcc0c437c251",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": [
+        {
+          "type": "stream",
+          "name": "stdout",
+          "text": "\u2713 Donn\u00e9es lues depuis MySQL\n",
+          "mimetype": "text/plain"
+        },
+        {
+          "type": "stream",
+          "name": "stderr",
+          "text": "\r[Stage 0:>                                                          (0 + 0) / 1]\r\r[Stage 0:>                                                          (0 + 1) / 1]\r\r[Stage 2:>                                                          (0 + 1) / 1]\r\r[Stage 2:===========================================================(1 + 0) / 1]\r\r                                                                                \r",
+          "mimetype": "text/plain"
+        },
+        {
+          "type": "stream",
+          "name": "stdout",
+          "text": "  Nombre de lignes  : 625\n  Nombre de colonnes: 6\n\nSch\u00e9ma :\nroot\n |-- id_devis: decimal(20,0) (nullable = true)\n |-- id_client: integer (nullable = true)\n |-- id_commercial: integer (nullable = true)\n |-- date_devis: date (nullable = true)\n |-- statut: string (nullable = true)\n |-- montant_total: decimal(12,2) (nullable = true)\n\n",
+          "mimetype": "text/plain"
+        },
+        {
+          "type": "stream",
+          "name": "stderr",
+          "text": "\r[Stage 3:>                                                          (0 + 1) / 1]\r\r                                                                                \r",
+          "mimetype": "text/plain"
+        },
+        {
+          "type": "stream",
+          "name": "stdout",
+          "text": "+--------+---------+-------------+----------+--------+-------------+\n|id_devis|id_client|id_commercial|date_devis|  statut|montant_total|\n+--------+---------+-------------+----------+--------+-------------+\n|       1|        3|            1|2026-02-09|en_cours|     29443.00|\n|       2|        1|            2|2026-01-07|en_cours|     55766.00|\n|       3|        3|            2|2026-01-27| refus\u00c3\u00a9|     90328.00|\n|       4|        2|            1|2026-01-02|en_cours|     73827.00|\n|       5|        3|            2|2026-01-01|accept\u00c3\u00a9|     36229.00|\n+--------+---------+-------------+----------+--------+-------------+\nonly showing top 5 rows\n\n",
+          "mimetype": "text/plain"
+        }
+      ]
     },
     {
-      "id": "Xref",
-      "code_hash": "b8d0da82ebb12935ec5fc7ac75d332ad",
-      "outputs": [],
-      "console": []
+      "id": "SFPL",
+      "code_hash": "d191cd7c568555da2017cb0c84ce4917",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": [
+        {
+          "type": "stream",
+          "name": "stderr",
+          "text": "\r[Stage 7:>                                                          (0 + 1) / 1]\r\r                                                                                \r",
+          "mimetype": "text/plain"
+        },
+        {
+          "type": "stream",
+          "name": "stdout",
+          "text": "\u2713 Load termin\u00e9 !\n  Destination : s3a://bronze/mysql\n",
+          "mimetype": "text/plain"
+        }
+      ]
     },
     {
-      "id": "BYtC",
-      "code_hash": "70f4ab5c0c1b93bc04d88e2a32a8f64f",
-      "outputs": [],
-      "console": []
-    },
-    {
-      "id": "Kclp",
+      "id": "RGSE",
       "code_hash": "59290a08790abc105ed986a22bd0c225",
-      "outputs": [],
-      "console": []
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": [
+        {
+          "type": "stream",
+          "name": "stderr",
+          "text": "\r[Stage 8:>                                                          (0 + 1) / 1]\r\r                                                                                \r",
+          "mimetype": "text/plain"
+        },
+        {
+          "type": "stream",
+          "name": "stdout",
+          "text": "\u2713 V\u00e9rification Bronze Layer\n",
+          "mimetype": "text/plain"
+        },
+        {
+          "type": "stream",
+          "name": "stderr",
+          "text": "\r[Stage 9:>                                                          (0 + 1) / 1]\r\r                                                                                \r",
+          "mimetype": "text/plain"
+        },
+        {
+          "type": "stream",
+          "name": "stdout",
+          "text": "  Lignes lues depuis MinIO : 625\n+--------+---------+-------------+----------+--------+-------------+\n|id_devis|id_client|id_commercial|date_devis|  statut|montant_total|\n+--------+---------+-------------+----------+--------+-------------+\n|       1|        3|            1|2026-02-09|en_cours|     29443.00|\n|       2|        1|            2|2026-01-07|en_cours|     55766.00|\n|       3|        3|            2|2026-01-27| refus\u00c3\u00a9|     90328.00|\n|       4|        2|            1|2026-01-02|en_cours|     73827.00|\n|       5|        3|            2|2026-01-01|accept\u00c3\u00a9|     36229.00|\n+--------+---------+-------------+----------+--------+-------------+\nonly showing top 5 rows\n\n",
+          "mimetype": "text/plain"
+        }
+      ]
     },
     {
-      "id": "Hstk",
+      "id": "emfo",
       "code_hash": "fd57197c2205fccf262730683cba7149",
-      "outputs": [],
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
       "console": []
     },
     {
-      "id": "iLit",
+      "id": "nWHF",
       "code_hash": "8f1b8d2239121695a62c8614b1838ab4",
-      "outputs": [],
-      "console": []
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": [
+        {
+          "type": "stream",
+          "name": "stdout",
+          "text": "\u2713 Fichier CSV upload\u00e9 vers MinIO : s3://bronze/csv/client.csv\n",
+          "mimetype": "text/plain"
+        }
+      ]
     },
     {
-      "id": "ROlb",
+      "id": "ZHCJ",
       "code_hash": "0a2c63251e7bdf94804f1be111b23cdf",
-      "outputs": [],
-      "console": []
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": [
+        {
+          "type": "stream",
+          "name": "stderr",
+          "text": "\r[Stage 4:>                                                          (0 + 1) / 1]\r\r                                                                                \r\r[Stage 5:>                                                          (0 + 1) / 1]\r\r                                                                                \r",
+          "mimetype": "text/plain"
+        },
+        {
+          "type": "stream",
+          "name": "stdout",
+          "text": "+---------+-----------+-----------------+-----------+---------+-------------------+-------------------+\n|id_client|code_client|   raison_sociale|    adresse|telephone|              email|      date_creation|\n+---------+-----------+-----------------+-----------+---------+-------------------+-------------------+\n|        1|      CL001|SENEGAL LOGISTICS|      Dakar|770000001|  contact@senlog.sn|2026-02-28 22:33:17|\n|        2|      CL002|    AFRICA MINING|     Thi\u00c3\u00a8s|770000002|  contact@mining.sn|2026-02-28 22:33:17|\n|        3|      CL003|   BATIMENT SAHEL|Saint-Louis|770000003|contact@batiment.sn|2026-02-28 22:33:17|\n+---------+-----------+-----------------+-----------+---------+-------------------+-------------------+\n\n",
+          "mimetype": "text/plain"
+        }
+      ]
     }
   ]
 }

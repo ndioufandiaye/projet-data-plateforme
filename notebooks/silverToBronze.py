@@ -110,6 +110,8 @@ def _(MYSQ_PATH, spark):
     print("✓ Données lues depuis Bronze")
     print(f"  Clients : {df_clients.count()} lignes")   
     print(f"  Devis   : {df_devis.count()} lignes")
+    df_devis.show(5)
+
     return df_clients, df_devis
 
 
@@ -135,12 +137,14 @@ def _(df_clients, df_devis):
     print("✅ Clients sauvegardés dans Silver")
 
     # Filtrer seulement les devis valides
-    df_devis_silver = df_devis.dropDuplicates() \
+    df_devis_silver = df_devis.filter(col("statut") == "acceptÃ©") \
+        .dropDuplicates() \
         .dropna()
 
     # Sauvegarde Silver devis
     df_devis_silver.write.mode("overwrite").parquet("s3a://silver/mysql/devis")
     print("✅ Devis sauvegardés dans Silver")
+    print(f"Nombre de devis sauvegardés : {df_devis_silver.count()}")
     return
 
 
