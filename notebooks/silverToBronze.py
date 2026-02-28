@@ -111,7 +111,6 @@ def _(MYSQ_PATH, spark):
     print(f"  Clients : {df_clients.count()} lignes")   
     print(f"  Devis   : {df_devis.count()} lignes")
     df_devis.show(5)
-
     return df_clients, df_devis
 
 
@@ -145,6 +144,35 @@ def _(df_clients, df_devis):
     df_devis_silver.write.mode("overwrite").parquet("s3a://silver/mysql/devis")
     print("✅ Devis sauvegardés dans Silver")
     print(f"Nombre de devis sauvegardés : {df_devis_silver.count()}")
+    return (df_devis_silver,)
+
+
+@app.cell(hide_code=True)
+def _(mo):
+    mo.md(r"""
+    ## Agrégation + jointure (Gold)
+    """)
+    return
+
+
+@app.cell
+def _(df_devis_silver):
+    from pyspark.sql.functions import count
+
+    df_result = df_devis_silver.groupBy("id_client").agg(
+        count("*").alias("nb_devis_valide")
+    )
+
+    df_result.show()
+    return (df_result,)
+
+
+@app.cell
+def _(df_result):
+    # Sauvegarde Gold
+    df_result.write.mode("overwrite").parquet("s3a://gold/result")
+    print("✅ Résulta sauvegardés dans le gold")
+    print(f"Nombre de devis sauvegardés : {df_result.count()}")
     return
 
 
