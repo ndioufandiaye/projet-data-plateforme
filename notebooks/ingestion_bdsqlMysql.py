@@ -28,7 +28,7 @@ def _(mo):
     PySpark (moteur de traitement)
           │
           ▼
-    MinIO / S3 (Data Lake - format Parquet)
+    MinIO / S3 (bronze - format Parquet)
     ```
 
     ---
