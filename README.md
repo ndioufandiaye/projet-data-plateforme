@@ -22,9 +22,9 @@ cd data-platform-projetISI
 
 python -m venv venv
 venv\Scripts\activate     # Windows
-
+ 
+ ## installation des dépendances 
 pip install -r requirements.txt
-docker-compose up -d
 
 
 ## installation des dépendances avec pyproject.toml à la place de requirements.txt
@@ -40,9 +40,19 @@ docker cp C:\Users\DELL\Downloads\postgresql-42.6.0.jar sales_marimo_spark:/usr/
 docker exec -it sales_marimo_spark bash 
 find / -type d -name "jars" 2>/dev/null
 
-## pour lister le volume docker
+## Commande docker
+
+### pour démarrer les conteneurs
+docker-compose up -d
+
+### pour lister le volume docker
 docker volume ls
-## pour executé la base postegres depuis le containeur
+
+### pour supprimer les volumes dans le cas où on modifie le schéma de notre bd
+docker compose down -v
+### pour arreter les conteneurs
+docker compose down
+### pour executé la base postegres depuis le containeur
 docker exec -it sales_postgres psql -U postgres -d testspark
 
 ## pour lancer minio et marimo depuis le navigateur

@@ -1,0 +1,7 @@
+marimo
+pyspark
+pandas
+pyarrow
+mysql-connector-python
+boto3
+minio

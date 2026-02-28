@@ -14,14 +14,11 @@ ENV PATH="${JAVA_HOME}/bin:${PATH}"
 
 WORKDIR /app
 
-RUN pip install --no-cache-dir \
-    "marimo>=0.9.0" \
-    "pyspark==3.5.0" \
-    "pandas>=2.0.0" \
-    "pyarrow>=14.0.0" \
-    "mysql-connector-python" \
-    "boto3" \
-    "minio"
+# Copy requirements file
+COPY requirements.txt .
+
+# Install Python dependencies
+RUN pip install --no-cache-dir --default-timeout=1000 -r requirements.txt
 
 RUN mkdir -p /app/notebooks /tmp/spark && \
     chmod -R 777 /tmp/spark

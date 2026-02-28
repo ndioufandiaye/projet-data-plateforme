@@ -1,7 +1,10 @@
 import marimo
 
-__generated_with = "0.19.11"
-app = marimo.App(width="full", app_title="Data Plateforme - Ingestion MySQL/Csv")
+__generated_with = "0.20.2"
+app = marimo.App(
+    width="full",
+    app_title="Data Plateforme - Ingestion MySQL/Csv",
+)
 
 
 @app.cell
@@ -45,7 +48,7 @@ def _():
     MYSQL_PORT     = int(os.getenv("MYSQL_PORT", "3306"))
     MYSQL_USER     = os.getenv("MYSQL_USER", "tp_user")
     MYSQL_PASSWORD = os.getenv("MYSQL_PASSWORD", "tp_password")
-    MYSQL_DATABASE = os.getenv("MYSQL_DATABASE", "warehouse")
+    MYSQL_DATABASE = os.getenv("MYSQL_DATABASE", "dataplateform")
 
     # JDBC URL pour Spark
     JDBC_URL = f"jdbc:mysql://{MYSQL_HOST}:{MYSQL_PORT}/{MYSQL_DATABASE}?useSSL=false&allowPublicKeyRetrieval=true"
@@ -57,10 +60,10 @@ def _():
     MINIO_SECRET_KEY = os.getenv("MINIO_SECRET_KEY", "minioadmin123")
 
     # Chemins S3
-    MYSQ_PATH = "s3a://bronze/mysql/orders"
-    CSV_PATH = "s3a://bronze/csv/test"
+    MYSQ_PATH = "s3a://bronze/mysql"
+    CSV_PATH = "s3a://bronze/csv"
 
-    TABLE_NAME = "orders"
+    TABLE_NAME = "devis"
 
     # ── Spark ────────────────────────────────────────────────────────────────────
     SPARK_MASTER = os.getenv("SPARK_MASTER", "local[*]")
@@ -70,20 +73,18 @@ def _():
     print(f"  MinIO  : {MINIO_ENDPOINT}")
     print(f"  Spark  : {SPARK_MASTER}")
     return (
-        MYSQ_PATH,
         CSV_PATH,
         JDBC_DRIVER,
         JDBC_URL,
         MINIO_ACCESS_KEY,
         MINIO_ENDPOINT,
         MINIO_SECRET_KEY,
-        MYSQL_DATABASE,
-        MYSQL_HOST,
         MYSQL_PASSWORD,
-        MYSQL_PORT,
         MYSQL_USER,
+        MYSQ_PATH,
         SPARK_MASTER,
         TABLE_NAME,
+        os,
     )
 
 
@@ -99,14 +100,7 @@ def _(mo):
 def _(MINIO_ACCESS_KEY, MINIO_ENDPOINT, MINIO_SECRET_KEY, SPARK_MASTER):
     from pyspark.sql import SparkSession
     from pyspark.sql import functions as F
-    from pyspark.sql.types import (
-        DecimalType,
-        IntegerType,
-        StringType,
-        StructField,
-        StructType,
-        TimestampType,
-    )
+
 
     # Packages nécessaires (téléchargés automatiquement par Spark)
     packages = ",".join([
@@ -139,7 +133,7 @@ def _(MINIO_ACCESS_KEY, MINIO_ENDPOINT, MINIO_SECRET_KEY, SPARK_MASTER):
 
 @app.cell
 def _(JDBC_DRIVER, JDBC_URL, MYSQL_PASSWORD, MYSQL_USER, TABLE_NAME, spark):
-    # ── Lecture complète de la table orders ─────────────────────────────────────
+    # ── Lecture complète de la table devis ─────────────────────────────────────
     query = f"(SELECT * FROM {TABLE_NAME}) AS table_sql"
 
     # TODO: Lire les données depuis les la base mysql (doc: https://spark.apache.org/docs/latest/sql-data-sources-jdbc.html)
@@ -157,7 +151,7 @@ def _(JDBC_DRIVER, JDBC_URL, MYSQL_PASSWORD, MYSQL_USER, TABLE_NAME, spark):
     print(f"  Nombre de colonnes: {len(df.columns)}")
     print(f"\nSchéma :")
     df.printSchema()
-    return df, query
+    return (df,)
 
 
 @app.cell
@@ -200,7 +194,8 @@ def _(MYSQ_PATH, spark):
     print(f"✓ Vérification Bronze Layer")
     print(f"  Lignes lues depuis MinIO : {df_bronze_check.count()}")
     df_bronze_check.show(5)
-    return (df_bronze_check,)
+    return
+
 
 @app.cell(hide_code=True)
 def _(mo):
@@ -225,25 +220,27 @@ def _(mo):
     """)
     return
 
-@app.cell()
-def _(spark):
+
+@app.cell
+def _(CSV_PATH, os, spark):
     # 🔹 On n’importe pas os à l’intérieur de la fonction si déjà importé
     # import os
 
-    # 2️⃣ Chemin local du dossier data
-    data_dir = "/app/data"  # chemin dans le container
-    bucket_path = "s3a://bronze/csv/"
+    # chemin dans le container
+    data_dir = "/app/data" 
 
     # 3️⃣ Boucle sur tous les fichiers CSV
     for file in os.listdir(data_dir):
         if file.endswith(".csv"):
             file_path = os.path.join(data_dir, file)
-            print(f"Chargement de {file_path} → {bucket_path}{file}")
-            
+            print(f"Chargement de {file_path} → {CSV_PATH}{file}")
+
             df_csv = spark.read.option("header", "true").csv(file_path)
-            df_csv.write.mode("overwrite").parquet(f"{bucket_path}{file.replace('.csv','/')}")
-            
+            df_csv.write.mode("overwrite").parquet(f"{CSV_PATH}{file.replace('.csv','/')}")
+
             print(f"{file} chargé avec succès ✅")
+    return
+
 
 @app.cell
 def _(mo):
@@ -252,6 +249,7 @@ def _(mo):
     """)
     return
 
+
 @app.cell
 def _(CSV_PATH, spark):
     df_bronze_csv = spark.read.parquet(CSV_PATH)
@@ -259,7 +257,8 @@ def _(CSV_PATH, spark):
     print(f"✓ Vérification Bronze Layer")
     print(f"  Lignes lues depuis MinIO : {df_bronze_csv.count()}")
     df_bronze_csv.show(5)
-    return (df_bronze_csv,)
+    return
+
 
 if __name__ == "__main__":
     app.run()
