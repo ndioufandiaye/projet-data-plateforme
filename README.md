@@ -12,6 +12,15 @@
  - Mysql
  - MongoDb
 
+## sur la base mysql on a plusieurs tables mais ces deux tables qu'on a manipulées
+Mysql/tables
+├── devis
+├── client
+
+## pour le fichier csv on a recupéré les clients dépuis la base mysql qu'on a sauvegarder sur ce fichier pour pourvoir par la suite faire des jointure entre le fichier et la table devis de la base mysql
+fichier csv
+├── data/client.csv
+
 ## Setup
 
 ```bash
