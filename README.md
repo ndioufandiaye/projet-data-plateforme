@@ -28,8 +28,7 @@ data-platform-projetISI/
 ├── Dockerfile
 ├── notebooks/
 │   └── ingestion_bdsqlMysql.py
-    └── silverToBronze.py
-    └── ingestion_bdsqlMysql.py
+    └── silverTogold.py
 └── mysql/
     └── init.sql
 

@@ -98,56 +98,204 @@
     {
       "id": "Hbol",
       "code_hash": "1d0db38904205bec4d6f6f6a1f6cec3e",
-      "outputs": [],
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
       "console": []
     },
     {
       "id": "vblA",
       "code_hash": "2db80f01979dea89fa8f9f118bacd309",
-      "outputs": [],
-      "console": []
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": [
+        {
+          "type": "stream",
+          "name": "stdout",
+          "text": "\u2713 Configuration charg\u00e9e\n  MySQL  : mysql:3306/dataplateform\n  MinIO  : http://minio:9000\n  Spark  : local[*]\n",
+          "mimetype": "text/plain"
+        }
+      ]
     },
     {
       "id": "lEQa",
       "code_hash": "ee13d6cd646c8291d81b4e32ffadd104",
-      "outputs": [],
-      "console": []
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": [
+        {
+          "type": "stream",
+          "name": "stderr",
+          "text": "WARNING: Using incubator modules: jdk.incubator.vector\n:: loading settings :: url = jar:file:/usr/local/lib/python3.11/site-packages/pyspark/jars/ivy-2.5.3.jar!/org/apache/ivy/core/settings/ivysettings.xml\nIvy Default Cache set to: /root/.ivy2.5.2/cache\nThe jars for the packages stored in: /root/.ivy2.5.2/jars\norg.apache.hadoop#hadoop-aws added as a dependency\ncom.amazonaws#aws-java-sdk-bundle added as a dependency\nmysql#mysql-connector-java added as a dependency\n:: resolving dependencies :: org.apache.spark#spark-submit-parent-409e4fb7-9517-4c36-93eb-eaedb7bb8398;1.0\n\tconfs: [default]\n\tfound org.apache.hadoop#hadoop-aws;3.3.4 in central\n\tfound com.amazonaws#aws-java-sdk-bundle;1.12.262 in central\n\tfound org.wildfly.openssl#wildfly-openssl;1.0.7.Final in central\nmysql#mysql-connector-java;8.0.33 is relocated to com.mysql#mysql-connector-j;8.0.33. Please update your dependencies.\n\tfound mysql#mysql-connector-java;8.0.33 in central\n\tfound com.mysql#mysql-connector-j;8.0.33 in central\n\tfound com.google.protobuf#protobuf-java;3.21.9 in central\ndownloading https://repo1.maven.org/maven2/org/apache/hadoop/hadoop-aws/3.3.4/hadoop-aws-3.3.4.jar ...\n\t[SUCCESSFUL ] org.apache.hadoop#hadoop-aws;3.3.4!hadoop-aws.jar (704ms)\ndownloading https://repo1.maven.org/maven2/com/amazonaws/aws-java-sdk-bundle/1.12.262/aws-java-sdk-bundle-1.12.262.jar ...\n\t[SUCCESSFUL ] com.amazonaws#aws-java-sdk-bundle;1.12.262!aws-java-sdk-bundle.jar (86342ms)\ndownloading https://repo1.maven.org/maven2/org/wildfly/openssl/wildfly-openssl/1.0.7.Final/wildfly-openssl-1.0.7.Final.jar ...\n\t[SUCCESSFUL ] org.wildfly.openssl#wildfly-openssl;1.0.7.Final!wildfly-openssl.jar (170ms)\ndownloading https://repo1.maven.org/maven2/com/mysql/mysql-connector-j/8.0.33/mysql-connector-j-8.0.33.jar ...\n\t[SUCCESSFUL ] com.mysql#mysql-connector-j;8.0.33!mysql-connector-j.jar (864ms)\ndownloading https://repo1.maven.org/maven2/com/google/protobuf/protobuf-java/3.21.9/protobuf-java-3.21.9.jar ...\n\t[SUCCESSFUL ] com.google.protobuf#protobuf-java;3.21.9!protobuf-java.jar(bundle) (532ms)\n:: resolution report :: resolve 10599ms :: artifacts dl 88643ms\n\t:: modules in use:\n\tcom.amazonaws#aws-java-sdk-bundle;1.12.262 from central in [default]\n\tcom.google.protobuf#protobuf-java;3.21.9 from central in [default]\n\tcom.mysql#mysql-connector-j;8.0.33 from central in [default]\n\tmysql#mysql-connector-java;8.0.33 from central in [default]\n\torg.apache.hadoop#hadoop-aws;3.3.4 from central in [default]\n\torg.wildfly.openssl#wildfly-openssl;1.0.7.Final from central in [default]\n\t---------------------------------------------------------------------\n\t|                  |            modules            ||   artifacts   |\n\t|       conf       | number| search|dwnlded|evicted|| number|dwnlded|\n\t---------------------------------------------------------------------\n\t|      default     |   6   |   6   |   6   |   0   ||   5   |   5   |\n\t---------------------------------------------------------------------\n:: retrieving :: org.apache.spark#spark-submit-parent-409e4fb7-9517-4c36-93eb-eaedb7bb8398\n\tconfs: [default]\n\t5 artifacts copied, 0 already retrieved (279477kB/2155ms)\n26/03/01 21:06:14 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable\nUsing Spark's default log4j profile: org/apache/spark/log4j2-defaults.properties\nSetting default log level to \"WARN\".\nTo adjust logging level use sc.setLogLevel(newLevel). For SparkR, use setLogLevel(newLevel).\n",
+          "mimetype": "text/plain"
+        },
+        {
+          "type": "stream",
+          "name": "stdout",
+          "text": "\u2713 Session Spark cr\u00e9\u00e9e  \u2192  version 4.1.1\n",
+          "mimetype": "text/plain"
+        }
+      ]
     },
     {
       "id": "PKri",
       "code_hash": "e56dce08fcedcbc48c95fcc0c437c251",
-      "outputs": [],
-      "console": []
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": [
+        {
+          "type": "stream",
+          "name": "stdout",
+          "text": "\u2713 Donn\u00e9es lues depuis MySQL\n",
+          "mimetype": "text/plain"
+        },
+        {
+          "type": "stream",
+          "name": "stderr",
+          "text": "\r[Stage 0:>                                                          (0 + 1) / 1]\r\r[Stage 0:===========================================================(1 + 0) / 1]\r\r                                                                                \r",
+          "mimetype": "text/plain"
+        },
+        {
+          "type": "stream",
+          "name": "stdout",
+          "text": "  Nombre de lignes  : 625\n  Nombre de colonnes: 6\n\nSch\u00e9ma :\nroot\n |-- id_devis: decimal(20,0) (nullable = true)\n |-- id_client: integer (nullable = true)\n |-- id_commercial: integer (nullable = true)\n |-- date_devis: date (nullable = true)\n |-- statut: string (nullable = true)\n |-- montant_total: decimal(12,2) (nullable = true)\n\n+--------+---------+-------------+----------+--------+-------------+\n|id_devis|id_client|id_commercial|date_devis|  statut|montant_total|\n+--------+---------+-------------+----------+--------+-------------+\n|       1|        1|            1|2026-01-18|accept\u00c3\u00a9|     53151.00|\n|       2|        1|            2|2026-01-08|en_cours|    103692.00|\n|       3|        2|            2|2026-02-19|en_cours|     20754.00|\n|       4|        1|            2|2026-02-16| refus\u00c3\u00a9|    105583.00|\n|       5|        1|            1|2026-01-15| refus\u00c3\u00a9|     82527.00|\n+--------+---------+-------------+----------+--------+-------------+\nonly showing top 5 rows\n",
+          "mimetype": "text/plain"
+        }
+      ]
     },
     {
       "id": "SFPL",
       "code_hash": "d191cd7c568555da2017cb0c84ce4917",
-      "outputs": [],
-      "console": []
+      "outputs": [
+        {
+          "type": "error",
+          "ename": "exception",
+          "evalue": "For input string: \"60s\"",
+          "traceback": []
+        }
+      ],
+      "console": [
+        {
+          "type": "stream",
+          "name": "stderr",
+          "text": "26/03/01 21:48:08 WARN FileSystem: Failed to initialize filesystem s3a://bronze/mysql: java.lang.NumberFormatException: For input string: \"60s\"\n",
+          "mimetype": "text/plain"
+        },
+        {
+          "type": "stream",
+          "name": "stderr",
+          "text": "<span class=\"codehilite\"><div class=\"highlight\"><pre><span></span><span class=\"gt\">Traceback (most recent call last):</span>\n  File <span class=\"nb\">&quot;/tmp/marimo_15/__marimo__cell_SFPL_.py&quot;</span>, line <span class=\"m\">2</span>, in <span class=\"n\">&lt;module&gt;</span>\n<span class=\"w\">    </span><span class=\"n\">df_mysql</span><span class=\"o\">.</span><span class=\"n\">write</span><span class=\"o\">.</span><span class=\"n\">format</span><span class=\"p\">(</span><span class=\"s2\">&quot;parquet&quot;</span><span class=\"p\">)</span><span class=\"o\">.</span><span class=\"n\">mode</span><span class=\"p\">(</span><span class=\"s2\">&quot;overwrite&quot;</span><span class=\"p\">)</span><span class=\"o\">.</span><span class=\"n\">save</span><span class=\"p\">(</span><span class=\"n\">MYSQ_PATH</span><span class=\"p\">)</span>\n  File <span class=\"nb\">&quot;/usr/local/lib/python3.11/site-packages/pyspark/sql/readwriter.py&quot;</span>, line <span class=\"m\">1745</span>, in <span class=\"n\">save</span>\n<span class=\"w\">    </span><span class=\"bp\">self</span><span class=\"o\">.</span><span class=\"n\">_jwrite</span><span class=\"o\">.</span><span class=\"n\">save</span><span class=\"p\">(</span><span class=\"n\">path</span><span class=\"p\">)</span>\n  File <span class=\"nb\">&quot;/usr/local/lib/python3.11/site-packages/py4j/java_gateway.py&quot;</span>, line <span class=\"m\">1362</span>, in <span class=\"n\">__call__</span>\n<span class=\"w\">    </span><span class=\"n\">return_value</span> <span class=\"o\">=</span> <span class=\"n\">get_return_value</span><span class=\"p\">(</span>\n<span class=\"w\">                   </span><span class=\"pm\">^^^^^^^^^^^^^^^^^</span>\n  File <span class=\"nb\">&quot;/usr/local/lib/python3.11/site-packages/pyspark/errors/exceptions/captured.py&quot;</span>, line <span class=\"m\">269</span>, in <span class=\"n\">deco</span>\n<span class=\"w\">    </span><span class=\"k\">raise</span> <span class=\"n\">converted</span> <span class=\"kn\">from</span><span class=\"w\"> </span><span class=\"kc\">None</span>\n<span class=\"gr\">pyspark.errors.exceptions.captured.NumberFormatException</span>: <span class=\"n\">For input string: &quot;60s&quot;</span>\n</pre></div>\n</span>",
+          "mimetype": "application/vnd.marimo+traceback"
+        }
+      ]
     },
     {
       "id": "RGSE",
       "code_hash": "59290a08790abc105ed986a22bd0c225",
-      "outputs": [],
-      "console": []
+      "outputs": [
+        {
+          "type": "error",
+          "ename": "exception",
+          "evalue": "For input string: \"60s\"",
+          "traceback": []
+        }
+      ],
+      "console": [
+        {
+          "type": "stream",
+          "name": "stderr",
+          "text": "26/03/01 21:07:03 WARN FileSystem: Failed to initialize filesystem s3a://bronze/mysql: java.lang.NumberFormatException: For input string: \"60s\"\n26/03/01 21:07:03 WARN FileStreamSink: Assume no metadata directory. Error while looking for metadata directory in the path: s3a://bronze/mysql.\njava.lang.NumberFormatException: For input string: \"60s\"\n\tat java.base/java.lang.NumberFormatException.forInputString(NumberFormatException.java:67)\n\tat java.base/java.lang.Long.parseLong(Long.java:709)\n\tat java.base/java.lang.Long.parseLong(Long.java:832)\n\tat org.apache.hadoop.conf.Configuration.getLong(Configuration.java:1607)\n\tat org.apache.hadoop.fs.s3a.S3AUtils.longOption(S3AUtils.java:1024)\n\tat org.apache.hadoop.fs.s3a.S3AFileSystem.initThreadPools(S3AFileSystem.java:719)\n\tat org.apache.hadoop.fs.s3a.S3AFileSystem.initialize(S3AFileSystem.java:498)\n\tat org.apache.hadoop.fs.FileSystem.createFileSystem(FileSystem.java:3615)\n\tat org.apache.hadoop.fs.FileSystem.access$300(FileSystem.java:172)\n\tat org.apache.hadoop.fs.FileSystem$Cache.getInternal(FileSystem.java:3716)\n\tat org.apache.hadoop.fs.FileSystem$Cache.get(FileSystem.java:3667)\n\tat org.apache.hadoop.fs.FileSystem.get(FileSystem.java:557)\n\tat org.apache.hadoop.fs.Path.getFileSystem(Path.java:366)\n\tat org.apache.spark.sql.execution.streaming.sinks.FileStreamSink$.hasMetadata(FileStreamSink.scala:57)\n\tat org.apache.spark.sql.execution.datasources.DataSource.resolveRelation(DataSource.scala:384)\n\tat org.apache.spark.sql.catalyst.analysis.ResolveDataSource.org$apache$spark$sql$catalyst$analysis$ResolveDataSource$$loadV1BatchSource(ResolveDataSource.scala:143)\n\tat org.apache.spark.sql.catalyst.analysis.ResolveDataSource$$anonfun$apply$1.$anonfun$applyOrElse$2(ResolveDataSource.scala:61)\n\tat scala.Option.getOrElse(Option.scala:201)\n\tat org.apache.spark.sql.catalyst.analysis.ResolveDataSource$$anonfun$apply$1.applyOrElse(ResolveDataSource.scala:61)\n\tat org.apache.spark.sql.catalyst.analysis.ResolveDataSource$$anonfun$apply$1.applyOrElse(ResolveDataSource.scala:45)\n\tat org.apache.spark.sql.catalyst.plans.logical.AnalysisHelper.$anonfun$resolveOperatorsUpWithPruning$3(AnalysisHelper.scala:139)\n\tat org.apache.spark.sql.catalyst.trees.CurrentOrigin$.withOrigin(origin.scala:107)\n\tat org.apache.spark.sql.catalyst.plans.logical.AnalysisHelper.$anonfun$resolveOperatorsUpWithPruning$1(AnalysisHelper.scala:139)\n\tat org.apache.spark.sql.catalyst.plans.logical.AnalysisHelper$.allowInvokingTransformsInAnalyzer(AnalysisHelper.scala:416)\n\tat org.apache.spark.sql.catalyst.plans.logical.AnalysisHelper.resolveOperatorsUpWithPruning(AnalysisHelper.scala:135)\n\tat org.apache.spark.sql.catalyst.plans.logical.AnalysisHelper.resolveOperatorsUpWithPruning$(AnalysisHelper.scala:131)\n\tat org.apache.spark.sql.catalyst.plans.logical.LogicalPlan.resolveOperatorsUpWithPruning(LogicalPlan.scala:37)\n\tat org.apache.spark.sql.catalyst.plans.logical.AnalysisHelper.resolveOperatorsUp(AnalysisHelper.scala:112)\n\tat org.apache.spark.sql.catalyst.plans.logical.AnalysisHelper.resolveOperatorsUp$(AnalysisHelper.scala:111)\n\tat org.apache.spark.sql.catalyst.plans.logical.LogicalPlan.resolveOperatorsUp(LogicalPlan.scala:37)\n\tat org.apache.spark.sql.catalyst.analysis.ResolveDataSource.apply(ResolveDataSource.scala:45)\n\tat org.apache.spark.sql.catalyst.analysis.ResolveDataSource.apply(ResolveDataSource.scala:43)\n\tat org.apache.spark.sql.catalyst.rules.RuleExecutor.$anonfun$execute$2(RuleExecutor.scala:248)\n\tat scala.collection.LinearSeqOps.foldLeft(LinearSeq.scala:183)\n\tat scala.collection.LinearSeqOps.foldLeft$(LinearSeq.scala:179)\n\tat scala.collection.immutable.List.foldLeft(List.scala:79)\n\tat org.apache.spark.sql.catalyst.rules.RuleExecutor.$anonfun$execute$1(RuleExecutor.scala:245)\n\tat org.apache.spark.sql.catalyst.rules.RuleExecutor.$anonfun$execute$1$adapted(RuleExecutor.scala:237)\n\tat scala.collection.immutable.List.foreach(List.scala:323)\n\tat org.apache.spark.sql.catalyst.rules.RuleExecutor.execute(RuleExecutor.scala:237)\n\tat org.apache.spark.sql.catalyst.analysis.Analyzer.org$apache$spark$sql$catalyst$analysis$Analyzer$$executeSameContext(Analyzer.scala:343)\n\tat org.apache.spark.sql.catalyst.analysis.Analyzer.$anonfun$execute$1(Analyzer.scala:339)\n\tat org.apache.spark.sql.catalyst.analysis.AnalysisContext$.withNewAnalysisContext(Analyzer.scala:224)\n\tat org.apache.spark.sql.catalyst.analysis.Analyzer.execute(Analyzer.scala:339)\n\tat org.apache.spark.sql.catalyst.analysis.Analyzer.execute(Analyzer.scala:289)\n\tat org.apache.spark.sql.catalyst.rules.RuleExecutor.$anonfun$executeAndTrack$1(RuleExecutor.scala:207)\n\tat org.apache.spark.sql.catalyst.QueryPlanningTracker$.withTracker(QueryPlanningTracker.scala:89)\n\tat org.apache.spark.sql.catalyst.rules.RuleExecutor.executeAndTrack(RuleExecutor.scala:207)\n\tat org.apache.spark.sql.catalyst.analysis.resolver.HybridAnalyzer.resolveInFixedPoint(HybridAnalyzer.scala:236)\n\tat org.apache.spark.sql.catalyst.analysis.resolver.HybridAnalyzer.$anonfun$apply$1(HybridAnalyzer.scala:91)\n\tat org.apache.spark.sql.catalyst.analysis.resolver.HybridAnalyzer.withTrackedAnalyzerBridgeState(HybridAnalyzer.scala:122)\n\tat org.apache.spark.sql.catalyst.analysis.resolver.HybridAnalyzer.apply(HybridAnalyzer.scala:84)\n\tat org.apache.spark.sql.catalyst.analysis.Analyzer.$anonfun$executeAndCheck$1(Analyzer.scala:322)\n\tat org.apache.spark.sql.catalyst.plans.logical.AnalysisHelper$.markInAnalyzer(AnalysisHelper.scala:423)\n\tat org.apache.spark.sql.catalyst.analysis.Analyzer.executeAndCheck(Analyzer.scala:322)\n\tat org.apache.spark.sql.execution.QueryExecution.$anonfun$lazyAnalyzed$2(QueryExecution.scala:139)\n\tat org.apache.spark.sql.catalyst.QueryPlanningTracker.measurePhase(QueryPlanningTracker.scala:148)\n\tat org.apache.spark.sql.execution.QueryExecution.$anonfun$executePhase$2(QueryExecution.scala:330)\n\tat org.apache.spark.sql.execution.QueryExecution$.withInternalError(QueryExecution.scala:717)\n\tat org.apache.spark.sql.execution.QueryExecution.$anonfun$executePhase$1(QueryExecution.scala:330)\n\tat org.apache.spark.sql.SparkSession.withActive(SparkSession.scala:804)\n\tat org.apache.spark.sql.execution.QueryExecution.executePhase(QueryExecution.scala:329)\n\tat org.apache.spark.sql.execution.QueryExecution.$anonfun$lazyAnalyzed$1(QueryExecution.scala:139)\n\tat scala.util.Try$.apply(Try.scala:217)\n\tat org.apache.spark.util.Utils$.doTryWithCallerStacktrace(Utils.scala:1392)\n\tat org.apache.spark.util.LazyTry.tryT$lzycompute(LazyTry.scala:46)\n\tat org.apache.spark.util.LazyTry.tryT(LazyTry.scala:46)\n\tat org.apache.spark.util.LazyTry.get(LazyTry.scala:58)\n\tat org.apache.spark.sql.execution.QueryExecution.analyzed(QueryExecution.scala:150)\n\tat org.apache.spark.sql.execution.QueryExecution.assertAnalyzed(QueryExecution.scala:90)\n\tat org.apache.spark.sql.classic.Dataset$.$anonfun$ofRows$1(Dataset.scala:114)\n\tat org.apache.spark.sql.SparkSession.withActive(SparkSession.scala:804)\n\tat org.apache.spark.sql.classic.Dataset$.ofRows(Dataset.scala:112)\n\tat org.apache.spark.sql.classic.DataFrameReader.load(DataFrameReader.scala:108)\n\tat org.apache.spark.sql.classic.DataFrameReader.load(DataFrameReader.scala:57)\n\tat org.apache.spark.sql.DataFrameReader.parquet(DataFrameReader.scala:457)\n\tat org.apache.spark.sql.classic.DataFrameReader.parquet(DataFrameReader.scala:305)\n\tat org.apache.spark.sql.classic.DataFrameReader.parquet(DataFrameReader.scala:57)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:75)\n\tat java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:52)\n\tat java.base/java.lang.reflect.Method.invoke(Method.java:580)\n\tat py4j.reflection.MethodInvoker.invoke(MethodInvoker.java:244)\n\tat py4j.reflection.ReflectionEngine.invoke(ReflectionEngine.java:374)\n\tat py4j.Gateway.invoke(Gateway.java:282)\n\tat py4j.commands.AbstractCommand.invokeMethod(AbstractCommand.java:132)\n\tat py4j.commands.CallCommand.execute(CallCommand.java:79)\n\tat py4j.ClientServerConnection.waitForCommands(ClientServerConnection.java:184)\n\tat py4j.ClientServerConnection.run(ClientServerConnection.java:108)\n\tat java.base/java.lang.Thread.run(Thread.java:1583)\n26/03/01 21:07:03 WARN FileSystem: Failed to initialize filesystem s3a://bronze/mysql: java.lang.NumberFormatException: For input string: \"60s\"\n",
+          "mimetype": "text/plain"
+        },
+        {
+          "type": "stream",
+          "name": "stderr",
+          "text": "<span class=\"codehilite\"><div class=\"highlight\"><pre><span></span><span class=\"gt\">Traceback (most recent call last):</span>\n  File <span class=\"nb\">&quot;/tmp/marimo_15/__marimo__cell_RGSE_.py&quot;</span>, line <span class=\"m\">1</span>, in <span class=\"n\">&lt;module&gt;</span>\n<span class=\"w\">    </span><span class=\"n\">df_bronze_check</span> <span class=\"o\">=</span> <span class=\"n\">spark</span><span class=\"o\">.</span><span class=\"n\">read</span><span class=\"o\">.</span><span class=\"n\">parquet</span><span class=\"p\">(</span><span class=\"n\">MYSQ_PATH</span><span class=\"p\">)</span>\n<span class=\"w\">                      </span><span class=\"pm\">^^^^^^^^^^^^^^^^^^^^^^^^^^^^^</span>\n  File <span class=\"nb\">&quot;/usr/local/lib/python3.11/site-packages/pyspark/sql/readwriter.py&quot;</span>, line <span class=\"m\">642</span>, in <span class=\"n\">parquet</span>\n<span class=\"w\">    </span><span class=\"k\">return</span> <span class=\"bp\">self</span><span class=\"o\">.</span><span class=\"n\">_df</span><span class=\"p\">(</span><span class=\"bp\">self</span><span class=\"o\">.</span><span class=\"n\">_jreader</span><span class=\"o\">.</span><span class=\"n\">parquet</span><span class=\"p\">(</span><span class=\"n\">_to_seq</span><span class=\"p\">(</span><span class=\"bp\">self</span><span class=\"o\">.</span><span class=\"n\">_spark</span><span class=\"o\">.</span><span class=\"n\">_sc</span><span class=\"p\">,</span> <span class=\"n\">paths</span><span class=\"p\">)))</span>\n<span class=\"w\">                    </span><span class=\"pm\">^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^</span>\n  File <span class=\"nb\">&quot;/usr/local/lib/python3.11/site-packages/py4j/java_gateway.py&quot;</span>, line <span class=\"m\">1362</span>, in <span class=\"n\">__call__</span>\n<span class=\"w\">    </span><span class=\"n\">return_value</span> <span class=\"o\">=</span> <span class=\"n\">get_return_value</span><span class=\"p\">(</span>\n<span class=\"w\">                   </span><span class=\"pm\">^^^^^^^^^^^^^^^^^</span>\n  File <span class=\"nb\">&quot;/usr/local/lib/python3.11/site-packages/pyspark/errors/exceptions/captured.py&quot;</span>, line <span class=\"m\">269</span>, in <span class=\"n\">deco</span>\n<span class=\"w\">    </span><span class=\"k\">raise</span> <span class=\"n\">converted</span> <span class=\"kn\">from</span><span class=\"w\"> </span><span class=\"kc\">None</span>\n<span class=\"gr\">pyspark.errors.exceptions.captured.NumberFormatException</span>: <span class=\"n\">For input string: &quot;60s&quot;</span>\n</pre></div>\n</span>",
+          "mimetype": "application/vnd.marimo+traceback"
+        }
+      ]
     },
     {
       "id": "emfo",
       "code_hash": "fd57197c2205fccf262730683cba7149",
-      "outputs": [],
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
       "console": []
     },
     {
       "id": "nWHF",
       "code_hash": "8f1b8d2239121695a62c8614b1838ab4",
-      "outputs": [],
-      "console": []
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": [
+        {
+          "type": "stream",
+          "name": "stdout",
+          "text": "\u2713 Fichier CSV upload\u00e9 vers MinIO : s3://bronze/csv/client.csv\n",
+          "mimetype": "text/plain"
+        }
+      ]
     },
     {
       "id": "ZHCJ",
       "code_hash": "0a2c63251e7bdf94804f1be111b23cdf",
-      "outputs": [],
-      "console": []
+      "outputs": [
+        {
+          "type": "error",
+          "ename": "exception",
+          "evalue": "For input string: \"60s\"",
+          "traceback": []
+        }
+      ],
+      "console": [
+        {
+          "type": "stream",
+          "name": "stderr",
+          "text": "26/03/01 21:07:15 WARN FileSystem: Failed to initialize filesystem s3a://bronze/csv/client.csv: java.lang.NumberFormatException: For input string: \"60s\"\n26/03/01 21:07:15 WARN FileStreamSink: Assume no metadata directory. Error while looking for metadata directory in the path: s3a://bronze/csv/client.csv.\njava.lang.NumberFormatException: For input string: \"60s\"\n\tat java.base/java.lang.NumberFormatException.forInputString(NumberFormatException.java:67)\n\tat java.base/java.lang.Long.parseLong(Long.java:709)\n\tat java.base/java.lang.Long.parseLong(Long.java:832)\n\tat org.apache.hadoop.conf.Configuration.getLong(Configuration.java:1607)\n\tat org.apache.hadoop.fs.s3a.S3AUtils.longOption(S3AUtils.java:1024)\n\tat org.apache.hadoop.fs.s3a.S3AFileSystem.initThreadPools(S3AFileSystem.java:719)\n\tat org.apache.hadoop.fs.s3a.S3AFileSystem.initialize(S3AFileSystem.java:498)\n\tat org.apache.hadoop.fs.FileSystem.createFileSystem(FileSystem.java:3615)\n\tat org.apache.hadoop.fs.FileSystem.access$300(FileSystem.java:172)\n\tat org.apache.hadoop.fs.FileSystem$Cache.getInternal(FileSystem.java:3716)\n\tat org.apache.hadoop.fs.FileSystem$Cache.get(FileSystem.java:3667)\n\tat org.apache.hadoop.fs.FileSystem.get(FileSystem.java:557)\n\tat org.apache.hadoop.fs.Path.getFileSystem(Path.java:366)\n\tat org.apache.spark.sql.execution.streaming.sinks.FileStreamSink$.hasMetadata(FileStreamSink.scala:57)\n\tat org.apache.spark.sql.execution.datasources.DataSource.resolveRelation(DataSource.scala:384)\n\tat org.apache.spark.sql.catalyst.analysis.ResolveDataSource.org$apache$spark$sql$catalyst$analysis$ResolveDataSource$$loadV1BatchSource(ResolveDataSource.scala:143)\n\tat org.apache.spark.sql.catalyst.analysis.ResolveDataSource$$anonfun$apply$1.$anonfun$applyOrElse$2(ResolveDataSource.scala:61)\n\tat scala.Option.getOrElse(Option.scala:201)\n\tat org.apache.spark.sql.catalyst.analysis.ResolveDataSource$$anonfun$apply$1.applyOrElse(ResolveDataSource.scala:61)\n\tat org.apache.spark.sql.catalyst.analysis.ResolveDataSource$$anonfun$apply$1.applyOrElse(ResolveDataSource.scala:45)\n\tat org.apache.spark.sql.catalyst.plans.logical.AnalysisHelper.$anonfun$resolveOperatorsUpWithPruning$3(AnalysisHelper.scala:139)\n\tat org.apache.spark.sql.catalyst.trees.CurrentOrigin$.withOrigin(origin.scala:107)\n\tat org.apache.spark.sql.catalyst.plans.logical.AnalysisHelper.$anonfun$resolveOperatorsUpWithPruning$1(AnalysisHelper.scala:139)\n\tat org.apache.spark.sql.catalyst.plans.logical.AnalysisHelper$.allowInvokingTransformsInAnalyzer(AnalysisHelper.scala:416)\n\tat org.apache.spark.sql.catalyst.plans.logical.AnalysisHelper.resolveOperatorsUpWithPruning(AnalysisHelper.scala:135)\n\tat org.apache.spark.sql.catalyst.plans.logical.AnalysisHelper.resolveOperatorsUpWithPruning$(AnalysisHelper.scala:131)\n\tat org.apache.spark.sql.catalyst.plans.logical.LogicalPlan.resolveOperatorsUpWithPruning(LogicalPlan.scala:37)\n\tat org.apache.spark.sql.catalyst.plans.logical.AnalysisHelper.resolveOperatorsUp(AnalysisHelper.scala:112)\n\tat org.apache.spark.sql.catalyst.plans.logical.AnalysisHelper.resolveOperatorsUp$(AnalysisHelper.scala:111)\n\tat org.apache.spark.sql.catalyst.plans.logical.LogicalPlan.resolveOperatorsUp(LogicalPlan.scala:37)\n\tat org.apache.spark.sql.catalyst.analysis.ResolveDataSource.apply(ResolveDataSource.scala:45)\n\tat org.apache.spark.sql.catalyst.analysis.ResolveDataSource.apply(ResolveDataSource.scala:43)\n\tat org.apache.spark.sql.catalyst.rules.RuleExecutor.$anonfun$execute$2(RuleExecutor.scala:248)\n\tat scala.collection.LinearSeqOps.foldLeft(LinearSeq.scala:183)\n\tat scala.collection.LinearSeqOps.foldLeft$(LinearSeq.scala:179)\n\tat scala.collection.immutable.List.foldLeft(List.scala:79)\n\tat org.apache.spark.sql.catalyst.rules.RuleExecutor.$anonfun$execute$1(RuleExecutor.scala:245)\n\tat org.apache.spark.sql.catalyst.rules.RuleExecutor.$anonfun$execute$1$adapted(RuleExecutor.scala:237)\n\tat scala.collection.immutable.List.foreach(List.scala:323)\n\tat org.apache.spark.sql.catalyst.rules.RuleExecutor.execute(RuleExecutor.scala:237)\n\tat org.apache.spark.sql.catalyst.analysis.Analyzer.org$apache$spark$sql$catalyst$analysis$Analyzer$$executeSameContext(Analyzer.scala:343)\n\tat org.apache.spark.sql.catalyst.analysis.Analyzer.$anonfun$execute$1(Analyzer.scala:339)\n\tat org.apache.spark.sql.catalyst.analysis.AnalysisContext$.withNewAnalysisContext(Analyzer.scala:224)\n\tat org.apache.spark.sql.catalyst.analysis.Analyzer.execute(Analyzer.scala:339)\n\tat org.apache.spark.sql.catalyst.analysis.Analyzer.execute(Analyzer.scala:289)\n\tat org.apache.spark.sql.catalyst.rules.RuleExecutor.$anonfun$executeAndTrack$1(RuleExecutor.scala:207)\n\tat org.apache.spark.sql.catalyst.QueryPlanningTracker$.withTracker(QueryPlanningTracker.scala:89)\n\tat org.apache.spark.sql.catalyst.rules.RuleExecutor.executeAndTrack(RuleExecutor.scala:207)\n\tat org.apache.spark.sql.catalyst.analysis.resolver.HybridAnalyzer.resolveInFixedPoint(HybridAnalyzer.scala:236)\n\tat org.apache.spark.sql.catalyst.analysis.resolver.HybridAnalyzer.$anonfun$apply$1(HybridAnalyzer.scala:91)\n\tat org.apache.spark.sql.catalyst.analysis.resolver.HybridAnalyzer.withTrackedAnalyzerBridgeState(HybridAnalyzer.scala:122)\n\tat org.apache.spark.sql.catalyst.analysis.resolver.HybridAnalyzer.apply(HybridAnalyzer.scala:84)\n\tat org.apache.spark.sql.catalyst.analysis.Analyzer.$anonfun$executeAndCheck$1(Analyzer.scala:322)\n\tat org.apache.spark.sql.catalyst.plans.logical.AnalysisHelper$.markInAnalyzer(AnalysisHelper.scala:423)\n\tat org.apache.spark.sql.catalyst.analysis.Analyzer.executeAndCheck(Analyzer.scala:322)\n\tat org.apache.spark.sql.execution.QueryExecution.$anonfun$lazyAnalyzed$2(QueryExecution.scala:139)\n\tat org.apache.spark.sql.catalyst.QueryPlanningTracker.measurePhase(QueryPlanningTracker.scala:148)\n\tat org.apache.spark.sql.execution.QueryExecution.$anonfun$executePhase$2(QueryExecution.scala:330)\n\tat org.apache.spark.sql.execution.QueryExecution$.withInternalError(QueryExecution.scala:717)\n\tat org.apache.spark.sql.execution.QueryExecution.$anonfun$executePhase$1(QueryExecution.scala:330)\n\tat org.apache.spark.sql.SparkSession.withActive(SparkSession.scala:804)\n\tat org.apache.spark.sql.execution.QueryExecution.executePhase(QueryExecution.scala:329)\n\tat org.apache.spark.sql.execution.QueryExecution.$anonfun$lazyAnalyzed$1(QueryExecution.scala:139)\n\tat scala.util.Try$.apply(Try.scala:217)\n\tat org.apache.spark.util.Utils$.doTryWithCallerStacktrace(Utils.scala:1392)\n\tat org.apache.spark.util.LazyTry.tryT$lzycompute(LazyTry.scala:46)\n\tat org.apache.spark.util.LazyTry.tryT(LazyTry.scala:46)\n\tat org.apache.spark.util.LazyTry.get(LazyTry.scala:58)\n\tat org.apache.spark.sql.execution.QueryExecution.analyzed(QueryExecution.scala:150)\n\tat org.apache.spark.sql.execution.QueryExecution.assertAnalyzed(QueryExecution.scala:90)\n\tat org.apache.spark.sql.classic.Dataset$.$anonfun$ofRows$1(Dataset.scala:114)\n\tat org.apache.spark.sql.SparkSession.withActive(SparkSession.scala:804)\n\tat org.apache.spark.sql.classic.Dataset$.ofRows(Dataset.scala:112)\n\tat org.apache.spark.sql.classic.DataFrameReader.load(DataFrameReader.scala:108)\n\tat org.apache.spark.sql.classic.DataFrameReader.load(DataFrameReader.scala:57)\n\tat org.apache.spark.sql.DataFrameReader.csv(DataFrameReader.scala:392)\n\tat org.apache.spark.sql.classic.DataFrameReader.csv(DataFrameReader.scala:258)\n\tat org.apache.spark.sql.classic.DataFrameReader.csv(DataFrameReader.scala:57)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:75)\n\tat java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:52)\n\tat java.base/java.lang.reflect.Method.invoke(Method.java:580)\n\tat py4j.reflection.MethodInvoker.invoke(MethodInvoker.java:244)\n\tat py4j.reflection.ReflectionEngine.invoke(ReflectionEngine.java:374)\n\tat py4j.Gateway.invoke(Gateway.java:282)\n\tat py4j.commands.AbstractCommand.invokeMethod(AbstractCommand.java:132)\n\tat py4j.commands.CallCommand.execute(CallCommand.java:79)\n\tat py4j.ClientServerConnection.waitForCommands(ClientServerConnection.java:184)\n\tat py4j.ClientServerConnection.run(ClientServerConnection.java:108)\n\tat java.base/java.lang.Thread.run(Thread.java:1583)\n26/03/01 21:07:15 WARN FileSystem: Failed to initialize filesystem s3a://bronze/csv/client.csv: java.lang.NumberFormatException: For input string: \"60s\"\n",
+          "mimetype": "text/plain"
+        },
+        {
+          "type": "stream",
+          "name": "stderr",
+          "text": "<span class=\"codehilite\"><div class=\"highlight\"><pre><span></span><span class=\"gt\">Traceback (most recent call last):</span>\n  File <span class=\"nb\">&quot;/tmp/marimo_15/__marimo__cell_ZHCJ_.py&quot;</span>, line <span class=\"m\">2</span>, in <span class=\"n\">&lt;module&gt;</span>\n<span class=\"w\">    </span><span class=\"n\">df</span> <span class=\"o\">=</span> <span class=\"n\">spark</span><span class=\"o\">.</span><span class=\"n\">read</span><span class=\"o\">.</span><span class=\"n\">csv</span><span class=\"p\">(</span>\n<span class=\"w\">         </span><span class=\"pm\">^^^^^^^^^^^^^^^</span>\n  File <span class=\"nb\">&quot;/usr/local/lib/python3.11/site-packages/pyspark/sql/readwriter.py&quot;</span>, line <span class=\"m\">838</span>, in <span class=\"n\">csv</span>\n<span class=\"w\">    </span><span class=\"k\">return</span> <span class=\"bp\">self</span><span class=\"o\">.</span><span class=\"n\">_df</span><span class=\"p\">(</span><span class=\"bp\">self</span><span class=\"o\">.</span><span class=\"n\">_jreader</span><span class=\"o\">.</span><span class=\"n\">csv</span><span class=\"p\">(</span><span class=\"bp\">self</span><span class=\"o\">.</span><span class=\"n\">_spark</span><span class=\"o\">.</span><span class=\"n\">_sc</span><span class=\"o\">.</span><span class=\"n\">_jvm</span><span class=\"o\">.</span><span class=\"n\">PythonUtils</span><span class=\"o\">.</span><span class=\"n\">toSeq</span><span class=\"p\">(</span><span class=\"n\">path</span><span class=\"p\">)))</span>\n<span class=\"w\">                    </span><span class=\"pm\">^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^</span>\n  File <span class=\"nb\">&quot;/usr/local/lib/python3.11/site-packages/py4j/java_gateway.py&quot;</span>, line <span class=\"m\">1362</span>, in <span class=\"n\">__call__</span>\n<span class=\"w\">    </span><span class=\"n\">return_value</span> <span class=\"o\">=</span> <span class=\"n\">get_return_value</span><span class=\"p\">(</span>\n<span class=\"w\">                   </span><span class=\"pm\">^^^^^^^^^^^^^^^^^</span>\n  File <span class=\"nb\">&quot;/usr/local/lib/python3.11/site-packages/pyspark/errors/exceptions/captured.py&quot;</span>, line <span class=\"m\">269</span>, in <span class=\"n\">deco</span>\n<span class=\"w\">    </span><span class=\"k\">raise</span> <span class=\"n\">converted</span> <span class=\"kn\">from</span><span class=\"w\"> </span><span class=\"kc\">None</span>\n<span class=\"gr\">pyspark.errors.exceptions.captured.NumberFormatException</span>: <span class=\"n\">For input string: &quot;60s&quot;</span>\n</pre></div>\n</span>",
+          "mimetype": "application/vnd.marimo+traceback"
+        }
+      ]
     }
   ]
 }
