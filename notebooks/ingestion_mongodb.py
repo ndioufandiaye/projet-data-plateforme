@@ -1,6 +1,5 @@
 import marimo
 
-
 __generated_with = "0.20.2"
 app = marimo.App()
 
@@ -9,12 +8,24 @@ app = marimo.App()
 def intro():
     import marimo as mo
     from pyspark.sql import SparkSession
-    from datetime import datetime # Défini ici une seule fois pour tout le monde
+    from pyspark.sql.functions import col, count, avg, round, sum
+    from datetime import datetime
     import json
     from pymongo import MongoClient
     from bson import ObjectId
 
-    return MongoClient, ObjectId, SparkSession, datetime, json
+    return (
+        MongoClient,
+        ObjectId,
+        SparkSession,
+        avg,
+        col,
+        count,
+        datetime,
+        json,
+        round,
+        sum,
+    )
 
 
 @app.cell
@@ -94,11 +105,11 @@ def save_to_minio(datetime, df):
         # Utilise directement datetime
         horodatage = datetime.now().strftime("%Y%m%d_%H%M")
         chemin_final = f"s3a://bronze/mongodb/employes/{horodatage}/"
-    
+
         print(f"Envoi de {df.count()} lignes vers MinIO...")
         df.write.mode("overwrite").parquet(chemin_final)
-    
-        print(f"✨ Ingestion terminée : {chemin_final}")
+
+        print(f" Ingestion terminée : {chemin_final}")
     return
 
 
@@ -111,7 +122,7 @@ def _(df):
         print(f"📤 Envoi vers MinIO...")
         # On utilise 'overwrite' pour écraser les anciens tests
         df.write.mode("overwrite").parquet(chemin_fixe)
-        print(f"✨ Ingestion terminée dans : {chemin_fixe}")
+        print(f"Ingestion terminée dans : {chemin_fixe}")
     return
 
 
@@ -119,13 +130,91 @@ def _(df):
 def _(spark):
     # Cellule de lecture
     df_minio = spark.read.parquet("s3a://bronze/mongodb/employes/donnees_finales/")
-    print(f"✅ Lecture réussie ! Total : {df_minio.count()} employés.")
+    print(f"Lecture réussie ! Total : {df_minio.count()} employés.")
     df_minio.show(5)
     return
 
 
 @app.cell
-def _():
+def _(spark):
+    # Chemin source (Bronze)
+    path_bronze = "s3a://bronze/mongodb/employes/donnees_finales/"
+
+    # Lecture
+    df_bronze = spark.read.parquet(path_bronze)
+    return (df_bronze,)
+
+
+@app.cell
+def _(col, df_bronze):
+    # Transformation : on "aplatit" l'adresse et on gère les valeurs NULL
+    df_step_silver = df_bronze.select(
+        col("nom"),
+        col("prenom"),
+        col("anciennete").cast("int"),
+        col("adresse.numero").alias("rue_numero"),
+        col("adresse.ville").alias("ville"),
+        col("adresse.codepostal").alias("cp"),
+        col("prime").cast("double")
+    ).fillna({"prime": 0}) # On remplace les primes NULL par 0
+
+    print("✨ Données transformées en format Silver :")
+    df_step_silver.show(5)
+    return (df_step_silver,)
+
+
+@app.cell
+def _(df_step_silver):
+    # Chemin de destination (Silver)
+    path_silver = "s3a://silver/mongodb/employes/clean_data/"
+
+    try:
+        df_step_silver.write.mode("overwrite").parquet(path_silver)
+        print(f"🚀 Couche Silver mise à jour avec succès dans : {path_silver}")
+    except Exception as e:
+        print(f"❌ Erreur lors de l'écriture Silver : {e}")
+    return (path_silver,)
+
+
+@app.cell
+def _(path_silver, spark):
+    # Chemin source (Silver)
+    path_new_silver = "s3a://silver/mongodb/employes/clean_data/"
+
+    # Lecture
+    df_gold_silver = spark.read.parquet(path_silver)
+    return (df_gold_silver,)
+
+
+@app.cell
+def _(avg, col, count, df_gold_silver, round, sum):
+    # Transformation Gold : Statistiques par ville
+    df_gold = (
+        df_gold_silver
+        .groupBy("ville")
+        .agg(
+            count("nom").alias("nombre_employes"),
+            round(avg("anciennete"), 1).alias("anciennete_moyenne"),
+            sum("prime").alias("total_primes")
+        )
+        .orderBy(col("nombre_employes").desc())
+    )
+
+    print("🏆 Couche GOLD : Statistiques RH par ville")
+    df_gold.show()
+    return (df_gold,)
+
+
+@app.cell
+def _(df_gold):
+    # Chemin de destination (Gold)
+    path_gold = "s3a://gold/mongodb/stats_rh_villes/"
+
+    try:
+        df_gold.write.mode("overwrite").parquet(path_gold)
+        print(f"🥇 Couche GOLD générée avec succès : {path_gold}")
+    except Exception as e:
+        print(f"❌ Erreur lors de l'écriture Gold : {e}")
     return
 
 

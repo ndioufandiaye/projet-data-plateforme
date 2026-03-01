@@ -6,7 +6,7 @@
   "cells": [
     {
       "id": "Hbol",
-      "code_hash": "34e622ca9a0e93b6a0beb9186b4f0a8f",
+      "code_hash": "d28a58a52f80853927236314bd44991d",
       "outputs": [
         {
           "type": "data",
@@ -65,7 +65,7 @@
         {
           "type": "stream",
           "name": "stderr",
-          "text": "\r[Stage 0:>                                                          (0 + 1) / 1]\r\r                                                                                \r",
+          "text": "\r[Stage 0:>                                                          (0 + 0) / 1]\r\r[Stage 0:>                                                          (0 + 1) / 1]\r\r[Stage 0:===========================================================(1 + 0) / 1]\r\r[Stage 2:>                                                          (0 + 1) / 1]\r\r                                                                                \r",
           "mimetype": "text/plain"
         },
         {
@@ -109,14 +109,14 @@
         {
           "type": "stream",
           "name": "stderr",
-          "text": "Ivy Default Cache set to: /root/.ivy2/cache\nThe jars for the packages stored in: /root/.ivy2/jars\norg.mongodb.spark#mongo-spark-connector_2.12 added as a dependency\norg.apache.hadoop#hadoop-aws added as a dependency\n:: resolving dependencies :: org.apache.spark#spark-submit-parent-6ced8213-3c22-44ba-af1f-0f8f9b6ed9fe;1.0\n\tconfs: [default]\n\tfound org.mongodb.spark#mongo-spark-connector_2.12;10.4.0 in central\n\tfound org.mongodb#mongodb-driver-sync;5.1.4 in central\n\t[5.1.4] org.mongodb#mongodb-driver-sync;[5.1.1,5.1.99)\n\tfound org.mongodb#bson;5.1.4 in central\n\tfound org.mongodb#mongodb-driver-core;5.1.4 in central\n\tfound org.mongodb#bson-record-codec;5.1.4 in central\n\tfound org.apache.hadoop#hadoop-aws;3.3.4 in central\n\tfound com.amazonaws#aws-java-sdk-bundle;1.12.262 in central\n\tfound org.wildfly.openssl#wildfly-openssl;1.0.7.Final in central\ndownloading https://repo1.maven.org/maven2/org/mongodb/spark/mongo-spark-connector_2.12/10.4.0/mongo-spark-connector_2.12-10.4.0.jar ...\n\t[SUCCESSFUL ] org.mongodb.spark#mongo-spark-connector_2.12;10.4.0!mongo-spark-connector_2.12.jar (154ms)\ndownloading https://repo1.maven.org/maven2/org/apache/hadoop/hadoop-aws/3.3.4/hadoop-aws-3.3.4.jar ...\n\t[SUCCESSFUL ] org.apache.hadoop#hadoop-aws;3.3.4!hadoop-aws.jar (253ms)\ndownloading https://repo1.maven.org/maven2/org/mongodb/mongodb-driver-sync/5.1.4/mongodb-driver-sync-5.1.4.jar ...\n\t[SUCCESSFUL ] org.mongodb#mongodb-driver-sync;5.1.4!mongodb-driver-sync.jar (79ms)\ndownloading https://repo1.maven.org/maven2/org/mongodb/bson/5.1.4/bson-5.1.4.jar ...\n\t[SUCCESSFUL ] org.mongodb#bson;5.1.4!bson.jar (1255ms)\ndownloading https://repo1.maven.org/maven2/org/mongodb/mongodb-driver-core/5.1.4/mongodb-driver-core-5.1.4.jar ...\n\t[SUCCESSFUL ] org.mongodb#mongodb-driver-core;5.1.4!mongodb-driver-core.jar (4122ms)\ndownloading https://repo1.maven.org/maven2/org/mongodb/bson-record-codec/5.1.4/bson-record-codec-5.1.4.jar ...\n\t[SUCCESSFUL ] org.mongodb#bson-record-codec;5.1.4!bson-record-codec.jar (422ms)\ndownloading https://repo1.maven.org/maven2/com/amazonaws/aws-java-sdk-bundle/1.12.262/aws-java-sdk-bundle-1.12.262.jar ...\n\t[SUCCESSFUL ] com.amazonaws#aws-java-sdk-bundle;1.12.262!aws-java-sdk-bundle.jar (51407ms)\ndownloading https://repo1.maven.org/maven2/org/wildfly/openssl/wildfly-openssl/1.0.7.Final/wildfly-openssl-1.0.7.Final.jar ...\n\t[SUCCESSFUL ] org.wildfly.openssl#wildfly-openssl;1.0.7.Final!wildfly-openssl.jar (124ms)\n:: resolution report :: resolve 13630ms :: artifacts dl 57840ms\n\t:: modules in use:\n\tcom.amazonaws#aws-java-sdk-bundle;1.12.262 from central in [default]\n\torg.apache.hadoop#hadoop-aws;3.3.4 from central in [default]\n\torg.mongodb#bson;5.1.4 from central in [default]\n\torg.mongodb#bson-record-codec;5.1.4 from central in [default]\n\torg.mongodb#mongodb-driver-core;5.1.4 from central in [default]\n\torg.mongodb#mongodb-driver-sync;5.1.4 from central in [default]\n\torg.mongodb.spark#mongo-spark-connector_2.12;10.4.0 from central in [default]\n\torg.wildfly.openssl#wildfly-openssl;1.0.7.Final from central in [default]\n\t---------------------------------------------------------------------\n\t|                  |            modules            ||   artifacts   |\n\t|       conf       | number| search|dwnlded|evicted|| number|dwnlded|\n\t---------------------------------------------------------------------\n\t|      default     |   8   |   8   |   8   |   0   ||   8   |   8   |\n\t---------------------------------------------------------------------\n:: retrieving :: org.apache.spark#spark-submit-parent-6ced8213-3c22-44ba-af1f-0f8f9b6ed9fe\n\tconfs: [default]\n\t8 artifacts copied, 0 already retrieved (277944kB/3028ms)\n26/02/28 12:01:48 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable\nSetting default log level to \"WARN\".\nTo adjust logging level use sc.setLogLevel(newLevel). For SparkR, use setLogLevel(newLevel).\n26/02/28 12:02:24 WARN GarbageCollectionMetrics: To enable non-built-in garbage collector(s) List(G1 Concurrent GC), users should configure it(them) to spark.eventLog.gcMetrics.youngGenerationGarbageCollectors or spark.eventLog.gcMetrics.oldGenerationGarbageCollectors\n26/02/28 12:02:25 ERROR Inbox: Ignoring error\njava.lang.NullPointerException: Cannot invoke \"org.apache.spark.storage.BlockManagerId.executorId()\" because \"idWithoutTopologyInfo\" is null\n\tat org.apache.spark.storage.BlockManagerMasterEndpoint.org$apache$spark$storage$BlockManagerMasterEndpoint$$register(BlockManagerMasterEndpoint.scala:677)\n\tat org.apache.spark.storage.BlockManagerMasterEndpoint$$anonfun$receiveAndReply$1.applyOrElse(BlockManagerMasterEndpoint.scala:133)\n\tat org.apache.spark.rpc.netty.Inbox.$anonfun$process$1(Inbox.scala:103)\n\tat org.apache.spark.rpc.netty.Inbox.safelyCall(Inbox.scala:213)\n\tat org.apache.spark.rpc.netty.Inbox.process(Inbox.scala:100)\n\tat org.apache.spark.rpc.netty.MessageLoop.org$apache$spark$rpc$netty$MessageLoop$$receiveLoop(MessageLoop.scala:75)\n\tat org.apache.spark.rpc.netty.MessageLoop$$anon$1.run(MessageLoop.scala:41)\n\tat java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)\n\tat java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)\n\tat java.base/java.lang.Thread.run(Thread.java:1583)\n26/02/28 12:02:25 WARN Executor: Issue communicating with driver in heartbeater\norg.apache.spark.SparkException: Exception thrown in awaitResult: \n\tat org.apache.spark.util.SparkThreadUtils$.awaitResult(SparkThreadUtils.scala:56)\n\tat org.apache.spark.util.ThreadUtils$.awaitResult(ThreadUtils.scala:310)\n\tat org.apache.spark.rpc.RpcTimeout.awaitResult(RpcTimeout.scala:75)\n\tat org.apache.spark.rpc.RpcEndpointRef.askSync(RpcEndpointRef.scala:101)\n\tat org.apache.spark.rpc.RpcEndpointRef.askSync(RpcEndpointRef.scala:85)\n\tat org.apache.spark.storage.BlockManagerMaster.registerBlockManager(BlockManagerMaster.scala:80)\n\tat org.apache.spark.storage.BlockManager.reregister(BlockManager.scala:642)\n\tat org.apache.spark.executor.Executor.reportHeartBeat(Executor.scala:1223)\n\tat org.apache.spark.executor.Executor.$anonfun$heartbeater$1(Executor.scala:295)\n\tat scala.runtime.java8.JFunction0$mcV$sp.apply(JFunction0$mcV$sp.java:23)\n\tat org.apache.spark.util.Utils$.logUncaughtExceptions(Utils.scala:1928)\n\tat org.apache.spark.Heartbeater$$anon$1.run(Heartbeater.scala:46)\n\tat java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:572)\n\tat java.base/java.util.concurrent.FutureTask.runAndReset(FutureTask.java:358)\n\tat java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:305)\n\tat java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)\n\tat java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)\n\tat java.base/java.lang.Thread.run(Thread.java:1583)\nCaused by: java.lang.NullPointerException: Cannot invoke \"org.apache.spark.storage.BlockManagerId.executorId()\" because \"idWithoutTopologyInfo\" is null\n\tat org.apache.spark.storage.BlockManagerMasterEndpoint.org$apache$spark$storage$BlockManagerMasterEndpoint$$register(BlockManagerMasterEndpoint.scala:677)\n\tat org.apache.spark.storage.BlockManagerMasterEndpoint$$anonfun$receiveAndReply$1.applyOrElse(BlockManagerMasterEndpoint.scala:133)\n\tat org.apache.spark.rpc.netty.Inbox.$anonfun$process$1(Inbox.scala:103)\n\tat org.apache.spark.rpc.netty.Inbox.safelyCall(Inbox.scala:213)\n\tat org.apache.spark.rpc.netty.Inbox.process(Inbox.scala:100)\n\tat org.apache.spark.rpc.netty.MessageLoop.org$apache$spark$rpc$netty$MessageLoop$$receiveLoop(MessageLoop.scala:75)\n\tat org.apache.spark.rpc.netty.MessageLoop$$anon$1.run(MessageLoop.scala:41)\n\t... 3 more\n",
+          "text": "Ivy Default Cache set to: /root/.ivy2/cache\nThe jars for the packages stored in: /root/.ivy2/jars\norg.mongodb.spark#mongo-spark-connector_2.12 added as a dependency\norg.apache.hadoop#hadoop-aws added as a dependency\n:: resolving dependencies :: org.apache.spark#spark-submit-parent-8453e805-6e84-4587-9ea6-54e14ce353b3;1.0\n\tconfs: [default]\n\tfound org.mongodb.spark#mongo-spark-connector_2.12;10.4.0 in central\n\tfound org.mongodb#mongodb-driver-sync;5.1.4 in central\n\t[5.1.4] org.mongodb#mongodb-driver-sync;[5.1.1,5.1.99)\n\tfound org.mongodb#bson;5.1.4 in central\n\tfound org.mongodb#mongodb-driver-core;5.1.4 in central\n\tfound org.mongodb#bson-record-codec;5.1.4 in central\n\tfound org.apache.hadoop#hadoop-aws;3.3.4 in central\n\tfound com.amazonaws#aws-java-sdk-bundle;1.12.262 in central\n\tfound org.wildfly.openssl#wildfly-openssl;1.0.7.Final in central\n:: resolution report :: resolve 6340ms :: artifacts dl 111ms\n\t:: modules in use:\n\tcom.amazonaws#aws-java-sdk-bundle;1.12.262 from central in [default]\n\torg.apache.hadoop#hadoop-aws;3.3.4 from central in [default]\n\torg.mongodb#bson;5.1.4 from central in [default]\n\torg.mongodb#bson-record-codec;5.1.4 from central in [default]\n\torg.mongodb#mongodb-driver-core;5.1.4 from central in [default]\n\torg.mongodb#mongodb-driver-sync;5.1.4 from central in [default]\n\torg.mongodb.spark#mongo-spark-connector_2.12;10.4.0 from central in [default]\n\torg.wildfly.openssl#wildfly-openssl;1.0.7.Final from central in [default]\n\t---------------------------------------------------------------------\n\t|                  |            modules            ||   artifacts   |\n\t|       conf       | number| search|dwnlded|evicted|| number|dwnlded|\n\t---------------------------------------------------------------------\n\t|      default     |   8   |   1   |   0   |   0   ||   8   |   0   |\n\t---------------------------------------------------------------------\n:: retrieving :: org.apache.spark#spark-submit-parent-8453e805-6e84-4587-9ea6-54e14ce353b3\n\tconfs: [default]\n\t0 artifacts copied, 8 already retrieved (0kB/99ms)\n26/03/01 15:20:47 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable\nSetting default log level to \"WARN\".\nTo adjust logging level use sc.setLogLevel(newLevel). For SparkR, use setLogLevel(newLevel).\n26/03/01 15:21:05 WARN GarbageCollectionMetrics: To enable non-built-in garbage collector(s) List(G1 Concurrent GC), users should configure it(them) to spark.eventLog.gcMetrics.youngGenerationGarbageCollectors or spark.eventLog.gcMetrics.oldGenerationGarbageCollectors\n",
           "mimetype": "text/plain"
         }
       ]
     },
     {
       "id": "PKri",
-      "code_hash": "82b310a4824cd23c54977750ec293249",
+      "code_hash": "7b170132465e60af9d1f74bd45d04d0b",
       "outputs": [
         {
           "type": "data",
@@ -135,20 +135,20 @@
         {
           "type": "stream",
           "name": "stderr",
-          "text": "26/02/28 12:02:54 WARN MetricsConfig: Cannot locate configuration: tried hadoop-metrics2-s3a-file-system.properties,hadoop-metrics2.properties\n\r[Stage 10:>                                                         (0 + 1) / 1]\r\r                                                                                \r",
+          "text": "26/03/01 15:21:58 WARN MetricsConfig: Cannot locate configuration: tried hadoop-metrics2-s3a-file-system.properties,hadoop-metrics2.properties\n\r[Stage 10:>                                                         (0 + 1) / 1]\r\r                                                                                \r",
           "mimetype": "text/plain"
         },
         {
           "type": "stream",
           "name": "stdout",
-          "text": "\u2728 Ingestion termin\u00e9e : s3a://bronze/mongodb/employes/20260228_1202/\n",
+          "text": " Ingestion termin\u00e9e : s3a://bronze/mongodb/employes/20260301_1521/\n",
           "mimetype": "text/plain"
         }
       ]
     },
     {
       "id": "Xref",
-      "code_hash": "91203647f387cb967ef2ec8f3b559ec6",
+      "code_hash": "519484cc1ec968532c3de9dbcc71d0cc",
       "outputs": [
         {
           "type": "data",
@@ -173,14 +173,14 @@
         {
           "type": "stream",
           "name": "stdout",
-          "text": "\u2728 Ingestion termin\u00e9e dans : s3a://bronze/mongodb/employes/donnees_finales/\n",
+          "text": "Ingestion termin\u00e9e dans : s3a://bronze/mongodb/employes/donnees_finales/\n",
           "mimetype": "text/plain"
         }
       ]
     },
     {
       "id": "SFPL",
-      "code_hash": "08428fb99152a354fb2a63a8ae208a2e",
+      "code_hash": "978c6323855250206e0d65e0c83e101c",
       "outputs": [
         {
           "type": "data",
@@ -193,14 +193,14 @@
         {
           "type": "stream",
           "name": "stdout",
-          "text": "\u2705 Lecture r\u00e9ussie ! Total : 48 employ\u00e9s.\n+--------------------+--------------------+----------+------+----------+-----+---------+\n|                 _id|             adresse|anciennete|   nom|    prenom|prime|      tel|\n+--------------------+--------------------+----------+------+----------+-----+---------+\n|511d0a9f181b16509...|{31000, 77, NULL,...|        10|Dupond|      Jean| NULL|     NULL|\n|511d0a9f181b16509...|{33000, 78, NULL,...|        27|  King|     David| NULL|     NULL|\n|511d0a9f181b16509...|{75000, 75, NULL,...|         7|Ossola|Christophe| NULL|     NULL|\n|511d0a9f181b16509...|{31000, 80, Gener...|         2|Monnin|    Gilles| NULL|     NULL|\n|511d0a9f181b16509...|{9500, 79, NULL, ...|         5| Priou|    Franck| NULL|547608352|\n+--------------------+--------------------+----------+------+----------+-----+---------+\nonly showing top 5 rows\n\n",
+          "text": "Lecture r\u00e9ussie ! Total : 48 employ\u00e9s.\n+--------------------+--------------------+----------+------+----------+-----+---------+\n|                 _id|             adresse|anciennete|   nom|    prenom|prime|      tel|\n+--------------------+--------------------+----------+------+----------+-----+---------+\n|511d0a9f181b16509...|{31000, 77, NULL,...|        10|Dupond|      Jean| NULL|     NULL|\n|511d0a9f181b16509...|{33000, 78, NULL,...|        27|  King|     David| NULL|     NULL|\n|511d0a9f181b16509...|{75000, 75, NULL,...|         7|Ossola|Christophe| NULL|     NULL|\n|511d0a9f181b16509...|{31000, 80, Gener...|         2|Monnin|    Gilles| NULL|     NULL|\n|511d0a9f181b16509...|{9500, 79, NULL, ...|         5| Priou|    Franck| NULL|547608352|\n+--------------------+--------------------+----------+------+----------+-----+---------+\nonly showing top 5 rows\n\n",
           "mimetype": "text/plain"
         }
       ]
     },
     {
       "id": "BYtC",
-      "code_hash": null,
+      "code_hash": "fcb22c1db1f109705b27f2d708d88016",
       "outputs": [
         {
           "type": "data",
@@ -210,6 +210,123 @@
         }
       ],
       "console": []
+    },
+    {
+      "id": "RGSE",
+      "code_hash": "b43e771fa2b2519eb0efcabdef285bd3",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": [
+        {
+          "type": "stream",
+          "name": "stdout",
+          "text": "\u2728 Donn\u00e9es transform\u00e9es en format Silver :\n+------+----------+----------+----------+--------+-----+-----+\n|   nom|    prenom|anciennete|rue_numero|   ville|   cp|prime|\n+------+----------+----------+----------+--------+-----+-----+\n|Dupond|      Jean|        10|        77|Toulouse|31000|  0.0|\n|  King|     David|        27|        78|Bordeaux|33000|  0.0|\n|Ossola|Christophe|         7|        75|   Paris|75000|  0.0|\n|Monnin|    Gilles|         2|        80|Toulouse|31000|  0.0|\n| Priou|    Franck|         5|        79|    Foix| 9500|  0.0|\n+------+----------+----------+----------+--------+-----+-----+\nonly showing top 5 rows\n\n",
+          "mimetype": "text/plain"
+        }
+      ]
+    },
+    {
+      "id": "Kclp",
+      "code_hash": "b72969102e2a6944286946f0278edbf7",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": [
+        {
+          "type": "stream",
+          "name": "stderr",
+          "text": "\r[Stage 23:>                                                         (0 + 1) / 1]\r\r                                                                                \r",
+          "mimetype": "text/plain"
+        },
+        {
+          "type": "stream",
+          "name": "stdout",
+          "text": "\ud83d\ude80 Couche Silver mise \u00e0 jour avec succ\u00e8s dans : s3a://silver/mongodb/employes/clean_data/\n",
+          "mimetype": "text/plain"
+        }
+      ]
+    },
+    {
+      "id": "emfo",
+      "code_hash": "bef1518594b5b902da3eb4c3cb410b4b",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "Hstk",
+      "code_hash": "0de2a502a842f1ccf53c85da10e0d82f",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": [
+        {
+          "type": "stream",
+          "name": "stdout",
+          "text": "\ud83c\udfc6 Couche GOLD : Statistiques RH par ville\n",
+          "mimetype": "text/plain"
+        },
+        {
+          "type": "stream",
+          "name": "stderr",
+          "text": "\r[Stage 25:>                                                         (0 + 1) / 1]\r\r[Stage 27:>                                                         (0 + 1) / 1]\r\r                                                                                \r",
+          "mimetype": "text/plain"
+        },
+        {
+          "type": "stream",
+          "name": "stdout",
+          "text": "+--------+---------------+------------------+------------+\n|   ville|nombre_employes|anciennete_moyenne|total_primes|\n+--------+---------------+------------------+------------+\n|Toulouse|             16|               7.6|         0.0|\n|    Foix|             16|               5.2|     25200.0|\n|   Paris|              8|               7.1|         0.0|\n|Bordeaux|              8|              17.5|         0.0|\n+--------+---------------+------------------+------------+\n\n",
+          "mimetype": "text/plain"
+        }
+      ]
+    },
+    {
+      "id": "nWHF",
+      "code_hash": "58f164fa3f574b79e04207f7ae578faf",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": [
+        {
+          "type": "stream",
+          "name": "stderr",
+          "text": "\r[Stage 35:>                                                         (0 + 1) / 1]\r\r                                                                                \r",
+          "mimetype": "text/plain"
+        },
+        {
+          "type": "stream",
+          "name": "stdout",
+          "text": "\ud83e\udd47 Couche GOLD g\u00e9n\u00e9r\u00e9e avec succ\u00e8s : s3a://gold/mongodb/stats_rh_villes/\n",
+          "mimetype": "text/plain"
+        }
+      ]
     }
   ]
 }
