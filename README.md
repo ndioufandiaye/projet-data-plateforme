@@ -18,6 +18,21 @@
 git clone ...
 cd data-platform-projetISI
 
+Assurez-vous que vous avez:
+
+data-platform-projetISI/
+├── docker-compose.yaml
+├── requirements.txt
+├── README.md 
+├── data/  ## dans lequel seront sauvegardé le fichier client.csv générés dépuis la table client de notre base dataplateforme
+├── Dockerfile
+├── notebooks/
+│   └── ingestion_bdsqlMysql.py
+    └── silverToBronze.py
+    └── ingestion_bdsqlMysql.py
+└── mysql/
+    └── init.sql
+
 ## création et activation env virtuel
 
 python -m venv venv
@@ -31,31 +46,42 @@ pip install -r requirements.txt
 COPY pyproject.toml uv.lock* ./
 RUN uv sync --no-dev
 
-## ajout du driver PostgreSQL dans le conteneur Spark Marimo 
-télécharger le driver depuis ce lien : https://repo1.maven.org/maven2/org/postgresql/postgresql/42.6.0/postgresql-42.6.0.jar
-
-## Copier le jar dans ton conteneur Spark
-docker cp C:\Users\DELL\Downloads\postgresql-42.6.0.jar sales_marimo_spark:/usr/local/lib/python3.11/site-packages/pyspark/jars/
-## Se positionner dans le container marimo puis verifié si le jar est bien copié avec ces commandes
-docker exec -it sales_marimo_spark bash 
-find / -type d -name "jars" 2>/dev/null
 
 ## Commande docker
 
-### pour démarrer les conteneurs
+# Démarrer les services
 docker-compose up -d
 
-### pour lister le volume docker
+# Arrêter les services
+docker-compose down
+
+# Voir les logs
+docker-compose logs -f [service_name]
+
+# Redémarrer un service
+docker-compose restart [service_name]
+
+# Reconstruire les images
+docker-compose build --no-cache
+
+# Tout nettoyer (ATTENTION: supprime les données)
+docker-compose down -v
+
+### pour lister les volumes docker
 docker volume ls
 
-### pour supprimer les volumes dans le cas où on modifie le schéma de notre bd
-docker compose down -v
-### pour arreter les conteneurs
-docker compose down
-### pour executé la base postegres depuis le containeur
-docker exec -it sales_postgres psql -U postgres -d testspark
+### pour à la base mysql depuis le containeur
+docker exec -it mysql mysql -u tp_user -p 
 
 ## pour lancer minio et marimo depuis le navigateur
-MinIO console → http://localhost:9001
+MinIO
+    Ouvrir http://localhost:9001
+    Identifiants:
+        user: minioadmin
+        password: minioadmin123
+    Vérifier que les buckets existent:
+        bronze
+        silver
+        gold
 
-Marimo → http://localhost:8080
+Marimo Notebook: http://localhost:8080
